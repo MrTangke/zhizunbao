@@ -1,0 +1,73 @@
+package www.zhizunbao.service;
+
+import java.util.List;
+import java.util.Map;
+
+import www.zhizunbao.dto.insure.Feature;
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.InsurePeople;
+import www.zhizunbao.dto.insure.SafeGuard;
+import www.zhizunbao.dto.insure.Shape;
+import www.zhizunbao.dto.insure.Type;
+
+public interface InsureService {
+
+	List<Insure> findInsureList(Insure insure);
+
+	int findInsureCount();
+
+	List<InsurePeople> findPeoplelist();
+
+	int addInsure(Insure insure);
+
+	Insure findInsureByInsureId(Integer insureId);
+
+	int deleteInsure(Integer insureId);
+
+	int updateInsure(Insure insure);
+
+	List<Type> findTypeList();
+
+	List<Type> findTopTypeList();
+
+	int addType(Type type);
+
+	Type findTypeBytypeId(Integer typeId);
+
+	int updateType(Type type);
+
+	int deleteType(Integer typeId);
+
+	List<Feature> findFeatureList();
+
+	int addFeature(Feature feature);
+
+	List<SafeGuard> findSafeGuardList();
+
+	int addSafeGuard(SafeGuard safeGuard);
+
+	SafeGuard findSafeGuardBySafeGuardId(Integer safeguardId);
+
+	int updateSafeGuard(SafeGuard safeGuard);
+
+	int deleteSafeGuard(Integer safeguardId);
+
+	int uploadImg(String imgUrl, Insure insure);
+
+	List<Shape> findShapeListByInsureId(Insure insure2);
+
+	int addInsure(Insure insure, Integer[] feature, Integer[] safeguard, Integer typeId);
+
+	Map<String, Object> findOtherByInsureId(Integer insureId);
+
+	int updateInsure(Insure insure, Integer[] feature, Integer[] safeguard, Integer typeId);
+
+	List<Type> findtypeListByPid(Integer pid);
+
+	List<Insure> findInsureListByPid(Integer pid);
+
+	List<Type> findTypeListByTypeId(Integer typeId);
+
+	List<Insure> findInsureListByTypeId(Integer typeId);
+
+}

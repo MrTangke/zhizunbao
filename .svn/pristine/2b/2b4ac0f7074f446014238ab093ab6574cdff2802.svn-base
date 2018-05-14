@@ -1,0 +1,9 @@
+package www.zhizunbao.service;
+
+import www.zhizunbao.dto.claim.UserApply;
+
+public interface UserApplyService {
+
+	int uploadImg(String imgUrl, UserApply userApply);
+
+}

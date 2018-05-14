@@ -1,0 +1,45 @@
+// JavaScript Document
+$(document).ready(function() {
+    //表格奇偶行背景色不同
+	$(".t-list").find("tr:even").find("td").css("background","#f9f9f9");
+	//鼠标点击所在行变色
+	$(".t-list").find("tr").mouseover(function(){
+		$(".t-list").find("tr:even").find("td").css("background","#f9f9f9");
+		$(".t-list").find("tr:odd").find("td").css("background","#fff");
+		$(this).find("td").css("background","#ebf6ff");	
+	});
+	$(".word-name").click(function(){
+		$(this).css("font-weight","normal");
+	});
+	//鼠标经过按钮的效果
+	$(".button1,.button2").on("mouseover",function(){
+		$(this).fadeTo("fast",0.6);
+	})
+	$(".button1,.button2").on("mouseover",function(){
+		$(this).fadeTo("fast",1);
+	})
+	//文档详细页---单击可反复切换选择收藏和取消收藏
+	$(".word-info a").on("click",function(){
+		$(this).toggleClass("collect");
+	});
+	//文档详细页--评论的tab页切换面板
+	$(".tabs .nav-ul").find("li").eq(0).css({
+		"border-bottom":"2px solid #0697e5"
+	});
+	$(".nav-ul").find("li").click(function(){
+		var $id = $(this).attr("class");
+		$(this).css({
+			"border-bottom":"2px solid #0697e5"
+		}).siblings().css({
+			"border-bottom":"none"
+		});
+		$("#"+$id).show().siblings().hide();	
+	});
+    //文档详细页--鼠标经过操作指令层的显示和隐藏
+	$(".word-content .content").on("mouseover",function(){
+		$("#command").css("display","block");
+	});
+	$(".word-content .content").on("mouseleave",function(){
+		$("#command").css("display","none");
+	});
+});

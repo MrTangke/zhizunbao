@@ -1,0 +1,23 @@
+package www.zhizunbao.service;
+
+import java.util.List;
+
+import www.zhizunbao.dto.manage.UserInfo;
+
+public interface UserInfoService {
+
+	UserInfo findUserByUserName(UserInfo userInfo);
+
+	void userRegister(UserInfo userInfo);
+
+	List<UserInfo> findUserInsure(Integer userId);
+
+	UserInfo insureDetails(int id);
+
+	Object selectByPrimaryKey(Integer userId);
+
+	int updateUserInfo(UserInfo userInfo);
+
+	UserInfo findUserInfoBuId(Integer userId);
+
+}

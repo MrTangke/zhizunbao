@@ -1,0 +1,13 @@
+package www.zhizunbao.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.mapper.insure.ShapeMapper;
+import www.zhizunbao.service.FrontActivityService;
+@Service
+public class FrontActivityServiceImpl  implements FrontActivityService{
+
+	@Autowired
+	ShapeMapper shapeMapper;
+}

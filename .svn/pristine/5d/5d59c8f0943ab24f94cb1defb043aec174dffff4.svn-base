@@ -1,0 +1,103 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<%@include file="/styles/common/behind/cssStyle.jsp" %>  
+	
+	   
+<title>管理员</title>
+
+</head>
+<body>
+${eroer }
+<div class="page-content clearfix">
+  <div class="administrator">
+    <!--操作-->
+     <div class="border clearfix">
+       <span class="l_f">
+        <a href="javascript:ovid()" onclick="administrator_add()"  class="btn btn-warning"><i class="fa fa-plus"></i> 添加图片</a>
+       </span>
+       <span class="r_f">共：<b>${sum}</b>张</span>
+     </div>
+      <div class="table_menu_list"  id="testIframe">
+           <table class="table table-striped table-bordered table-hover" id="sample_table">
+		<thead>
+		 <tr>
+				<th width="25px"><label><input type="checkbox" class="ace"><span class="lbl"></span></label></th>
+				<th width="80px">编号</th>
+                <th width="140px">图片路径</th>	
+                <th width="250px">图片顺序</th>		
+                <th width="250px">图片类型</th>		
+				<th width="260px">样式图片</th>
+				<th colspan="2">操作</th>
+			</tr>
+		</thead>
+	<tbody>
+     <c:forEach items="${list }" var="x" varStatus="n">
+     <tr>
+      <td><label><input type="checkbox" value="${x.imgId} " class="ace"><span class="lbl"></span></label></td>
+      <td>${n.count }</td>
+      <td>${x.imgUrl }</td>
+      <td>${x.imgOrder }</td>
+      <td>${x.typeName }</td>
+      <td><img src="<%=basePath %>${x.imgUrl }" style="width:240px; height:150px"/></td>
+      <td > 		
+    	    <a title="编辑"   onclick="member_edit(${x.imgId })"class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
+        	<a title="删除" href="javascript:;"  onclick="member_del('this','${x.imgId }','${n.count }' )" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
+       </td>						
+     </tr>
+   </c:forEach>  
+    </tbody>
+    </table>
+      </div>
+     </div>
+  </div>
+
+</body>
+<%@include file="/styles/common/behind/jsStyle.jsp" %>
+</html>
+<script type="text/javascript">
+function seleRoleRes() {
+	location.href="<%=basePath%>role/findMultiList";
+}
+
+
+$(function() { 
+	$("#administrator").fix({
+		float : 'left',
+		//minStatue : true,
+		skin : 'green',	
+		durationTime :false,
+		spacingw:50,//设置隐藏时的距离
+	    spacingh:270,//设置显示时间距
+	});
+});
+
+/*图片-编辑*/
+function member_edit(imgId){
+	location.href="<%=basePath%>carouselimg/findCommon?imgId="+imgId
+}
+
+/*图片-删除*/
+	 function member_del(obj,imgId,bianhao){
+			layer.confirm("确定要删除  <span style='color:red'>" + bianhao + "</span>  图片吗?",function(index){
+				var url = "<%=basePath%>carouselimg/delectCommon";
+				 var params = {};
+				 params.imgId = imgId;
+				$.post(url,params,function(i){
+					if(i > 0){
+						layer.msg('已删除!',{icon:1,time:1000});
+						 location.reload();
+					}else{
+						layer.msg('删除失败!',{icon:1,time:1000});
+					}
+				});  
+			})   
+		}	
+
+/*添加t图片*/
+function administrator_add(){
+	location.href="<%=basePath%>carouselimg/touploading"
+	}
+</script>
+

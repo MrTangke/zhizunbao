@@ -1,0 +1,45 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import www.zhizunbao.dto.manage.Manage;
+import www.zhizunbao.service.ManageService;
+@Controller
+@RequestMapping("/manage/")
+public class ManageController {
+	@Autowired
+	 ManageService manageService;
+	 /**
+	    * 
+	    * Mr高  2018年4月16日 上午9:38:47
+	    * 功能 ：跳转人员管理页面
+	    * @return
+	    */
+	   @RequestMapping("toAdmin_info")
+	   public String toAdminInfo(ModelMap map,Manage manage){
+		   List<Manage> manageList = manageService.findUserinfo(manage);
+		   System.out.println(manageList);
+		   map.put("manageList",manageList);
+		   return "admin/userinfo/admin_info";
+	   }
+	   /**
+	    * 
+	    * Mr高  2018年4月16日
+	    * 功能 ：更改人员状态
+	    * @return
+	    */
+	   @ResponseBody
+	   @RequestMapping("toUpdateStatus")
+	   public String toUpdateStatus(Manage manage){
+		   Integer i = manageService.updateStatus(manage);
+		   System.out.println(i.toString());
+			return ""+i;
+	   }
+}

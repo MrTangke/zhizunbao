@@ -1,0 +1,57 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.service.InsureService;
+/**
+ * 
+ * @author Mr吴
+ * 保险相关管理
+ */
+@Controller
+@RequestMapping("/insure/")
+public class InsureController {
+
+	@Autowired
+	private InsureService insureService;
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 上午11:16:16
+	 * 功能 ：查询保险
+	 * @param request
+	 * @param insure
+	 * @return
+	 */
+	@RequestMapping("findInsureList")
+	public String findInsureList(HttpServletRequest request,Insure insure){
+		if (null!=insure && null==insure.getInsureName()) {
+			insure.setInsureName("");
+		}
+		//int count = insureService.findInsureCount();
+		List<Insure> insureList = insureService.findInsureList(insure);
+		//request.setAttribute("count", count);
+		request.setAttribute("insureList", insureList);
+		return "admin/insure/insure_list";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午2:30:40
+	 * 功能 ： 跳转保险添加页面
+	 * @return
+	 */
+	@RequestMapping("toAddInsture")
+	public String toAddInsture(){
+		
+		return "admin/insure/insure_add";
+	}
+	
+}

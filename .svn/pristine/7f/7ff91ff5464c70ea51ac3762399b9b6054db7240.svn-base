@@ -1,0 +1,53 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.manage.UserInfo;
+import www.zhizunbao.mapper.manage.UserInfoMapper;
+import www.zhizunbao.service.UserInfoService;
+
+@Service
+public class UserInfoServiceImpl implements UserInfoService {
+
+	@Autowired
+	private UserInfoMapper userInfoMapper;
+
+	@Override
+	public UserInfo findUserByUserName(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.findUserByUserName(userInfo);
+	}
+
+	@Override
+	public void userRegister(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		userInfoMapper.insertSelective(userInfo);
+	}
+
+	@Override
+	public List<UserInfo> findUserInsure(Integer userId) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.findUserInsure(userId);
+	}
+
+	@Override
+	public UserInfo insureDetails(int id) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.insureDetails(id);
+	}
+
+	@Override
+	public Object selectByPrimaryKey(Integer userId) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.selectByPrimaryKey(userId);
+	}
+
+	@Override
+	public int updUserInfo(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		return userInfoMapper.updateByPrimaryKeySelective(userInfo);
+	}
+}

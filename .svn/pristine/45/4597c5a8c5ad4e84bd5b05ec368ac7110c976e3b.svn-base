@@ -1,0 +1,67 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.Type;
+import www.zhizunbao.dto.manage.FrontImg;
+import www.zhizunbao.dto.manage.Nav;
+import www.zhizunbao.service.InsureService;
+import www.zhizunbao.service.NavService;
+
+@Controller
+@RequestMapping("/home/")
+public class HomePageController {
+
+	@Autowired
+	NavService navService;
+	@Autowired
+	InsureService insureService;
+	
+	
+	/** 
+	 * Administrator  2018年4月21日 下午2:24:43
+	 * 功能 ：查导航放对象传Jsp,查页面的图片传Jsp
+	 * @param request
+	 * @param nav
+	 * @return
+	 */
+	@RequestMapping("page")
+	public String page(HttpServletRequest request,FrontImg frontImg,Integer typeId ){
+		 if (null==typeId) {
+				typeId=1;
+			}
+		//List<Nav> list = navService.fingNavObj();//导航
+		List<FrontImg> imglists = navService.findFronImgBy();//轮播
+		List<FrontImg> baoxainImg = navService.findBxImg();//活动
+		List<FrontImg> browserlist = navService.findBrowsImg();//活动旁边的浏览图片
+		List<FrontImg>  zbbxlist = navService.findBxZb();
+		List<FrontImg> latestlist = navService.findlatestImg();
+		
+		 List<Type> typeList = insureService.findTypeListByTypeId(typeId);
+		 //List<Insure> insureList = insureService.findInsureListByPid(typeId);
+		
+		request.setAttribute("latestlist",latestlist);
+		request.setAttribute("zbbxlist",zbbxlist);
+		request.setAttribute("typeList",typeList);
+		//request.setAttribute("insureList",insureList);
+		request.setAttribute("browserlist", browserlist);
+		request.setAttribute("baoxainImg", baoxainImg);
+		request.setAttribute("imglists", imglists);
+		//request.getSession().setAttribute("list", list);
+		return "front/index";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月23日 下午2:49:33
+	 * 功能 ：跳转到联系我们页面
+	 * @return
+	 */
+	@RequestMapping("toContactUs")
+	public String toContactUs(){
+		return "front/contact_us";
+	}
+}

@@ -1,0 +1,81 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.manage.CarouselImg;
+import www.zhizunbao.service.CarouselImgService;
+
+@Controller
+@RequestMapping("/carouselimg/")
+public class CarouselImgController {
+
+	@Autowired
+	private CarouselImgService carouselImgService;
+	/**
+	 * 
+	 * JiJi  2018年4月17日 上午11:24:08
+	 * 功能 ： 获取轮播图片列表
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("tocarouselimg")
+	public String tocarousel_img(HttpServletRequest request){
+		List<CarouselImg> carouselImgs = carouselImgService.findCarouseImgList();
+		request.setAttribute("carouselImgs", carouselImgs);
+		return "admin/carouselimg/carousel_img_list";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月18日 下午2:50:13
+	 * 功能 ： 跳转图片添加页面
+	 * @return
+	 */
+	@RequestMapping("toInsertCarouselImg")
+	public String toInsertCarouselImg(){
+		return "admin/carouselimg/carousel_img_insert";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月18日 下午8:18:04
+	 * 功能 ：跳转更改图片顺序页面
+	 * @return
+	 */
+	@RequestMapping("toUpdatecarouselImgOrderById")
+	public String toUpdatecarouselImgOrderById(Integer img_id,HttpServletRequest request){
+		CarouselImg carouselImg=carouselImgService.findCarouseImgById(img_id);
+		request.setAttribute("carouselImg", carouselImg);
+		return "admin/carouselimg/carouse_img_order_update";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月18日 下午8:59:21
+	 * 功能 ：修改图片顺序
+	 * @param carouselImg
+	 * @return
+	 */
+	@RequestMapping("updateImgOrder")
+	public String updateImgOrder(CarouselImg carouselImg){
+		carouselImgService.updateImgOrder(carouselImg);
+		return "redirect:tocarouselimg";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月19日 下午9:42:12
+	 * 功能 ：将库图片设为轮播图片
+	 * @param img_id
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("toSetImgTocarouselImg")
+	public String toSetImgTocarouselImg(Integer img_id,HttpServletRequest request){
+		carouselImgService.setImgTocarouselImg(img_id);
+		return "redirect:tocarouselimg";
+	}
+	
+}

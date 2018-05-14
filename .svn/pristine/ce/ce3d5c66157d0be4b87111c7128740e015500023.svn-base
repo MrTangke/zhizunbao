@@ -1,0 +1,154 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+
+<head>
+	<%@include file="/styles/common/behind/cssStyle.jsp" %>     
+<title>查询和角色相关的用户和权限</title>
+
+</head>
+<body>
+<div class="page-content clearfix">
+  <div class="administrator">
+     <div class="border clearfix" style="background-color: yellow;width: 350px;height: 45px;margin-right: 200px">
+       <span class="l_f">
+			<h3 style="margin-left: 77px" >请选择查询的内容</h3>        
+       </span>
+     </div>
+      <form action="findMore">
+      <div class="table_menu_list"  id="testIframe">
+	<tbody>
+     <tr>
+      <td>
+      	<select name="roleId">
+      	<c:forEach items="${list }" var="x">
+      		<option value="${x.roleId }">
+      				${x.roleName }
+      		</option>
+      		</c:forEach> 
+      	</select>
+      	</td>
+     </tr>
+    <tr>
+    	<td><input type="submit" value="查询" ></td>
+    </tr>
+    </tbody>
+    </table>
+      </div>
+      </form>
+     </div>
+  </div>
+
+ <!--添加管理员-->
+ <div id="add_administrator_style" class="add_menber" style="display:none">
+    <form action="Add" method="post" id="form-admin-add">
+		<div class="form-group">
+			<label class="form-label"><span class="c-red">*</span>管理员：</label>
+	
+		<div class="form-group">
+			
+			<div class="formControls "> <span class="select-box" style="width:150px;">
+			<!--  <div class="form-group"><label class="col-sm-2 control-label no-padding-right" for="form-field-1"> </label> -->
+       		<div class="col-sm-10"><input type="text" id="form-field-1"  name="roleName" class="col-xs-10 col-sm-5" style="width: 250px;height: 50px"></div>
+			</div>
+			 </div>
+				
+		</div>
+		
+		<div> 
+        <input class="btn btn-primary radius" type="submit" id="Add_Administrator" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+	</form>
+   </div>
+ </div> 
+</body>
+<%@include file="/styles/common/behind/jsStyle.jsp" %>
+</html>
+
+<script type="text/javascript">
+jQuery(function($) {
+		var oTable1 = $('#sample_table').dataTable( {
+		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"aoColumnDefs": [
+		  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		  {"orderable":false,"aTargets":[0,2,3,4,5,7,8,]}// 制定列不参与排序
+		] } );
+				
+				
+				$('table th input:checkbox').on('click' , function(){
+					var that = this;
+					$(this).closest('table').find('tr > td:first-child input:checkbox')
+					.each(function(){
+						this.checked = that.checked;
+						$(this).closest('tr').toggleClass('selected');
+					});
+						
+				});
+			
+			
+				$('[data-rel="tooltip"]').tooltip({placement: tooltip_placement});
+				function tooltip_placement(context, source) {
+					var $source = $(source);
+					var $parent = $source.closest('table')
+					var off1 = $parent.offset();
+					var w1 = $parent.width();
+			
+					var off2 = $source.offset();
+					var w2 = $source.width();
+			
+					if( parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2) ) return 'right';
+					return 'left';
+				}
+			});
+
+</script>
+
+<script type="text/javascript">
+function seleRoleRes() {
+	location.href="<%=basePath%>role/findMultiList";
+}
+
+
+$(function() { 
+	$("#administrator").fix({
+		float : 'left',
+		//minStatue : true,
+		skin : 'green',	
+		durationTime :false,
+		spacingw:50,//设置隐藏时的距离
+	    spacingh:270,//设置显示时间距
+	});
+});
+
+
+/*添加管理员*/
+function administrator_add(){
+	layer.open({
+    type: 1,
+	title:'添加管理员',
+	area: ['700px',''],
+	shadeClose: false,
+	content: $('#add_administrator_style'),
+	});
+}
+
+
+
+/*用户-权限*/
+function member_qxfp(roleId){
+	alert(roleId)
+	location.href="<%=basePath%>role/findResources";+roleId
+}
+
+/*产品-编辑*/
+function member_edit(roleId){
+	location.href="<%=basePath%>role/toUpdate?id="+roleId
+}
+
+
+</script>
+
+
+

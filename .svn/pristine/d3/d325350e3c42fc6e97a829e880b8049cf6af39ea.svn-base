@@ -1,0 +1,114 @@
+/*login and register*/
+.login_bg{
+    width:100%;
+    min-width:1000px;
+    height:774px;
+    background: url("../images/bg.jpg") center center no-repeat;
+}
+.form{
+    width:1000px;
+    margin:0 auto;
+    position: relative;
+}
+.form form{
+    width:350px;
+    position: absolute;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 8px 10px #ccc;
+    top:130px;
+    right: 20px;
+}
+form h2{
+    color: #ff6700;
+    font-size: 16px;
+    font-weight: bold;
+    height:20px;
+    line-height: 20px;
+    margin-bottom: 24px;
+}
+.user_box,.pwd_box,.tel_box,.login_input{
+    position: relative;
+}
+.user_box span.icon, .pwd_box span.icon,.tel_box span.icon,.login_input span.icon{
+    position: absolute;
+    left:15px;
+    top:12px;
+    width:16px;
+    height:22px;
+    z-index:1;
+}
+.user_box span.icon{
+    background: url("../images/user.png") no-repeat;
+}
+.pwd_box span.icon,.login_input span.icon{
+    background: url("../images/pwd.png") no-repeat;
+}
+.tel_box span.icon{
+    background: url("../images/tel.png") no-repeat;
+}
+.userName,.userPwd,.userTel,.validate,.login_input{
+    width:290px;
+    padding: 10px 5px 10px 45px;
+    border:1px solid #ff6700;
+    height:20px;
+    line-height:20px;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    color: #666;
+    outline:none;
+}
+.validate{
+    padding-left: 20px;
+    width: 100px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.validate_btn{
+    display: inline-block;
+    width: 70px;
+    height: 42px;
+    padding: 10px 0;
+    border:1px solid #ff6700;
+    background: #ff6700;
+    color: #fff;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    outline:none;
+    cursor: pointer;
+}
+.detail_box{
+    margin-top: 5px;
+    height:20px;
+    line-height: 20px;
+    position: relative;
+}
+.detail_box input{
+    vertical-align: middle;
+}
+.detail_box a{
+    position: absolute;
+    right:5px;
+    top:0;
+}
+.detail_box a:hover{
+    text-decoration: underline;
+    color: #ff6700;
+}
+.login_btn {
+    display: block;
+    width: 340px;
+    height: 60px;
+    text-align: center;
+    font: bold 16px/60px '宋体';
+    border: 0 none;
+    border-radius: 4px;
+    color: #fff;
+    background: #ff6700;
+    letter-spacing: 6px;
+    box-shadow: 0 2px 1px #999;
+    margin-top: 20px;
+    cursor: pointer;
+    outline: none;
+}

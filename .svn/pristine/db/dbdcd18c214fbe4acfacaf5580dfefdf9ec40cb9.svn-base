@@ -1,0 +1,82 @@
+package www.zhizunbao.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.manage.Manage;
+import www.zhizunbao.service.ManageService;
+import www.zhizunbao.utils.Base64Util;
+import www.zhizunbao.utils.MD5Util;
+
+@Controller
+@RequestMapping("/adminLogin/")
+public class AdminLoginController {
+
+	@Autowired
+	ManageService manageService;
+	
+	/** 
+	 * Administrator  2018年4月18日 下午4:31:39
+	 * 功能 ：去后台登陆页面
+	 * @return
+	 */
+	@RequestMapping("toLogin")
+	public String toLogin(HttpServletRequest request){
+		Manage manage = (Manage) request.getSession().getAttribute("man");
+		if(null!=manage){
+			manageService.uptadeSteMLogin(manage.getManageId());
+			request.getSession().invalidate();
+		}
+		return "admin/admin_login";
+	}
+	
+	
+	/** 
+	 * Administrator  2018年4月18日 下午6:49:18
+	 * 功能 ：登陆判断
+	 * @param request
+	 * @param manage
+	 * @param key
+	 * @return
+	 */
+	@RequestMapping("login")
+	public String login(HttpServletRequest request,Manage manage,String key){
+		//String sessionKey = (String) request.getSession().getAttribute("key");
+		//System.out.println(userInfo+",key="+key+"，session中的key="+keys);
+		String username = manage.getUsername();
+		String message = "";
+		Manage man = manageService.login(username);
+	
+		if(man!=null){
+			if(man.getManageId()!=null){
+			if(man.getmLogin()==0){
+			if(Base64Util.encode(MD5Util.MD5(manage.getPassword())).equals(man.getPassword())){
+				String val = (String) request.getSession().getAttribute("key");
+				if(key.equals(val)){
+					request.getSession().setAttribute("man", man);
+					request.getSession().setAttribute("mangn", manageService.findManageByRole(man.getManageId()));
+					 manageService.uptadeByMLogin(man.getManageId());
+					return "redirect:/admin/toAdmin";
+				}else{
+					message = "验证码不正确";
+				}
+			}else{
+				message = "密码不正确";
+			}
+		}else{
+			message = "此账户已登录";
+		}
+	}else{
+		message = "此账户已登录";
+	  }
+	}else{
+		message = "账号不正确";
+	}
+		request.setAttribute("error", message);
+		request.setAttribute("man", man);
+		return "admin/admin_login";
+	}
+}

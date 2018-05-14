@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="www.zhizunbao.mapper.manage.NavMapper" >
+  <resultMap id="BaseResultMap" type="www.zhizunbao.dto.manage.Nav" >
+    <id column="nav_id" property="navId" jdbcType="INTEGER" />
+    <result column="nav_name" property="navName" jdbcType="VARCHAR" />
+    <result column="nav_adress" property="navAdress" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    nav_id, nav_name, nav_adress
+  </sql>
+  
+  
+    <select id="fingNavObj" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nav
+  </select>
+  
+  
+  <select id="findNavigationList" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from nav
+  </select>
+  
+  
+  <delete id="deleteNavigationById" parameterType="java.lang.Integer" >
+    delete from nav
+    where nav_id = #{navId,jdbcType=INTEGER}
+  </delete>
+  
+  
+  <insert id="insertNav" parameterType="www.zhizunbao.dto.manage.Nav" >
+    insert into nav (nav_id, nav_name, nav_adress
+      )
+    values (#{navId,jdbcType=INTEGER}, #{navName,jdbcType=VARCHAR}, #{navAdress,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="www.zhizunbao.dto.manage.Nav" >
+    insert into nav
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="navId != null" >
+        nav_id,
+      </if>
+      <if test="navName != null" >
+        nav_name,
+      </if>
+      <if test="navAdress != null" >
+        nav_adress,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="navId != null" >
+        #{navId,jdbcType=INTEGER},
+      </if>
+      <if test="navName != null" >
+        #{navName,jdbcType=VARCHAR},
+      </if>
+      <if test="navAdress != null" >
+        #{navAdress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="www.zhizunbao.dto.manage.Nav" >
+    update nav
+    <set >
+      <if test="navName != null" >
+        nav_name = #{navName,jdbcType=VARCHAR},
+      </if>
+      <if test="navAdress != null" >
+        nav_adress = #{navAdress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where nav_id = #{navId,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateNavById" parameterType="www.zhizunbao.dto.manage.Nav" >
+    update nav
+    set nav_name = #{navName,jdbcType=VARCHAR},
+      nav_adress = #{navAdress,jdbcType=VARCHAR}
+    where nav_id = #{navId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="toFindNavById" resultMap="BaseResultMap" parameterType="Integer">
+    select 
+    <include refid="Base_Column_List" />
+    from nav
+   where nav_id = #{navId,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

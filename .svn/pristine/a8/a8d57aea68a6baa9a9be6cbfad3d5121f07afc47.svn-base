@@ -1,0 +1,215 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>优惠券</title>
+     <link rel="stylesheet" href="<%=basePath %>/styles/insurance/css/common.css">
+    <link rel="stylesheet" href="<%=basePath %>/styles/insurance/css/index.css">
+    <link rel="stylesheet" href="<%=basePath %>/styles/insurance/css/jquery.slideBox.css">
+    <link rel="stylesheet" href="<%=basePath %>/styles/insurance/css/center.css">
+</head>
+<body>
+<div class="wrapper">
+    <!--------------------------------------header_user begin------------------------------------->
+    <div class="header_user">
+        <div class="main_width">
+            <span class="tel">客服电话：400-663-6600（周一至周六 9:00-18:00）</span>
+            <span class="fr">
+                <span class="my_insurance"><a href="<%=basePath%>userInfo/toUserinfoInsure">我的保险</a></span>
+                <span class="message"><a href="<%=basePath%>userInfo/toUserinfoMessage">消息<em>${userInfo1.userMsg }</em></a></span>
+                <c:if test="${userInfo1!=null }">
+						<span><font>欢迎，${userInfo1.userName }</font></span>
+						<a href="<%=basePath%>userInfo/userInvalidate?user_id=${userInfo1.userId }">注销登录</a>
+				</c:if>
+				<c:if test="${userInfo1==null }">
+						 <span class="register"><a href="<%=basePath%>userInfo/toUserRegister">注册</a></span>
+               			 <span class="fg"><a href="#"> &nbsp;|&nbsp; </a></span>
+               			 <span><a href="<%=basePath%>userInfo/toUserLogin">登录</a></span>
+				</c:if>
+            </span>
+        </div>
+    </div>
+    <!---------------------------------------header_user end-------------------------------------->
+    <!---------------------------------------header_nav begin------------------------------------->
+    <div class="header_nav">
+        <div class="main_width"  style="position: relative;right: 67px">
+            <h1><a href="#" class="logo fl" style="position: relative;right:20px;">大特保保险官网-互联网保险服务平台</a></h1>
+            <a style="float: right;margin-right: -155px" href="<%=basePath%>userInfo/toUserinfoInsure" class="my_policy fr">我的保单</a>
+            <div class="menuBox">
+               <ul class="menu">
+               		<li>
+               			<a href="<%=basePath %>home/page">首页</a>
+                    </li>
+		           <li class="special">
+		               	<a href="<%=basePath %>frontInsure/findAllInsure">保险产品</a>
+		           </li>
+                    <li>
+               			<a href="<%=basePath %>userInfo/userInfoClaims">理赔</a>
+                    </li>
+                     <li>
+               			<a href="<%=basePath %>45">活动</a>
+                    </li>
+                	 <li>
+               			<a href="<%=basePath %>home/toContactUs">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    <!----------------------------------------header_nav end-------------------------------------->
+    <!--container-->
+    <div class="container">
+        <div class="main_width fix mycenter_box">
+                    <div class="list_left" id="list_left">
+            <ul>
+                <li class="head">
+                    <img src="../images/center/side-head.png" alt="">
+                    <a href="#" class="tit">我的积分</a>
+                    <a href="#" class="integralAllNum count"><em>100</em></a>
+                </li>
+                <li>
+                    <h3 class="order list_til">我的订单</h3>
+                    <div>
+                        <ul>
+                            <li  class="active"><a href="<%=basePath %>userInfo/toUserinfoInsure">我的保险</a></li>
+                            <li ><a href="<%=basePath %>userInfo/userInfoClaims">我的理赔</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="per list_til">个人信息</h3>
+                    <div>
+                        <ul>
+                            <li><a href="<%=basePath %>userInfo/toUserinfoUpdate">个人信息修改</a></li>
+                            <li><a href="<%=basePath %>userInfo/toUpdateUserPassword">账户及密码</a></li>
+                            <li><a href="<%=basePath %>userInfo/toUserinfoMessage">消息中心</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+            </ul>
+        </div>
+            <div class="list_left" id="list_left">
+                <ul>
+                    <li class="head">
+                        <img src="<%=basePath %>styles/insurance/images/center/side-head.png" alt="">
+                        <a href="#" class="tit">我的积分</a>
+                        <a href="#" class="integralAllNum count"><em>100</em></a>
+                    </li>
+                    <li>
+                        <h3 class="order list_til">我的订单</h3>
+                        <div>
+                            <ul>
+                                <li><a href="#">我的保险</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="per list_til">个人信息</h3>
+                        <div>
+                            <ul>
+                                <li><a href="#">常用联系人</a></li>
+                                <li><a href="#">账户及密码</a></li>
+                                <li><a href="#">消息中心</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <h3 class="wallet list_til">我的钱包</h3>
+                        <div>
+                            <ul>
+                                <li  class="active"><a href="#">优惠券</a></li>
+                                <li><a href="#">我的积分</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--我的积分-->
+            <div class="mycenter_right">
+                <!--积分兑换-->
+                <div class="integral_container">
+                    <h3 class="title">
+                        <i></i>优惠券
+                    </h3>
+                    <div class="iscroll_main"   style="height: 1000px;">
+                  
+                        <div class="iscroll_box">
+                            <ul class="fix">
+                            <c:forEach items="${userDiscounts }" var="u" varStatus="q">
+                                     <li class="type1" style="display: inline;">
+                                       <div class="ibox">
+                                        <h3>${u.disMoney }元通用优惠券</h3>
+                                        <p class="note">直减${u.disMoney }元，有效期${u.disTime }天</p>
+                                        <div class="btns">
+                                            <span class="fen">${u.disMoney }元</span>
+                                            <p class="dui"><i></i>去使用</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                </c:forEach>
+                            </ul>
+                            <table>
+                               
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer begin-->
+    <div class="copyright">
+        <div class="main_width footer">
+            <div class="footer_nav">
+                <p>
+                    <a href="#">关于京东金融</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东小金库</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东钱包</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东白条</a>
+                    <span class="divider">|</span>
+                    <a href="#">联系我们</a>
+                    <span class="divider">|</span>
+                    <a href="#">免责声明</a>
+                </p>
+                <p>Copyright © 2004-2016 京东JD.com 版权所有<span class="divider">|</span>投资有风险，购买需谨慎</p>
+            </div>
+            <div class="footer_contact">
+                <div class="f_contact_time">
+                    联系我们<span>（09:00-22:00）</span>
+                </div>
+                <div class="f_contact_content">
+                    <div class="f_cc_left">
+                        <span class="f_cc_item">个人业务：400-098-8511</span>
+                        <span class="f_cc_item">企业业务：400-088-8816</span>
+                    </div>
+                    <div class="f_cc_mid">
+                        <a href="#" class="f_cc_link item_JIMI">咨询JIMI</a>
+                        <a href="#" class="f_cc_link item_kefu">在线客服</a>
+                    </div>
+                    <div class="f_cc_right">
+                        <a href="#" class="f_cc_link item_mail">客服邮箱</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer end-->
+    <div class="sideBar">
+        <a href="#" class="slider_block app"><i></i></a>
+        <a href="#" class="slider_block jimi"><i></i></a>
+        <a href="#" class="slider_block feedback"><i></i></a>
+        <a href="javascript:" class="slider_block backtop" id="backtop"><i></i></a>
+    </div>
+</div>
+</body>
+</html>

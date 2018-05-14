@@ -1,0 +1,51 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.activity.UserRead;
+import www.zhizunbao.dto.manage.FrontImg;
+import www.zhizunbao.service.FrontActivityService;
+
+@Controller
+@RequestMapping("/activit/")
+public class FrontActivity {
+	
+	@Autowired
+	FrontActivityService frontActivityService;
+	/** 
+	 * Administrator  2018年4月27日 上午8:32:25
+	 * 功能 ：去活动页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("tofrontActivity")
+	public String  tofrontActivity(HttpServletRequest request){
+		List<FrontImg> baoxainImg = frontActivityService.findBxImg();//活动
+		List<FrontImg> browserlist = frontActivityService.findBrowsImg();//活动旁边的浏览图片
+		request.setAttribute("browserlist", browserlist);
+		request.setAttribute("baoxainImg", baoxainImg);
+		return "front/frontActivity/frontActivity";
+	}
+	/**
+	 * Administrator  2018年4月27日 上午8:32:42
+	 * 功能 ：
+	 * @param request
+	 * @param userRead
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("readActivity")
+	public String ActivityOne(ModelMap map,UserRead userRead ,int imgOrder){
+		userRead = frontActivityService.findUserRead(imgOrder);
+		map.put("userRead", userRead);
+		return "front/frontActivity/readActivity";
+	}
+	
+}

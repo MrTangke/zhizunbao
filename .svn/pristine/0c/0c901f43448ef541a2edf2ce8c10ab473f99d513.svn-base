@@ -1,0 +1,109 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.insure.Img;
+import www.zhizunbao.dto.manage.Manage;
+import www.zhizunbao.dto.manage.ManageRole;
+import www.zhizunbao.dto.manage.Role;
+import www.zhizunbao.mapper.insure.ImgMapper;
+import www.zhizunbao.mapper.manage.ManageMapper;
+import www.zhizunbao.mapper.manage.ManageRoleMapper;
+import www.zhizunbao.mapper.manage.RoleMapper;
+import www.zhizunbao.service.ManageService;
+import www.zhizunbao.utils.Base64Util;
+import www.zhizunbao.utils.MD5Util;
+@Service
+public class ManageServiceImpl implements ManageService{
+    @Autowired
+    ManageMapper manageMapper;
+    @Autowired
+    ManageRoleMapper manageRoleMapper;
+    @Autowired
+	private ImgMapper imgMapper;
+    @Autowired
+    RoleMapper roleMapper;
+    
+    @Override
+	public List<Manage> findManage(Manage manage) {
+		return manageMapper.findManage(manage);
+	}
+	
+    
+    @Override
+	public Integer updateStatus(Manage manage) {
+		Integer i = manageMapper.updateStatus(manage);
+		return i;
+	}
+	
+    
+    @Override
+	public Integer insertSelective(Manage manage) {
+		manage.setManageStatus(1);
+		MD5Util md = new MD5Util();
+		Base64Util ba = new Base64Util();
+		manage.setPassword(ba.encode(md.MD5(manage.getPassword())));
+		Integer i = manageMapper.insertSelective(manage);
+		ManageRole record = new ManageRole();
+		record.setRoleId(manage.getRoleId());
+		record.setManageId(manage.getManageId());
+		manageRoleMapper.insertSelective(record);
+		return i;
+	}
+	@Override
+	public Integer deleteByPrimaryKey(Integer manageId) {
+		return manageMapper.deleteByPrimaryKey(manageId);
+	}
+	@Override
+	public Object selectByPrimaryKey(Integer manageId) {
+		return manageMapper.selectByPrimaryKey(manageId);
+	}
+	@Override
+	public Integer updateManage(Manage manage) {
+		MD5Util md = new MD5Util();
+		Base64Util ba = new Base64Util();
+		manage.setPassword(ba.encode(md.MD5(manage.getPassword())));
+		Integer i = manageMapper.updateManage(manage);
+		ManageRole record = new ManageRole();
+		record.setRoleId(manage.getRoleId());
+		record.setManageId(manage.getManageId());
+		manageRoleMapper.deleteByPrimaryKey(manage.getManageId());
+		manageRoleMapper.insertSelective(record);
+		return i;
+	}
+	@Override
+	public int uploadImg(String imgUrl, Manage manage) {
+		manage.setManageImg(imgUrl);
+		
+		return manageMapper.updateStatus(manage);
+	}
+	
+	@Override
+	public Manage login(String username) {
+		return manageMapper.login(username);
+	}
+
+
+	@Override
+	public Object findManageByRole(Integer manageId) {
+		return manageMapper.findManageByRole(manageId);
+	}
+
+
+	@Override
+	public void uptadeByMLogin(Integer integer) {
+		manageMapper.uptadeByMLogin(integer);
+		
+	}
+
+
+	@Override
+	public void uptadeSteMLogin(Integer manageId) {
+		manageMapper.uptadeSteMLogin(manageId);
+	}
+
+}

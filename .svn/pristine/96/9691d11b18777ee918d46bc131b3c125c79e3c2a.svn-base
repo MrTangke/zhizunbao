@@ -1,0 +1,15 @@
+package www.zhizunbao.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/person/")
+public class PersonalController {
+
+	@RequestMapping("toPerson")
+	public String toPerson(){
+		
+		return "front/userinfo/personal_cord";
+	}
+}

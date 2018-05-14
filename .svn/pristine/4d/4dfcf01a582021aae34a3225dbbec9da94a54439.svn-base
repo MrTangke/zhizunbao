@@ -1,0 +1,70 @@
+package www.zhizunbao.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("/admin/")
+public class AdminController {
+	//@Autowired
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 上午9:13:58
+	 * 功能 ：跳转后台主页
+	 * @return
+	 */
+	@RequestMapping("toAdmin")
+	public String toAdmin (){
+		
+		return "admin/admin_index";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 上午9:13:37
+	 * 功能 ： 跳转后台保险页面
+	 * @return
+	 */
+	@RequestMapping("toAdminInsure")
+	public String toAdminInsure(){
+		
+		return "admin/insure/insure";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 上午9:35:52
+	 * 功能 ： 跳转权限管理页面
+	 * @return
+	 */
+   @RequestMapping("toadmin_Competence")
+   public String toAdminCompetence(){
+	   
+	   return "admin/resources/admin_Competence";
+   }
+   
+   /**
+    * 
+    * Mr吴  2018年4月16日 上午9:37:16
+    * 功能 ：跳转角色管理页面
+    * @return
+    */
+   @RequestMapping("toAdministrator")
+   public String toAdministrator(){
+	   
+	   return "admin/role/administrator";
+   }
+   
+   /**
+    * 
+    * Mr吴  2018年4月16日 上午9:38:47
+    * 功能 ：跳转人员管理页面
+    * @return
+    */
+   @RequestMapping("toAdmin_info")
+   public String toAdminInfo(){
+	   
+	   return "admin/userinfo/admin_info";
+   }
+}

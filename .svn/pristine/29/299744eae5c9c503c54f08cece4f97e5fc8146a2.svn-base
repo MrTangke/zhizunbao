@@ -1,0 +1,5 @@
+var emp_id = "${sessionScope.emp.user_id}";
+if (emp_id!="") {
+} else {
+	parent.location.reload();
+}

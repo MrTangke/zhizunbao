@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 扫描控制器 -->
+	<context:component-scan base-package="www.zhizunbao.controller"></context:component-scan>
+
+	<!-- 视图解析器 -->
+	<!-- jsp视图解析器 -->
+	<!-- 配置InternalResourceViewResolver -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean> 
+ 
+
+	<!-- 页面： templateLoaderPath + prefix + 视图名 + suffix -->
+	<!-- 模板位置 -->
+     	 <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	    <property name="templateLoaderPath" value="/WEB-INF"></property>
+	    <property name="defaultEncoding" value="UTF-8"></property>
+	  </bean>
+	<!-- freemarker视图解析器 -->
+	  <bean id="markerViewResolver"
+		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		 <!-- 这里因为设置了ftl查找路径，所以不需要前缀 -->
+		 <property name="prefix" value="/ftl/"></property>
+		 <property name="suffix" value=".ftl"></property>
+		 <!-- 注意下面的UTF-8需要大写 -->
+		 <property name="contentType" value="text/html;charset=UTF-8"></property>
+		 <property name="order" value="1"></property> 
+	  </bean>
+
+	
+	
+ 	<!--
+		配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理，3.04新增功能，需要重新设置spring-mvc-3.0.xsd
+	-->
+	<mvc:resources mapping="/html/**" location="/html/" />
+	<mvc:resources mapping="/styles/**" location="/styles/" />
+	<mvc:resources mapping="/upload/**" location="/upload/" />
+	<mvc:resources mapping="/img/**" location="/img/" />
+	
+	<!-- 配置多文件上传 -->  
+    <bean id="multipartResolver"  
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding">  
+            <value>UTF-8</value>  
+        </property>  
+        <property name="maxUploadSize">  
+            <!-- 上传文件大小限制为31M，31*1024*1024 -->  
+            <value>32505856</value>  
+        </property>  
+        <property name="maxInMemorySize">  
+            <value>4096</value>  
+        </property>  
+    </bean>  
+
+	<!-- 注解驱动，静态资源 -->
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+	<!-- 拦截器 -->
+	<!-- 除了登陆以外的方法都要拦截 -->
+	<!--  <mvc:interceptors>
+		<mvc:interceptor>
+			需要拦截的目录，二级目录
+			<mvc:mapping path="/*/*"/>
+			不拦截地址
+			<mvc:exclude-mapping path="/goods/*"/>
+			<mvc:exclude-mapping path="/user/*"/>
+			<mvc:exclude-mapping path="/admin/login"/>
+			<mvc:exclude-mapping path="/admin/toLogin"/>
+			<mvc:exclude-mapping path="/shop/*"/>
+			<bean class="com.bwie.interceptor.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>  -->
+</beans>

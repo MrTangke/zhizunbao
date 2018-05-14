@@ -1,0 +1,11 @@
+package www.zhizunbao.service;
+
+import www.zhizunbao.dto.manage.UserInfo;
+
+public interface UserInfoService {
+
+	UserInfo findUserByUserName(UserInfo userInfo);
+
+	void userRegister(UserInfo userInfo);
+
+}

@@ -1,0 +1,15 @@
+package www.zhizunbao.service;
+
+import java.util.List;
+
+import www.zhizunbao.dto.insure.Comment;
+
+public interface CommentService {
+
+	List<Comment> findComment();
+
+	Integer deleteByPrimaryKey(Integer id);
+
+	List<Comment> findOne(Integer insureId);
+
+}

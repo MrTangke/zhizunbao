@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+<classPathEntry
+        location="D:/mysql-connector-java-5.1.42-bin.jar" />
+  <context id="context1">
+    <jdbcConnection connectionURL="jdbc:mysql://59.110.142.75:3306/05_zhizunbao" driverClass="com.mysql.jdbc.Driver" password="44ED0E3592BAEF3A" userId="five" />
+    <javaModelGenerator targetPackage="www.zhizunbao.dto.insure" targetProject="zhizunbao" />
+    <sqlMapGenerator targetPackage="www.zhizunbao.mapper.insure" targetProject="zhizunbao" />
+    <javaClientGenerator targetPackage="www.zhizunbao.mapper.insure" targetProject="zhizunbao" type="XMLMAPPER" />
+    <table tableName="user_insure_rel" domainObjectName="UserInsure" 
+    enableCountByExample="false" enableUpdateByExample="false" 
+    enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+    </table>
+    
+  </context>
+</generatorConfiguration>

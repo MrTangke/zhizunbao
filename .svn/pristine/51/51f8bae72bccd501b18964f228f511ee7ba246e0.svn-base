@@ -1,0 +1,28 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.insure.Type;
+import www.zhizunbao.service.InsureService;
+
+@Controller
+@RequestMapping("/frontInsure/")
+public class FrontInsureController {
+
+	@Autowired
+	private InsureService insureService;
+	
+	@RequestMapping("findAllInsure")
+	public String findAllInsure(HttpServletRequest request){
+		 List<Type> topTypeList = insureService.findTopTypeList();
+		 List<Type> typeList = insureService.findtypeListByPid();
+		return "front/insure/insure";
+	}
+	
+}

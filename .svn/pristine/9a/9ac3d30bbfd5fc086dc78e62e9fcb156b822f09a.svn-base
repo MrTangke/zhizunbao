@@ -1,0 +1,61 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>   
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<%@include file="/styles/common/behind/cssStyle.jsp" %>	
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+        <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+</head>
+<body>
+
+<div class=" clearfix">
+ <div id="add_brand" style="margin-left: 20%" class="clearfix">
+ <div>
+<form id="myForm" action="<%=basePath%>insure/addType" method="post"> 
+   <ul class="add_conent">
+	    <li class=" clearfix">
+	    	<label class="label_name"><i><font color="red">*</font></i>类型名称：</label>
+	    	<input name="typeName" type="text" class="add_text"/>
+	    </li>
+	    <li class=" clearfix"><label class="label_name"><i><font color="red">*</font></i>所属分类：</label>
+		    <select style="margin-left: 10px" name="pid" class="text_add">
+			    <c:forEach items="${topTypeList}" var="tt">
+			   		<option value="${tt.typeId }">${tt.typeName }</option>
+			    </c:forEach>
+		    </select>
+	    </li>
+	    <li>
+		    <input type="submit" class="btn btn-warning" value="保存"/>
+		    <input onclick="closeLayer();" type="button" value="返回" class="btn btn-warning"/>
+	    </li>
+   </ul>
+ </form> 
+ </div>
+  
+ </div>
+ 
+ </div>
+
+</body>
+<%@include file="/styles/common/behind/jsStyle.jsp" %>	
+</html>
+<script type="text/javascript">
+	// 关闭窗口
+	function closeLayer(){
+		var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	       parent.layer.close(index);
+	       return true;
+	}
+
+     $(document).ready(function(){
+ $(".left_add").height($(window).height()-60); 
+  $(".right_add").width($(window).width()-600);
+   $(".right_add").height($(window).height()-60);
+  $(".select").height($(window).height()-195); 
+  $("#select_style").height($(window).height()-220); 
+</script>

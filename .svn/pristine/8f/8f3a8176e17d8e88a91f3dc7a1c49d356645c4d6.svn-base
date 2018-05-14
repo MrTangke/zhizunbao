@@ -1,0 +1,5 @@
+package www.zhizunbao.service;
+
+public interface FrontActivityService {
+
+}

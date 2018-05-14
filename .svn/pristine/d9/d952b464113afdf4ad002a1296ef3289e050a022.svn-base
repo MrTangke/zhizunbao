@@ -1,0 +1,29 @@
+package www.zhizunbao.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.activity.UserRead;
+import www.zhizunbao.service.FrontActivityService;
+
+@Controller
+@RequestMapping("/activit/")
+public class FrontActivity {
+	
+	@Autowired
+	FrontActivityService frontActivityService;
+	
+	@RequestMapping("tofrontActivity")
+	public String  tofrontActivity(){
+		return "front/frontActivity/frontActivity";
+	}
+	@RequestMapping("ActivityOne")
+	public String ActivityOne(HttpServletRequest request,UserRead userRead ,int id){
+		
+		return "front/frontActivity/readone";
+	}
+	
+}

@@ -1,0 +1,34 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.manage.Manage;
+import www.zhizunbao.dto.manage.Role;
+import www.zhizunbao.mapper.manage.ManageMapper;
+import www.zhizunbao.service.ManageService;
+@Service
+public class ManageServiceImpl implements ManageService{
+    @Autowired
+    ManageMapper manageMapper;
+	@Override
+	public List<Manage> findUserinfo(Manage manage) {
+		// TODO Auto-generated method stub
+		return manageMapper.findUserinfo(manage);
+	}
+	@Override
+	public Integer updateStatus(Manage manage) {
+		if(manage.getManageStatus()==1){
+			manage.setManageStatus(0);
+		}else{
+			manage.setManageStatus(1);
+		}
+		Integer i = manageMapper.updateStatus(manage);
+		return i;
+	}
+	
+
+}

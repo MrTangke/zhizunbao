@@ -1,0 +1,91 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.manage.Resources;
+import www.zhizunbao.service.ResourcesService;
+
+@Controller
+@RequestMapping("resources")
+public class ResourcesController {
+
+	@Autowired
+	private ResourcesService resourcesService;
+	
+	/**
+	 * JiJi  2018年4月16日 下午3:04:36
+	 * 功能 ：获取权限列表
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("toadmin_Competence")
+	public String toAdminCompetence(HttpServletRequest request) {
+		List<Resources> resourcesList = resourcesService.findResourcesList();
+		request.setAttribute("resourcesList", resourcesList);
+		return "admin/resources/resources_list";
+	}
+	/**
+	 * JiJi  2018年4月16日 下午3:03:39
+	 * 功能 ： 跳转权限修改页面并回显
+	 * @return
+	 */
+	@RequestMapping("toUpdateResourcesById")
+	public String updateResourcesById(Integer res_id,HttpServletRequest request){
+		Resources resources= resourcesService.findResourcesById(res_id);
+		request.setAttribute("resources", resources);
+		return "admin/resources/resources_update";
+	}
+	
+	/**
+	 * 
+	 * JiJi  2018年4月16日 下午6:29:23
+	 * 功能 ： 修改权限
+	 * @param resources
+	 * @return
+	 */
+	@RequestMapping("updateResourcesById")
+	public String updateResourcesById(Resources resources){
+		System.out.println("res是"+resources.getResId()+resources.getResName());
+		resourcesService.updateResourcesById(resources);
+		return "redirect:toadmin_Competence";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月16日 下午7:32:29
+	 * 功能 ： 删除权限
+	 * @param res_id
+	 * @return
+	 */
+	@RequestMapping("deleteResourcesById")
+	public String  deleteResourcesById(Integer res_id){
+		resourcesService.deleteResourcesById(res_id);
+		return "redirect:toadmin_Competence";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月16日 下午7:38:55
+	 * 功能 ：跳转添加权限页面
+	 * @return
+	 */
+	@RequestMapping("toAddResources")
+	public String toAddResources(){
+		return "admin/resources/resources_insert";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月16日 下午7:40:04
+	 * 功能 ： 添加权限
+	 * @return
+	 */
+	@RequestMapping("insertResourcesById")
+	public String insertResourcesById(Resources resources){
+		resourcesService.insertResourcesById(resources);
+		return "redirect:toadmin_Competence";
+	}
+}

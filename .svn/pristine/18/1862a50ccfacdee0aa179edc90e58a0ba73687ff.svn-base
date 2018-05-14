@@ -1,0 +1,52 @@
+
+#\u8bbe\u7f6e\u6743\u9650
+log4j.rootLogger=OFF , D  , database ,logfile
+log4j.logger.www.zhizunbao.service.impl=INFO,DB
+#\u8f93\u51fa\u5230\u63a7\u5236\u53f0
+log4j.appender.Console=org.apache.log4j.ConsoleAppender
+#\u53ef\u4ee5\u7075\u6d3b\u5730\u6307\u5b9a\u5e03\u5c40\u6a21\u5f0f
+log4j.appender.Console.layout=org.apache.log4j.PatternLayout
+#\u6307\u5b9a\u8f93\u51fa\u683c\u5f0f:\u663e\u793a\u65e5\u671flog\u4fe1\u606f
+log4j.appender.Console.layout.ConversionPattern = [%X{name}] [%c] [%M] %-d{yyyy-MM-dd HH\:mm\:ss} [%p] [%l] [%m%n]   
+#\u8bbe\u7f6e\u65e5\u5fd7\u7ea7\u522b
+log4j.logger.java.sql.ResultSet=INFO
+log4j.logger.org.apache=INFO
+log4j.logger.java.sql.Connection=INFO
+log4j.logger.java.sql.Statement=INFO
+log4j.logger.java.sql.PreparedStatement=INFO
+
+#\u6d88\u606f\u589e\u52a0\u5230\u6307\u5b9a\u6587\u4ef6\u4e2d
+#log4j.appender.D.Append = true 
+#\u8f93\u51fa\u65e5\u5fd7\u7ea7\u522b \u6307\u5b9a\u8f93\u51fa\u7684\u6700\u4f4e\u7ea7\u522b
+log4j.appender.D.Threshold = INFO \#\# \u8f93\u51fainfo\u7ea7\u522b\u4ee5\u4e0a\u7684\u65e5\u5fd7 
+#\u6307\u5b9a\u65e5\u5fd7\u8f93\u51fa\u7684\u6a21\u5f0f
+log4j.appender.D.layout = org.apache.log4j.PatternLayout 
+
+### \u628a\u65e5\u5fd7\u4fe1\u606f\u5199\u5165\u5230\u6570\u636e\u5e93###  
+log4j.appender.database=org.apache.log4j.ConsoleAppender
+log4j.appender.database.layout=org.apache.log4j.PatternLayout
+log4j.appender.database.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss:SSS}[%p]: %m%n
+log4j.appender.database=org.apache.log4j.jdbc.JDBCAppender
+log4j.appender.database.driver=com.mysql.jdbc.Driver
+log4j.appender.database.URL=jdbc:mysql://59.110.142.75:3306/05_zhizunbao?useUnicode=true&characterEncoding=UTF-8
+log4j.appender.database.user=five
+log4j.appender.database.password=44ED0E3592BAEF3A
+####\u53ea\u8f93\u51faERROR\u7ea7\u522b\u4ee5\u4e0a\u7684\u4fe1\u606f
+log4j.appender.DB.Threshold=ERROR
+log4j.appender.database.sql=insert into log (user_name,log_time,log_class,log_method,log_level,log_path,log_msg) VALUES ('%X{name}','%d{yyyy-MM-dd hh:mm:ss}','%C','%M','%p','%l','%m')
+log4j.appender.database.layout=org.apache.log4j.PatternLayout
+
+############################## \u6587\u4ef6\u65e5\u5fd7\u914d\u7f6e ##############################  
+log4j.appender.logfile = org.apache.log4j.DailyRollingFileAppender
+#\u65e5\u5fd7\u8f93\u51fa\u683c\u5f0f  
+log4j.appender.logfile.layout.ConversionPattern = [%X{name}] %-d{yyyy-MM-dd HH\:mm\:ss} [%c] [%M]  [%p] [%l] [%m%n]
+#\u65e5\u5fd7\u5e03\u5c40\u683c\u5f0f  
+log4j.appender.logfile.layout = org.apache.log4j.PatternLayout
+#\u5355\u4e2a\u6587\u4ef6\u5927\u5c0f  
+log4j.appender.logfile.MaxFileSize = 100K
+#\u5907\u4efd\u6587\u4ef6\u4e2a\u6570  
+log4j.appender.logfile.MaxBackupIndex = 100
+#\u65e5\u5fd7\u6587\u4ef6\u8def\u5f84 \u5728tomcat\u4e0blogs\u6587\u4ef6\u5939
+log4j.appender.logfile.File = ../logs/log4j.log
+#\u65e5\u671f\u540e\u7f00\u683c\u5f0f  
+log4j.appender.logfile.DatePattern = '.'yyyy-MM-dd

@@ -1,0 +1,43 @@
+package www.zhizunbao.utils;
+
+import java.io.File;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.output.FileWriterWithEncoding;
+
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+
+public class FMUtils {
+	//创建配置对象
+	static Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
+	
+	public static void createHtml(HttpServletRequest request,String ftlName,String outName,Map<String,Object> map) throws Exception{
+		
+		ServletContext context = request.getServletContext();
+		// Directory  (目录，路径)
+		//指定模版路径
+		cfg.setDirectoryForTemplateLoading(new File(context.getRealPath("WEB-INF/ftl")));
+		//设置缺省(默认)字符编码
+		cfg.setDefaultEncoding("UTF-8");
+		//设置输出字符编码
+		cfg.setOutputEncoding("UTF-8");	
+		//获取模版
+		Template t = cfg.getTemplate(ftlName);
+		
+		String path = request.getContextPath();
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+		//数据模型
+		map.put("basePath", basePath);
+		//指定静态页面输出路径
+		FileWriterWithEncoding w = new FileWriterWithEncoding(new File(context.getRealPath("html/"+outName)),"UTF-8");
+		//进行处理
+		t.process(map, w);
+		//关流
+		w.close();
+		
+	}
+}

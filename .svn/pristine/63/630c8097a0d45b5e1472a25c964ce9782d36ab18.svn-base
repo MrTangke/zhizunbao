@@ -1,0 +1,34 @@
+package www.zhizunbao.controller;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.manage.UserInfo;
+import www.zhizunbao.service.InsureService;
+
+@Controller
+@RequestMapping("/frontBuy/")
+public class FrontBuyCotroller {
+	
+	@Autowired
+	private InsureService insureService;
+
+	
+	@RequestMapping("toBuyOne")
+	public String toBuyOne(HttpServletRequest request,Integer insureId){
+		Insure insure = insureService.findInsureByInsureId(insureId);
+		request.setAttribute("insure", insure);
+		return "front/insure/insure_buy_01";
+	}
+	
+	@RequestMapping("toBuyTwo")
+	public String toBuyTwo(){
+		
+		return "front/insure/insure_buy_02";
+	}
+	
+}

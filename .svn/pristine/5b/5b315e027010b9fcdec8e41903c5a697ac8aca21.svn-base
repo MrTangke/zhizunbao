@@ -1,0 +1,25 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.manage.CarouselImg;
+import www.zhizunbao.mapper.manage.CarouselImgMapper;
+import www.zhizunbao.service.CarouselImgService;
+
+@Service
+public class CarouselImgServiceImpl implements CarouselImgService {
+
+	@Autowired
+	private CarouselImgMapper carouselImgMapper;
+
+	@Override
+	public List<CarouselImg> findCarouseImgList() {
+		// TODO Auto-generated method stub
+		return carouselImgMapper.findCarouseImgList();
+	}
+	
+	
+}

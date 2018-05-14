@@ -1,0 +1,130 @@
+package www.zhizunbao.service.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.insure.Comment;
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.InsureComment;
+import www.zhizunbao.dto.manage.Manage;
+import www.zhizunbao.mapper.insure.CommentMapper;
+import www.zhizunbao.mapper.insure.InsureCommentMapper;
+import www.zhizunbao.service.CommentService;
+import www.zhizunbao.utils.LogUtil;
+
+@Service
+public class CommentServiceImpl implements CommentService{
+	@Autowired
+	CommentMapper commentMapper;
+    @Autowired
+    InsureCommentMapper insureCommentMapper;
+	@Override
+	public List<Comment> findComment(HttpServletRequest request) {
+		Manage man = (Manage) request.getSession().getAttribute("man");
+		LogUtil.mdc(man.getRealName()); 
+		Logger logger = LogUtil.getLogger(CommentServiceImpl.class);
+		try {
+			return commentMapper.selectByPrimaryKey();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	@Override
+	public Integer deleteByPrimaryKey(HttpServletRequest request,Integer id) {
+		
+		Manage man = (Manage) request.getSession().getAttribute("man");
+		LogUtil.mdc(man.getRealName()); 
+		Logger logger = LogUtil.getLogger(CommentServiceImpl.class);
+		try {
+			return insureCommentMapper.deleteByPrimaryKey(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
+		
+	}
+
+	@Override
+	public List<Comment> findOne(Integer insureId) {
+		return commentMapper.findOne(insureId);
+	}
+
+	@Override
+	public List<InsureComment> findCommentById(int id) {
+		return commentMapper.findCommentById(id);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月26日 下午8:39:27
+	 * 功能 ：添加评论
+	 * @param pinglun
+	 * @param insureId
+	 * @param userId
+	 */
+	@Override
+	public int addPinglun(HttpServletRequest request,String pinglun, int insureId, int userId) {
+		
+		Manage man = (Manage) request.getSession().getAttribute("man");
+		LogUtil.mdc(man.getRealName()); 
+		Logger logger = LogUtil.getLogger(CommentServiceImpl.class);
+		try {
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String commentDate = format.format(new Date());
+			Comment comment = new Comment();
+			comment.setCommentDate(commentDate);
+			comment.setCommentContent(pinglun);
+			commentMapper.insert(comment);
+			InsureComment insureComment = new InsureComment();
+			insureComment.setUserId(userId);
+			insureComment.setInsureId(insureId);
+			insureComment.setCommentId(comment.getCommentId());
+			return insureCommentMapper.insertSelective(insureComment);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
+		
+	}
+	
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月26日 下午9:58:50
+	 * 功能 ：查询保险评论条数
+	 * @param insure
+	 * @return
+	 */
+	@Override
+	public int findCommentCountByInsureId(Insure insure) {
+		// TODO Auto-generated method stub
+		return commentMapper.findCommentCountByInsureId(insure.getInsureId());
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月26日 下午10:03:09
+	 * 功能 ：分页查询保险评论
+	 * @param map
+	 * @return
+	 */
+	@Override
+	public List<Comment> findCommentLimit(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return commentMapper.findCommentLimit(map);
+	}
+}

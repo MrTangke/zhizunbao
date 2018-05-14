@@ -1,0 +1,123 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<base href="<%=basePath%>">
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="<%=basePath%>styles/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="<%=basePath%>styles/css1/index_work.css" type="text/css"></link> -->
+	<title>注册</title>
+	<!-- for-mobile-apps -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Classic Style Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	
+	<!-- //for-mobile-apps -->
+	<link href="<%=basePath %>/styles/insurance/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<%=basePath %>/styles/insurance/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='https://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+	</head>
+<body>
+<!--banner-->
+<div class="banner-top">
+	<div class="container">
+		<h2 class="animated wow fadeInLeft" data-wow-delay=".5s">注册</h2>
+		<h3 class="animated wow fadeInRight" data-wow-delay=".5s"><a href="">主页</a><label>/</label>注册</h3>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+<!-- contact -->
+	<div class="login">
+		<div class="container">
+		<form action="userInfo/userRegister" method="post">
+			<div class="col-md-3"></div>
+			<div class="col-md-6 login-do1 animated wow fadeInLeft" data-wow-delay=".5s">
+				<div class="login-mail">
+					<i class="glyphicon glyphicon-user"></i>
+					<input type="text" placeholder="用户名" name="userName" required="required">
+				</div>
+				<div class="login-mail">
+					<i class="glyphicon glyphicon-lock"></i>
+					<input type="password" id="user_password" placeholder="密码" name="userPassword" required="required">
+				</div>
+				<div class="login-mail">
+					<i class="glyphicon glyphicon-lock"></i>
+					<input type="password" id="user_passwordConfirm" placeholder="确认密码" name="user_passwordConfirm"  required="required">
+				</div>
+				<div class="login-mail">
+					<i class="glyphicon glyphicon-earphone"></i>
+					<input type="text" placeholder="电话" required="">
+				</div>
+				  <a class="news-letter" href="#">
+					 <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>我同意以下条款</label>
+				  </a>
+			</div>
+			<div class="col-md-6"></div>
+			<div class="col-md-3 login-do animated wow fadeInRight" data-wow-delay=".5s">
+				<label class="hvr-sweep-to-top login-sub">
+					<input id="sub" type="submit" value="提交">
+					</label>
+					<p>已经注册？</p>
+				<a href="login.jsp" class="hvr-sweep-to-top">登录</a>
+			</div>
+			<div class="clearfix"> </div>
+			</form>
+		</div>
+
+
+	</div>
+
+</body>
+<!-- js -->
+<script src="<%=basePath %>/styles/insurance/js/jquery.min.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //js -->
+<!-- cart -->
+<script src="<%=basePath %>/styles/insurance/js/simpleCart.min.js"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="<%=basePath %>/styles/insurance/js/bootstrap-3.1.1.min.js"></script>
+<!-- //for bootstrap working -->
+<!-- animation-effect -->
+<link href="<%=basePath %>/styles/insurance/css/animate.min.css" rel="stylesheet"> 
+<script src="<%=basePath %>/styles/insurance/js/wow.min.js"></script>
+<script>
+ new WOW().init();
+ 
+</script>
+<script type="text/javascript" src="<%=basePath %>/styles/insurance/js/jquery.flexisel.js"></script>
+<!-- 判断两次密码是否一致 -->	
+<script>
+(function(){
+    var sub = document.getElementById("sub");
+    //初始化移入移出事件
+    if(sub.addEventListener){
+        sub.addEventListener("click", test);  
+    }else if(sub.attachEvent){
+        sub.attachEvent("onClick", test);
+    }
+})();
+ 
+function test(){
+    var password = document.getElementById("user_password");
+    var passwordConfirm = document.getElementById("user_passwordConfirm");
+    if(password.value != passwordConfirm.value)
+        alert("对不起，您2次输入的密码不一致");
+    else
+    	alert("注册成功！")
+    document.forms[0].submit();
+     
+}
+</script>				
+</html>

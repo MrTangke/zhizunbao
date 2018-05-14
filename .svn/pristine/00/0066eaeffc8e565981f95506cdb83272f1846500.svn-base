@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	<!-- Spring为什么要整合Mybatis ？ -->
+	<!-- 1.Spring帮助Mybatis管理事务 -->
+	<!-- 2.SqlSession是由SqlSessionFactory来创建的，SqlSessionFactory是一个重量级
+		   管理SqlSessionFactory
+		 3.整合映射文件xml，自动映射接口，生成代理
+	-->
+	
+	<!-- 数据源 -->
+	<bean id="ds" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="driverClassName" value="${jdbc.driver}"></property>
+		<property name="username" value="${jdbc.uname}"></property>
+		<property name="password" value="${jdbc.pwd}"></property>
+	</bean>
+	
+	<!-- Session工厂 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
+		<property name="configLocation" value="classpath:SqlMapConfig.xml"/>
+		<property name="dataSource" ref="ds"></property>
+		<!-- 给实体类取别名 -->
+		<property name="typeAliasesPackage" value="www.zhizunbao.dto"></property>
+	</bean>
+	
+	<!-- 接口代理 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+		<property name="basePackage" value="www.zhizunbao.mapper"></property>
+	</bean>
+	
+	<!-- 事务管理器 -->
+	<bean  id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" >
+		<property name="dataSource" ref="ds"></property>
+	</bean>
+	
+	<!-- 哪些方法需要事务处理 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="insert*"/>
+			<tx:method name="add*"/>
+			<tx:method name="save*"/>
+			<tx:method name="update*"/>
+			<tx:method name="upd*"/>
+			<tx:method name="modify*"/>
+			<tx:method name="delete*"/>
+			<tx:method name="del*"/>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="select*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 事务切面 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* www.zhizunbzo.service.impl.*.*(..))" id="pc"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pc"/>
+	</aop:config>
+	<!-- 扫描service -->
+	<context:component-scan base-package="www.zhizunbao.service.impl"></context:component-scan>
+
+	<!-- <import resource="classpath*:/producer.xml"/> -->
+	<import resource="classpath*:/springmvc.xml"/>
+</beans>

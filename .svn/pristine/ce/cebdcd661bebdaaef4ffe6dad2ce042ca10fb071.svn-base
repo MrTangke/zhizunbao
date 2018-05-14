@@ -1,0 +1,60 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.Type;
+import www.zhizunbao.service.InsureService;
+
+@Controller
+@RequestMapping("/frontInsure/")
+public class FrontInsureController {
+
+	@Autowired
+	private InsureService insureService;
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月20日 下午2:21:12
+	 * 功能 ：默认查询pid为1的所有保险
+	 * @param request
+	 * @param pid
+	 * @return
+	 */
+	@RequestMapping("findAllInsure")
+	public String findAllInsure(HttpServletRequest request,Integer typeId){
+		 if (null==typeId) {
+			typeId=1;
+		}
+		 Type type = insureService.findTypeBytypeId(typeId);
+		 List<Type> topTypeList = insureService.findTopTypeList();
+		 List<Type> typeList = insureService.findTypeListByTypeId(typeId);
+		 List<Insure> insureList = insureService.findInsureListByPid(typeId);
+		 request.getSession().setAttribute("topTypeList", topTypeList);
+		 request.getSession().setAttribute("type", type);
+		 request.getSession().setAttribute("typeList", typeList);
+		 request.setAttribute("insureList", insureList);
+		return "front/insure/insure";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月20日 下午3:05:49
+	 * 功能 ：查询类型一样的所有保险
+	 * @param request
+	 * @param typeId
+	 * @return
+	 */
+	@RequestMapping("findTheSameTypeInsureByTypeId")
+	public String findTheSameTypeInsureByTypeId(HttpServletRequest request,Integer typeId){
+		List<Insure> insureList = insureService.findInsureListByTypeId(typeId);
+		request.setAttribute("insureList", insureList);
+		return "front/insure/insure";
+	}
+}

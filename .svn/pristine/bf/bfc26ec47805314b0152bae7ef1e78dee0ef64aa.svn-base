@@ -1,0 +1,40 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.insure.Comment;
+import www.zhizunbao.dto.insure.InsureComment;
+import www.zhizunbao.mapper.insure.CommentMapper;
+import www.zhizunbao.mapper.insure.InsureCommentMapper;
+import www.zhizunbao.service.CommentService;
+
+@Service
+public class CommentServiceImpl implements CommentService{
+	@Autowired
+	CommentMapper commentMapper;
+    @Autowired
+    InsureCommentMapper insureCommentMapper;
+	@Override
+	public List<Comment> findComment() {
+		return commentMapper.selectByPrimaryKey();
+	}
+
+	@Override
+	public Integer deleteByPrimaryKey(Integer id) {
+		return insureCommentMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public List<Comment> findOne(Integer insureId) {
+		return commentMapper.findOne(insureId);
+	}
+
+	@Override
+	public List<InsureComment> findCommentById(int id) {
+		return commentMapper.findCommentById(id);
+	}
+
+}

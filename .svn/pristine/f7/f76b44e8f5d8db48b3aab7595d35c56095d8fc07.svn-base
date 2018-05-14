@@ -1,0 +1,15 @@
+package www.zhizunbao.service;
+
+import java.util.List;
+
+import www.zhizunbao.dto.manage.CarouselImg;
+
+public interface CarouselImgService {
+
+	List<CarouselImg> findCarouseImgList();
+
+	CarouselImg findCarouseImgById(Integer id);
+
+	void updateImgOrder(CarouselImg carouselImg);
+
+}

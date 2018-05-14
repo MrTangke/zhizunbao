@@ -1,0 +1,46 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.activity.Discounts;
+import www.zhizunbao.mapper.activity.DiscountsMapper;
+import www.zhizunbao.service.DiscountsService;
+@Service
+public class DiscountsServiceImpl implements DiscountsService{
+
+	@Autowired
+	DiscountsMapper discountsMapper;
+
+	@Override
+	public List<Discounts> findDiscountsList() {
+		// TODO Auto-generated method stub
+		return discountsMapper.selectByPrimaryKey();
+	}
+
+	@Override
+	public int addDiscounts(Discounts discounts) {
+		// TODO Auto-generated method stub
+		return discountsMapper.insertSelective(discounts);
+	}
+
+	@Override
+	public Integer deleteByPrimaryKey(Integer disId) {
+		// TODO Auto-generated method stub
+		return discountsMapper.deleteByPrimaryKey(disId);
+	}
+
+	@Override
+	public Discounts findDiscountsOne(Integer disId) {
+		// TODO Auto-generated method stub
+		return discountsMapper.findDiscountsOne(disId);
+	}
+
+	@Override
+	public int updDiscounts(Discounts discounts) {
+		// TODO Auto-generated method stub
+		return discountsMapper.updateByPrimaryKeySelective(discounts);
+	}
+}

@@ -1,0 +1,44 @@
+package www.zhizunbao.controller;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.manage.UserInfo;
+import www.zhizunbao.service.CommentService;
+
+@Controller
+@RequestMapping("pinglun")
+public class UserPinglunController {
+	
+	@Autowired
+	private CommentService commentService;
+	/**
+	 * 
+	 * Mr吴  2018年4月26日 下午8:36:20
+	 * 功能 ：添加评论
+	 * @param request
+	 * @param pinglun
+	 * @param insure
+	 * @return
+	 */
+	@RequestMapping("addPinglun")
+	public String  toAddPinglun(HttpServletRequest request,HttpServletResponse response,String pinglun,Insure insure){
+		//System.out.println(insure.getInsureId()+"\t"+pinglun);
+		
+		if (null!=pinglun && null!=insure &&!"".equals(insure.getInsureId())) {
+			UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo1");
+			int insureId=insure.getInsureId();
+			int userId=userInfo.getUserId();
+			commentService.addPinglun(request,pinglun,insureId,userId);
+			return "redirect:/frontInsure/findInsureByInsureIdFree?insureId="+insureId;
+		}else {
+			return "redirect:/userInfo/toUserinfoInsure";
+		}
+		
+	}
+}

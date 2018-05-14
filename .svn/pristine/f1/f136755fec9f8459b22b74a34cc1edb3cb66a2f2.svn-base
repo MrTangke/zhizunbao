@@ -1,0 +1,61 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import www.zhizunbao.dto.manage.Role;
+import www.zhizunbao.service.RoleService;
+/** 
+ * @author Administrator
+ * 角色管理
+ */
+@Controller
+@RequestMapping("/role/")
+public class RoleController {
+	
+	@Autowired
+	RoleService roleService;
+ 
+	
+	@RequestMapping("toAdministrator")
+	public String toAdministrator(HttpServletRequest request,Role role){
+		List<Role> list = roleService.findUsersList();
+		int SUM = roleService.findByCount();
+			request.setAttribute("list", list);
+			request.setAttribute("SUM", SUM);
+		return "admin/role/role_list";
+	}
+	/** 
+	 * Administrator  2018年4月17日 上午8:30:46
+	 * 功能 ：
+	 * @param request
+	 * @param role
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("toUpdate")
+	public String toUpdate(HttpServletRequest request,Role role,int id){
+		System.out.println(id);
+		role = roleService.findRoleById(id);
+		System.out.println(role.getRoleName());
+		request.setAttribute("role", role);
+		return "admin/role/role_update";
+	}
+	
+	/**
+	 * 删除角色
+	 */
+	@RequestMapping("deleteRole")
+	@ResponseBody
+	public Integer deleteRole(Integer roleId){
+		Integer i = roleService.deleteByPrimaryKey(roleId);
+		return i;
+	}
+}

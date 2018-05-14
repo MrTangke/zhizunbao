@@ -1,0 +1,92 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.manage.CarouselImg;
+import www.zhizunbao.dto.manage.FrontImg;
+import www.zhizunbao.dto.manage.ImgType;
+import www.zhizunbao.mapper.manage.CarouselImgMapper;
+import www.zhizunbao.mapper.manage.FrontImgMapper;
+import www.zhizunbao.mapper.manage.ImgTypeMapper;
+import www.zhizunbao.service.CarouselImgService;
+
+@Service
+public class CarouselImgServiceImpl implements CarouselImgService {
+
+	@Autowired
+	private CarouselImgMapper carouselImgMapper;
+
+	@Autowired
+	FrontImgMapper frontImgMapper;
+	
+	@Autowired
+	ImgTypeMapper imgTypeMapper;
+	
+	@Override
+	public List<CarouselImg> findCarouseImgList() {
+		// TODO Auto-generated method stub
+		return carouselImgMapper.findCarouseImgList();
+	}
+
+	@Override
+	public CarouselImg findCarouseImgById(Integer id) {
+		// TODO Auto-generated method stub
+		return carouselImgMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public void updateImgOrder(CarouselImg carouselImg) {
+		// TODO Auto-generated method stub
+		carouselImgMapper.updateByPrimaryKeySelective(carouselImg);
+	}
+
+	@Override
+	public void setImgTocarouselImg(Integer img_id) {
+		// TODO Auto-generated method stub
+		carouselImgMapper.setImgTocarouselImg(img_id);
+	}
+
+	@Override
+	public List<FrontImg> findFroetImg() {
+		return frontImgMapper.findFroetImg();
+
+	}
+
+	@Override
+	public int getCount() {
+		return frontImgMapper.getCount();
+	}
+
+	@Override
+	public int deleteByPrimaryKey(Integer imgId) {
+		return frontImgMapper.deleteByPrimaryKey(imgId);
+	}
+
+	@Override
+	public FrontImg selectByPrimaryKey(Integer imgId) {
+		return frontImgMapper.selectByPrimaryKey(imgId);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(FrontImg frontImg) {
+		return frontImgMapper.updateByPrimaryKeySelective(frontImg);
+	}
+
+	@Override
+	public List<ImgType> findImgType() {
+		return imgTypeMapper.findImgType();
+	}
+
+	@Override
+	public int insertSelective(FrontImg frontImg) {
+		return frontImgMapper.insertSelective(frontImg);
+	}
+
+
+
+
+	
+}

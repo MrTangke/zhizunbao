@@ -1,0 +1,424 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import www.zhizunbao.dto.insure.Feature;
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.InsurePeople;
+import www.zhizunbao.dto.insure.SafeGuard;
+import www.zhizunbao.dto.insure.Type;
+import www.zhizunbao.service.InsureService;
+import www.zhizunbao.utils.FilesUtils;
+/**
+ * 
+ * @author Mr吴
+ * 保险相关管理
+ */
+@Controller
+@RequestMapping("/insure/")
+public class InsureController {
+
+	@Autowired
+	private InsureService insureService;
+	
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 上午11:16:16
+	 * 功能 ：查询保险
+	 * @param request
+	 * @param insure
+	 * @return
+	 */
+	@RequestMapping("findInsureList")
+	public String findInsureList(HttpServletRequest request,Insure insure){
+		if (null!=insure && null==insure.getInsureName()) {
+			insure.setInsureName("");
+		}
+		//int count = insureService.findInsureCount();
+		List<Insure> insureList = insureService.findInsureList(insure,request);
+		//request.setAttribute("count", count);
+		request.setAttribute("insureList", insureList);
+		return "admin/insure/insure_list";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午6:05:29
+	 * 功能 ：跳转保险添加页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("toAddInsture")
+	public String toAddInsture(HttpServletRequest request){
+		List<InsurePeople> peopleList=insureService.findPeoplelist();
+		List<Feature> featureList = insureService.findFeatureList();
+		List<SafeGuard> safeGuardList = insureService.findSafeGuardList();
+		List<Type> typeList = insureService.findTypeList();
+		request.setAttribute("peopleList", peopleList);
+		request.setAttribute("featureList", featureList);
+		request.setAttribute("safeGuardList", safeGuardList);
+		request.setAttribute("typeList", typeList);
+		return "admin/insure/insure_add";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午7:42:03
+	 * 功能 ：新增保险
+	 * @param insure
+	 * @return
+	 */
+	@RequestMapping("addInsure")
+	public String addInsure(Insure insure,Integer[] feature, Integer[] safeguard,Integer typeId,HttpServletRequest request){
+		//boolean flag=false;
+		insure.setInsureNumber(0);
+		insureService.addInsure(insure,feature,safeguard,typeId,request);
+		/*if (i>0) {
+			flag=true;
+		}
+		return flag;*/
+		return "redirect:findInsureList";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午8:10:31
+	 * 功能 ： 跳转保险修改页面
+	 * @param request
+	 * @param insureId
+	 * @return
+	 */
+	@RequestMapping("toUpdateInsure")
+	public String toUpdateInsure(HttpServletRequest request,Integer insureId){
+		List<InsurePeople> peopleList=insureService.findPeoplelist();
+		List<Feature> featureList = insureService.findFeatureList();
+		List<SafeGuard> safeGuardList = insureService.findSafeGuardList();
+		List<Type> typeList = insureService.findTypeList();
+		request.setAttribute("peopleList", peopleList);
+		request.setAttribute("featureList", featureList);
+		request.setAttribute("safeGuardList", safeGuardList);
+		request.setAttribute("typeList", typeList);
+		request.setAttribute("insureId", insureId);
+		return "admin/insure/insure_update";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月18日 下午7:11:25
+	 * 功能 ：回显保险特色保障范围
+	 * @param insureId
+	 * @return
+	 */
+	@RequestMapping("findOtherByInsureId")
+	@ResponseBody
+	public Map<String, Object> findOtherByInsureId(Integer insureId){
+		Map<String,Object> map = insureService.findOtherByInsureId(insureId);
+		return map;
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午8:23:19
+	 * 功能 ：修改保险
+	 * @param request
+	 * @param insure
+	 * @return
+	 */
+	@RequestMapping("updateInsure")
+	public String updateInsure(HttpServletRequest request,Insure insure,Integer[] feature, Integer[] safeguard,Integer typeId){
+		//boolean flag=false;
+		insureService.updateInsure(insure,feature,safeguard,typeId);
+		/*if (i>0) {
+			flag=true;
+		}
+		return flag;*/
+		return "redirect:findInsureList";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午8:13:56
+	 * 功能 ： 删除保险
+	 * @param insureId
+	 * @return
+	 */
+	@RequestMapping("deleteInsure")
+	@ResponseBody
+	public int deleteInsure(Integer insureId){
+		
+		return insureService.deleteInsure(insureId);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午8:50:43
+	 * 功能 ： 查询保险分类
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("findTypeList")
+	public String findTypeList(HttpServletRequest request){
+		List<Type> typeList = insureService.findTypeList();
+		request.setAttribute("typeList", typeList);
+		return "admin/insure/type_list";	
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午10:28:41
+	 * 功能 ： 跳转类型添加页面
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("toAddType")
+	public String toAddType(HttpServletRequest request){
+		List<Type> topTypeList = insureService.findTopTypeList();
+		request.setAttribute("topTypeList", topTypeList);
+		return "admin/insure/type_add";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午11:35:34
+	 * 功能 ：新增类型
+	 * @param request
+	 * @param type
+	 * @return
+	 */
+	@RequestMapping("addType")
+	public String addType(HttpServletRequest request,Type type){
+		insureService.addType(type);
+		// 自定义父页面跳转URL
+		String redirectUrl = "insure/findTypeList";
+		request.setAttribute("redirectUrl", redirectUrl);
+		return "admin/closeLayer";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午11:41:19
+	 * 功能 ：跳转修改类型页面
+	 * @param request
+	 * @param typeId
+	 * @return
+	 */
+	@RequestMapping("toUpdateType")
+	public String toUpdateType(HttpServletRequest request,Integer typeId){
+		Type type = insureService.findTypeBytypeId(typeId);
+		List<Type> topTypeList = insureService.findTopTypeList();
+		request.setAttribute("topTypeList", topTypeList);
+		request.setAttribute("type", type);
+		return "admin/insure/type_update";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午11:43:57
+	 * 功能 ：修改类型
+	 * @param request
+	 * @param type
+	 * @return
+	 */
+	@RequestMapping("updateType")
+	public String updateType(HttpServletRequest request,Type type){
+		insureService.updateType(type);
+		// 自定义父页面跳转URL
+		String redirectUrl = "insure/findTypeList";
+		request.setAttribute("redirectUrl", redirectUrl);
+		return "admin/closeLayer";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午11:45:25
+	 * 功能 ：删除类型
+	 * @param typeId
+	 * @return
+	 */
+	@RequestMapping("deleteType")
+	@ResponseBody
+	public int deleteType(Integer typeId){
+		
+		return insureService.deleteType(typeId);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午2:35:52
+	 * 功能 ：查询特色
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("findFeatureList")
+	public String findFeatureList(HttpServletRequest request){
+		List<Feature> featureList = insureService.findFeatureList();
+		request.setAttribute("featureList", featureList);
+		return "admin/insure/feature_list";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午2:38:22
+	 * 功能 ：跳转特色新增
+	 * @return
+	 */
+	@RequestMapping("toAddFeature")
+	public String toAddFeature(){
+		return "admin/insure/feature_add";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午2:42:36
+	 * 功能 ：新增特色
+	 * @param request
+	 * @param feature
+	 * @return
+	 */
+	@RequestMapping("addFeature")
+	public String addFeature(HttpServletRequest request,Feature feature){
+		insureService.addFeature(feature);
+		// 自定义父页面跳转URL
+		String redirectUrl = "insure/findFeatureList";
+		request.setAttribute("redirectUrl", redirectUrl);
+		return "admin/closeLayer";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午3:03:02
+	 * 功能 ：查询保障范围
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("findSafeGuardList")
+	public String findSafeGuardList(HttpServletRequest request){
+		List<SafeGuard> safeGuardList = insureService.findSafeGuardList();
+		request.setAttribute("safeGuardList", safeGuardList);
+		return "admin/insure/safeguard_list";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午3:59:09
+	 * 功能 ：跳转保障范围
+	 * @return
+	 */
+	@RequestMapping("toAddSafeGuard")
+	public String toAddSafeGuard(){
+		
+		return "admin/insure/safeguard_add";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:25:19
+	 * 功能 ：添加保障范围
+	 * @param request
+	 * @param safeGuard
+	 * @return
+	 */
+	@RequestMapping("addSafeGuard")
+	public String addSafeGuard(HttpServletRequest request,SafeGuard safeGuard){
+		insureService.addSafeGuard(safeGuard);
+		// 自定义父页面跳转URL
+		String redirectUrl = "insure/findSafeGuardList";
+		request.setAttribute("redirectUrl", redirectUrl);
+		return "admin/closeLayer";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:30:12
+	 * 功能 ：跳转修改保障范围页面
+	 * @param request
+	 * @param safeguardId
+	 * @return
+	 */
+	@RequestMapping("toUpdateSafeGuard")
+	public String toUpdateSafeGuard(HttpServletRequest request,Integer safeguardId){
+		SafeGuard safeGuard = insureService.findSafeGuardBySafeGuardId(safeguardId);
+		request.setAttribute("safeGuard", safeGuard);
+		return "admin/insure/safeguard_update";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:35:16
+	 * 功能 ：修改保障范围
+	 * @param request
+	 * @param safeGuard
+	 * @return
+	 */
+	@RequestMapping("updateSafeGuard")
+	public String updateSafeGuard(HttpServletRequest request,SafeGuard safeGuard){
+		insureService.updateSafeGuard(safeGuard);
+		// 自定义父页面跳转URL
+		String redirectUrl = "insure/findSafeGuardList";
+		request.setAttribute("redirectUrl", redirectUrl);
+		return "admin/closeLayer";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:38:02
+	 * 功能 ：删除保障范围
+	 * @param safeguardId
+	 * @return
+	 */
+	@RequestMapping("deleteSafeGuard")
+	@ResponseBody
+	public int deleteSafeGuard(Integer safeguardId){
+		
+		return insureService.deleteSafeGuard(safeguardId);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午7:11:10
+	 * 功能 ： 跳转图片上传页面
+	 * @return
+	 */
+	@RequestMapping("toUploadImg")
+	public String toUploadImg(HttpServletRequest request,Insure insure){
+		//System.out.println(insure.getInsureName()+insure.getInsureId());
+		Insure insure2 = insureService.findInsureNameAndImgSrcById(insure.getInsureId());
+		request.setAttribute("insure2", insure2);
+		return "admin/insure/insure_img_add";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午8:48:30
+	 * 功能 ：保险图片上传
+	 * @param insure
+	 * @param imagefile
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("uploadImg")
+	public String uploadImg(Insure insure,MultipartFile imagefile,HttpServletRequest request){
+		//System.out.println(imagefile+"\t"+insure);
+		Insure insure2 = insureService.findInsureNameAndImgSrcById(insure.getInsureId());
+		if (null != insure2.getImgId()) {
+			insureService.deleteImgByImgId(insure2.getImgId());
+		}
+		String imgUrl = FilesUtils.FilesUpload_xm(request, imagefile, "/upload");
+		insureService.uploadImg(imgUrl,insure);
+		String redirectUrl = "insure/findInsureList";
+		request.setAttribute("redirectUrl", redirectUrl);
+		return "admin/closeLayer";
+	} 
+		
+	
+}

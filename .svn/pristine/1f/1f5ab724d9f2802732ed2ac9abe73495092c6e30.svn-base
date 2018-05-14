@@ -1,0 +1,359 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%> 
+<html>
+<head>
+
+<title>Home</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Classic Style Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+<!-- //for-mobile-apps -->
+<link href="<%=basePath %>/styles/insurance/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=basePath %>/styles/insurance/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href='https://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!-- header -->
+	<div class="header">
+			<div class="header-grid">
+					<div class="container">
+				<div class="header-left animated wow fadeInLeft" data-wow-delay=".5s">
+					<ul>
+						<li><i class="glyphicon glyphicon-envelope" ></i><a href="">756209589@QQ.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" ></i>17620046458</li>
+						
+					</ul>
+				</div>
+				<div class="header-right animated wow fadeInRight" data-wow-delay=".5s">
+				<div class="header-right1 ">
+					<ul>
+		
+						<li><i class="glyphicon glyphicon-log-in" ></i><a href="login.jsp">登录</a></li>
+						<li><i class="glyphicon glyphicon-book" ></i><a href="register.jsp">注册</a></li>
+					</ul>
+				</div>
+				<!-- <div class="header-right2">
+					<div class="cart box_1">
+						<a href="checkout.html">
+							<h3> <div class="total">
+								<span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+								<img src="images/cart.png" alt="" />
+							</h3>
+						</a>
+						<p><a href="javascript:;" class="simpleCart_empty">订单</a></p>
+						<div class="clearfix"> </div>
+					</div>	
+				</div> -->
+				<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+			<div class="container">
+			<div class="logo-nav">
+				
+					<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header nav_2" >
+						 <div class="navbar-brand logo-nav-left " style="margin-left: -209px;margin-top: 10px">
+							<h1 class="animated wow pulse" data-wow-delay=".5s"><img class="img-responsive" src="<%=basePath %>/styles/insurance/images/ZZB.png" alt="" /></h1>
+						</div>
+
+					</div> 
+					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs" >
+						<ul class="nav navbar-nav" style="margin-left;margin-top: 10px">
+							<li class="active"><a href="#" class="act"><h1>主页</h1></a></li>	
+							<li class="active">
+								<a href="#" class="act"><h1>保险</h1> </a>
+							</li>
+							<li class="active">
+								<a href="#" class="act"><h1>活动</h1> </a>
+							</li>
+							<li class="active">
+								<a href="#" class="act"><h1>理赔</h1> </a>
+							</li>
+						</ul>
+					</div>
+					</nav>
+				</div>
+				
+		</div>
+	</div>
+<!-- //header -->
+<!-- Solr -->
+	<div class="solr">
+		<div class="col-md-6"></div>
+		<div class="col-md-6 footer-grid animated wow fadeInLeft">
+			<form style="margin-top: -43px;">
+				<input type="text"  required="">
+				<input type="submit" value="查询">
+			</form>
+			<p>热搜： <a style="color: red;display: inline-block; margin-right: 10px">养老保险</a>     <a style="color: red;display: inline-block; margin-right: 10px">旅游保险</a>    <a style="color: red">意外保险</a></p>
+			</div>
+	</div>
+<!-- /Solr -->
+<!-- banner -->
+	<div class="banner" style="margin-top: 80px">
+	<div class="banner-right">
+		<ul id="flexiselDemo2">			
+			<li><div class="banner-grid">
+			<h2>Featured Products</h2>
+			<div class="wome">
+					<a href="single.html" ><img class="img-responsive" src="<%=basePath %>/styles/insurance/images/bi1.jpg" alt="" />
+					</a>
+					<div class="women simpleCart_shelfItem">
+						<a href="#"><img src="images/ll.png" alt=""></a>
+						<h6 ><a href="single.html">详情</a></h6>
+						<p class="ba-price"><del>$100.00</del><em class="item_price">$70.00</em></p>
+						<a href="#" data-text="开始任务" class="but-hover1 item_add">开始任务</a>
+					</div>							
+					</div>							
+				</div></li>
+			<li><div class="banner-grid">
+			<h2>Featured Products</h2>
+			<div class="wome">
+					<a href="single.html" ><img class="img-responsive" src="<%=basePath %>/styles/insurance/images/bi.jpg" alt="" />
+					</a>	
+					<div class="women simpleCart_shelfItem">
+						<a href="#"><img src="images/ll.png" alt=""></a>
+						<h6 ><a href="single.html">详情</a></h6>
+						<p class="ba-price"><del>$100.00</del><em class="item_price">$70.00</em></p>
+						<a href="#" data-text="开始任务" class="but-hover1 item_add">开始任务</a>
+					</div>						
+					</div>						
+				</div></li>
+			<li><div class="banner-grid">
+			<h2>Featured Products</h2>
+			<div class="wome">
+					<a href="single.html" ><img class="img-responsive" src="<%=basePath %>/styles/insurance/images/bi2.jpg" alt="" />
+					</a>	
+					<div class="women simpleCart_shelfItem">
+						<a href="#"><img src="images/ll.png" alt=""></a>
+						<h6 ><a href="single.html">详情</a></h6>
+						<p class="ba-price"><del>$100.00</del><em class="item_price">$70.00</em></p>
+						<a href="#" data-text="开始任务" class="but-hover1 item_add">开始任务</a>
+					</div>						
+					</div>						
+				</div></li>
+		</ul>
+		</div>		
+	</div>
+
+	
+<!-- //banner -->
+<!-- 最新活动 -->
+<div style="margin-top: 10px;">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-4">
+		<h2 align="center"><font color="orange">------最新活动------</font></h2>
+	</div>
+	<div class="col-sm-4"></div>
+
+</div>
+<!-- /最新活动结束 -->
+<!--content-->
+		<div class="content">
+			<!---->
+			
+				<div class="content-top">
+					<div class="col-md-12 col-md2 animated wow fadeInRight" data-wow-delay=".1s">
+						<div class="col-sm-4 item-grid simpleCart_shelfItem">
+							<div class="grid-pro">
+								<div  class=" grid-product " >
+									<figure>		
+										<a href="single.html">
+											<div class="grid-img">
+												<img  src="<%=basePath %>/styles/insurance/images/pr1.jpg" class="img-responsive" alt="" style="width: 417px;height:626px">
+											</div>
+											<div class="grid-img">
+												<img  src="<%=basePath %>/styles/insurance/images/pr.jpg" class="img-responsive"  alt="" style="width: 417px;height:626px">
+											</div>			
+										</a>		
+									</figure>	
+								</div>
+								<div class="women">
+									<a href="#"><img src="<%=basePath %>/styles/insurance/images/ll.png" alt=""></a>
+									<h6><a href="single.html">详情</a></h6>
+									<p ><del>$100.00</del><em class="item_price">$70.00</em></p>
+									<a href="#" data-text="开始任务" class="but-hover1 item_add">开始任务</a>
+								</div>
+							</div>
+						</div>
+				
+						<div class="col-sm-4 item-grid simpleCart_shelfItem">
+							<div class="grid-pro">
+								<div  class=" grid-product " >
+									<figure>		
+										<a href="single.html">
+											<div class="grid-img">
+											
+												<img  src="<%=basePath %>/styles/insurance/images/pr3.jpg" class="img-responsive" alt="" style="width: 417px;height:626px">
+											</div>
+											<div class="grid-img">
+												<img  src="<%=basePath %>/styles/insurance/images/pr2.jpg" class="img-responsive"  alt="" style="width: 417px;height:626px">
+											</div>			
+										</a>		
+									</figure>	
+								</div>
+								<div class="women">
+									<a href="#"><img src="<%=basePath %>/styles/insurance/images/ll.png" alt=""></a>
+									<h6><a href="single.html">详情</a></h6>
+									<p ><del>$100.00</del><em class="item_price">$70.00</em></p>
+									<a href="#" data-text="开始任务" class="but-hover1 item_add">开始任务</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 item-grid simpleCart_shelfItem">
+						<div class="grid-pro">
+								<div  class=" grid-product " >
+									<figure>		
+										<a href="single.html">
+											<div class="grid-img">
+												<img  src="<%=basePath %>/styles/insurance/images/pr5.jpg" class="img-responsive" alt=""  style="width: 417px;height:626px">
+											</div>
+											<div class="grid-img">
+												<img  src="<%=basePath %>/styles/insurance/images/pr4.jpg" class="img-responsive"  alt=""  style="width: 417px;height:626px">
+											</div>			
+										</a>		
+									</figure>	
+								</div>
+								<div class="women">
+									<a href="#"><img src="<%=basePath %>/styles/insurance/images/ll.png" alt=""></a>
+									<h6><a href="single.html">详情</a></h6>
+									<p ><del>$100.00</del><em class="item_price">$70.00</em></p>
+									<a href="#" data-text="开始任务" class="but-hover1 item_add">开始任务</a>
+								</div>
+							</div>
+						</div>
+					<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				
+				<!----->
+				<!---->
+			
+			</div>
+				<!--products-->
+<div class="social animated wow fadeInDown" data-wow-delay=".1s">
+	<div class="container">
+		<div class="col-sm-3 social-ic">
+			<a href="#">地</a>
+		</div>
+		<div class="col-sm-3 social-ic">
+			<a href="#">图</a>
+		</div>
+		<div class="col-sm-3 social-ic">
+			<a href="#">插</a>
+		</div>
+		<div class="col-sm-3 social-ic">
+			<a href="#">件</a>
+		</div>
+	<div class="clearfix"></div>
+	</div>
+</div>
+
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+		<div class="footer-top">
+		<div class="clearfix"> </div>
+		</div>
+			<div class="footer-grids">
+				<div class="col-md-4 footer-grid animated wow fadeInLeft" data-wow-delay=".5s">
+					<h3>关于我们</h3>
+					<p>
+						<span><a>至尊宝简介</a></span>
+						<span><a>社会责任</a></span>
+					</p>
+				</div>
+				<div class="col-md-4 footer-grid animated wow fadeInLeft" data-wow-delay=".6s">
+					<h3>联系我们</h3>
+					<ul>
+						<li><i class="glyphicon glyphicon-map-marker" ></i>北京市海淀区软件园</span></li>
+						<li class="foot-mid"><i class="glyphicon glyphicon-envelope" ></i><a href="">756209589@QQ.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" ></i>+17620046548</li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			
+			<div class="copy-right animated wow fadeInUp" data-wow-delay=".5s">
+				<p>版权所有 &copy; 中国至尊保保险（集团）股份有限公司未经许可不得复制、转载或摘编，违者必究!</p>
+				<p>Copyright &copy; China sovereign insurance (group) co., LTD. May not copy, reprint or extract without permission.</p>
+			</div>
+		</div>
+	</div>
+<!-- //footer -->
+</body>
+<!-- js -->
+<script src="<%=basePath %>/styles/insurance/js/jquery.min.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //js -->
+<!-- cart -->
+<script src="<%=basePath %>/styles/insurance/js/simpleCart.min.js"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="<%=basePath %>/styles/insurance/js/bootstrap-3.1.1.min.js"></script>
+<!-- //for bootstrap working -->
+<!-- animation-effect -->
+<link href="<%=basePath %>/styles/insurance/css/animate.min.css" rel="stylesheet"> 
+<script src="<%=basePath %>/styles/insurance/js/wow.min.js"></script>
+<script>
+ new WOW().init();
+</script>
+<script type="text/javascript" src="<%=basePath %>/styles/insurance/js/jquery.flexisel.js"></script>					
+<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo2").flexisel({
+				visibleItems: 1,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 5000,    		
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+		    	responsiveBreakpoints: { 
+		    		portrait: { 
+		    			changePoint:480,
+		    			visibleItems: 1
+		    		}, 
+		    		landscape: { 
+		    			changePoint:640,
+		    			visibleItems: 1
+		    		},
+		    		tablet: { 
+		    			changePoint:768,
+		    			visibleItems: 1
+		    		}
+		    	}
+		    });
+		    
+		});
+	</script>
+ <!-- requried-jsfiles-for owl -->
+							<link href="<%=basePath %>/styles/insurance/css/owl.carousel.css" rel="stylesheet">
+							    <script src="<%=basePath %>/styles/insurance/js/owl.carousel.js"></script>
+							        <script>
+									    $(document).ready(function() {
+									      $("#owl-demo").owlCarousel({
+									        items : 2,
+									        lazyLoad : false,
+									        autoPlay : true,
+									        navigation : true,
+									        navigationText :  true,
+									        pagination : false,
+									      });
+									    });
+									  </script>
+							 <!-- //requried-jsfiles-for owl -->	
+<!-- //animation-effect -->
+</html>

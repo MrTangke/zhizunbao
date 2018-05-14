@@ -1,0 +1,47 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.manage.Resources;
+import www.zhizunbao.mapper.manage.ResourcesMapper;
+import www.zhizunbao.service.ResourcesService;
+
+@Service
+public class ResourcesServiceImpl implements ResourcesService {
+
+	@Autowired
+	private ResourcesMapper resourcesMapper;
+
+	@Override
+	public List<Resources> findResourcesList() {
+		// TODO Auto-generated method stub
+		return resourcesMapper.findResourcesList();
+	}
+
+	@Override
+	public Resources findResourcesById(Integer res_id) {
+		// TODO Auto-generated method stub
+		return resourcesMapper.findResourcesById(res_id);
+	}
+
+	@Override
+	public void updateResourcesById(Resources resources) {
+		// TODO Auto-generated method stub
+		resourcesMapper.updateResourcesById(resources);
+	}
+
+	@Override
+	public void deleteResourcesById(Integer res_id) {
+		// TODO Auto-generated method stub
+		resourcesMapper.deleteResourcesById(res_id);
+	}
+
+	@Override
+	public void insertResourcesById(Resources resources) {
+		// TODO Auto-generated method stub
+		resourcesMapper.insertResourcesById(resources);
+	}
+}

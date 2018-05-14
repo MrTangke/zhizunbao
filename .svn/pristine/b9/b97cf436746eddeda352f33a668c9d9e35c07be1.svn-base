@@ -1,0 +1,79 @@
+package www.zhizunbao.controller;
+
+import java.lang.annotation.Repeatable;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.manage.UserInfo;
+import www.zhizunbao.service.InsureService;
+import www.zhizunbao.service.UserInfoService;
+import www.zhizunbao.utils.StringUtils;
+
+@Controller
+@RequestMapping("/frontBuy/")
+public class FrontBuyCotroller {
+	
+	@Autowired
+	private InsureService insureService;
+	@Autowired
+	private UserInfoService userInfoService;
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月23日 下午6:54:01
+	 * 功能 ：跳转健康告知页面
+	 * @param request
+	 * @param insureId
+	 * @return
+	 */
+	@RequestMapping("toBuyOne")
+	public String toBuyOne(HttpServletRequest request,Integer insureId){
+		Insure insure = insureService.findInsureByInsureId(insureId);
+		request.setAttribute("insure", insure);
+		return "front/insure/insure_buy_01";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月23日 下午6:54:05
+	 * 功能 ：跳转填写保单页面
+	 * @param request
+	 * @param insureId
+	 * @return
+	 */
+	@RequestMapping("toBuyTwo")
+	public String toBuyTwo(HttpServletRequest request,Insure insure){
+		return "front/insure/insure_buy_02";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月23日 下午6:55:03
+	 * 功能 ：跳转保单确认页面
+	 * @return
+	 */
+	@RequestMapping("toBuyThree")
+	public String toBuyThree(HttpServletRequest request,Insure insure,UserInfo userInfo){
+		UserInfo user1 = (UserInfo) request.getSession().getAttribute("userInfo1");
+		userInfo.setUserId(user1.getUserId());
+		userInfoService.updateUserInfo(userInfo);
+		UserInfo userInfo2 = userInfoService.findUserInfoBuId(userInfo.getUserId());
+		request.getSession().setAttribute("userInfo1", userInfo2);
+		Insure insure1 = insureService.findInsureInformationByInsureId(insure.getInsureId());
+		request.setAttribute("insure1", insure1);
+		return "front/insure/insure_buy_03";
+	}
+	
+	@RequestMapping("toPay")
+	public String toPay(HttpServletRequest request,String insureId){
+		String uuid = StringUtils.getUUID();
+		
+		return "front/insure/userinfo_pay";
+	}
+	
+}

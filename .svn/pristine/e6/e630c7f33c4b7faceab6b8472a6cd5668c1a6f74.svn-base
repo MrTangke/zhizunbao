@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>   
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<%@include file="/styles/common/behind/cssStyle.jsp" %>	
+	<title>分类管理</title>
+</head>
+<body>
+<div class=" clearfix">
+ <div id="category">
+    <div id="scrollsidebar" class="left_Treeview">
+    <div class="show_btn" id="rightArrow"><span></span></div>
+    <div class="widget-box side_content" >
+    <div class="side_title"><a title="隐藏" class="close_btn"><span></span></a></div>
+     <div class="side_list">
+      <div class="widget-header header-color-green2">
+          <h4 class="lighter smaller">产品类型列表</h4>
+      </div>
+      <div class="widget-body">
+          <div class="widget-main padding-8">
+              <div  id="treeDemo" class="ztree"></div>
+          </div>
+  </div>
+  </div>
+  </div>  
+  </div>
+<!---->
+ <iframe ID="testIframe" Name="testIframe" FRAMEBORDER=0 SCROLLING=AUTO  SRC="product-category-add.html" class="page_right_style"></iframe>
+ </div>
+</div>
+</body>
+<%@include file="/styles/common/behind/jsStyle.jsp" %>	
+</html>
+<script type="text/javascript"> 
+$(function() { 
+	$("#category").fix({
+		float : 'left',
+		//minStatue : true,
+		skin : 'green',	
+		durationTime :false
+	});
+});
+</script>
+<script type="text/javascript">
+//初始化宽度、高度  
+ $(".widget-box").height($(window).height()); 
+ $(".page_right_style").width($(window).width()-220);
+  //当文档窗口发生改变时 触发  
+    $(window).resize(function(){
+	$(".widget-box").height($(window).height());
+	 $(".page_right_style").width($(window).width()-220);
+	})
+</script>

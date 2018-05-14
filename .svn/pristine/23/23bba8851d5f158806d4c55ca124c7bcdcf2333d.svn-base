@@ -1,0 +1,25 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.insure.InsureComment;
+import www.zhizunbao.mapper.insure.CommentMapper;
+import www.zhizunbao.service.FrontCommentService;
+
+@Service
+public class FrontCommentServiceImpl implements FrontCommentService {
+
+	@Autowired
+	CommentMapper commentMapper;
+
+	@Override
+	public List<InsureComment> findCommentById(int id) {
+		return commentMapper.findCommentById(id);
+	}
+	
+	
+	
+}

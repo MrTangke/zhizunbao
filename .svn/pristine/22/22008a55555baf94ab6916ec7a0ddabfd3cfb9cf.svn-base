@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>  
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>     
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="<%=basePath %>/styles/behind/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="<%=basePath %>/styles/behind/css/style.css"/>
+        	<link rel="stylesheet" href="<%=basePath %>/styles/behind/assets/css/ace.min.css" />
+        <link rel="stylesheet" href="<%=basePath %>/styles/behind/assets/css/font-awesome.min.css" />
+        <link href="<%=basePath %>/styles/behind/assets/css/codemirror.css" rel="stylesheet">
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+        <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+		<script src="<%=basePath %>/styles/behind/assets/js/ace-extra.min.js"></script>
+		<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+        		<!--[if !IE]> -->
+		<script src="<%=basePath %>/styles/behind/assets/js/jquery.min.js"></script>        
+		<!-- <![endif]-->
+           	<script src="<%=basePath %>/styles/behind/assets/dist/echarts.js"></script>
+        <script src="<%=basePath %>/styles/behind/assets/js/bootstrap.min.js"></script>            
+       <title></title>
+       </head>		
+<body <%-- style="background: url('<%=basePath%>styles/behind/black.jpg') no-repeat fixed top;" --%>>
+ 			<p  style="margin-top:220px; font-size:60px; font-family:楷体; color:blue; text-align: center;" ><b>欢迎使用至尊保后台管理系统</b></p>
+</body>
+</html>

@@ -1,0 +1,36 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.insure.InsureComment;
+import www.zhizunbao.service.FrontCommentService;
+
+@Controller
+@RequestMapping("/pageComment/")
+public class frontCommentController {
+
+	@Autowired
+	FrontCommentService frontCommentService;
+	
+	/** 
+	 * Administrator  2018年4月26日 下午3:25:03
+	 * 功能 ：查保险的评论    pageComment/toFindComment
+	 * @param request
+	 * @param insureComment
+	 * @param id
+	 * @return
+	 */
+	
+	@RequestMapping("toFindComment")
+	public String toFindComment(HttpServletRequest request,InsureComment insureComment,int id){
+		List<InsureComment> listcomment = frontCommentService.findCommentById(id);
+		request.setAttribute("listcomment", listcomment);
+		return "admin/userinfo/userinfo_comment";
+	}
+}

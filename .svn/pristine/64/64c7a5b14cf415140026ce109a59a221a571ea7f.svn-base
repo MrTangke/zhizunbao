@@ -1,0 +1,427 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>        
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${insure.insureName }</title>
+    <link rel="stylesheet" href="<%=basePath %>styles/insurance/css/common.css">
+    <link rel="stylesheet" href="<%=basePath %>styles/insurance/css/detail.css">
+</head>
+<body>
+<div class="wrapper">
+    <!--------------------------------------header_user begin------------------------------------->
+    <div class="header_user">
+        <div class="main_width">
+            <span class="tel">客服电话：400-663-6600（周一至周六 9:00-18:00）</span>
+            <span class="fr">
+                <span class="my_insurance"><a href="#">我的保险<em>1</em></a></span>
+                <span class="Backlog"><a href="#">未完成订单<em>1</em></a></span>
+                <span class="message"><a href="#">消息<em>1</em></a></span>
+                <span class="register"><a href="#">注册</a></span>
+                <span class="fg"><a href="#">|</a></span>
+                <span><a href="#">登录</a></span>
+            </span>
+        </div>
+    </div>
+    <!---------------------------------------header_user end-------------------------------------->
+    <!---------------------------------------header_nav begin------------------------------------->
+    <div class="header_nav">
+        <div class="main_width"  style="position: relative;right: 67px;">
+            <h1><a href="#" class="logo fl" style="position: relative;right:20px;">大特保保险官网-互联网保险服务平台</a></h1>
+            <a style="float: right;margin-right: -119px" href="#" class="my_policy fr">我的保单</a>
+            <div class="menuBox">
+               <ul class="menu">
+                <c:forEach items="${list }" var="nav">
+                	<c:choose>
+	                	<c:when test="${nav.navId==2}">
+		                	<li class="special active">
+		               			<a href="<%=basePath %>${nav.navAdress }">${nav.navName }</a>
+		                	</li>
+	                	</c:when>
+                	<c:otherwise>
+                		<li>
+               				<a href="<%=basePath %>${nav.navAdress }">${nav.navName }</a>
+                		</li>
+                	</c:otherwise>
+                	</c:choose> 
+                </c:forEach>
+                </ul>
+            </div>
+        </div>
+         <!--------------------------------- form section ---------------------->
+    	<div style="float:left;margin:-38px 0 0 423px">
+    		<div style="position: relative;">
+	           <form action="#">
+	           		<input value="请输入关键字" onkeydown="if(event &amp;&amp; event.keyCode==13){search();}" onfocus=" if(this.value=='请输入关键字'){this.value=''; this.style.color='#ABA9A9';} " onblur="if(this.value==''|| this.value=='请输入关键字'){this.value='请输入关键字';}"
+	           		style="color:#ABA9A9;position:absolute;width: 209px;height:31px;border: 2px solid #ff8712;" type="text" name="chaxun">
+	           		<input style="position: absolute;margin-left: 213px"  type="image"  src="<%=basePath%>styles/insurance/logo/sousuo.png"/>
+	           	</form>		
+           	</div>
+        </div>        	
+    </div>
+	<!------------------------------------- end form section ---------------------->	
+    <!----------------------------------------header_nav end-------------------------------------->
+    <!--container-->
+    <div class="center_container">
+        <!--deal main-->
+        <div class="detail_first main_width fix">
+            <!--left-->
+            <div class="first_left fl">
+                <img src="<%=basePath %>${insure.imgSrc}" alt="暂无图片" class="first_img">
+            </div>
+            <!--right-->
+            <div class="first_right fl">
+                <h2>${insure.insureName }</h2>
+                <p class="note" style="font-size: 15px">${insure.insureContent }</p>
+                <div class="first_info" id="firstInfo">
+                <!--特点-->
+                <ul class="first_list">
+                    <li><b>适用人群：</b>${insure.people }</li>
+                    <li><b>保障期限：</b>${insure.insureTimelimit }天</li>
+                    <li><b>保单形式：</b>${insure.insureShape }</li>
+                </ul>
+                <dl class="price_box">
+                        <dt>价  格：</dt>
+                        <dd class="fix">
+                            <div class="c_price">
+                                <em>${insure.insurePrice }</em>元
+                            </div>
+                        </dd>
+                    </dl>
+                <div class="submit_box">
+                    <a href="javascript:" class="submit_buy">立即购买</a>已售<em>${insure.insureNumber }</em>份
+                </div>
+                </div>
+            </div>
+        </div>
+        <!--deal info-->
+        <div class="detail_center">
+            <!--menu-->
+            <div class="detail_menu_box" id="detailMenuBox">
+                <div class="detail_menu" id="detailMenu">
+                    <div class="main_width">
+                        <ul>
+                            <li lab="description" class="active">
+                                <a href="javascript:"><i></i>详细说明</a>
+                            </li>
+                            <li lab="custom">
+                                <a href="javascript:"><i></i>客户评价</a>
+                            </li>
+                            <li lab="case">
+                                <a href="javascript:"><i></i>案例</a>
+                            </li>
+                            <li lab="consult">
+                                <a href="javascript:"><i></i>购买咨询</a>
+                            </li>
+                        </ul>
+                        <a href="javascript:" class="submit_buy">立即购买</a>
+                    </div>
+                </div>
+            </div>
+            <!--detail_info-->
+            <div class="detail_info detail_introduction">
+                <!--详细说明-->
+                <div class="detail detail_description" style=" width:965px;margin:0 auto;padding: 20px;">
+                    <h2 class="title_line"><i></i>产品特色</h2>
+                    <c:forEach items="${insure.features }" var="feature" varStatus="number">
+                    	<p style="line-height: 30px;font-size: 15px">${number.count}、${feature.featureContent }</p>
+                    </c:forEach>
+                    <h2 class="title_line"><i></i>保障责任</h2>
+                    <div class="con">
+                        <table class="tab1" border="1" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width: 180px;">保障项目</th>
+                                    <th style="width: 80px;">保障</th>
+                                    <th>说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <c:forEach items="${insure.safeGuards }" var="safeGuard">
+                                <tr>
+                                    <td>${safeGuard.safeguardProject }</td>
+                                    <td>${safeGuard.safeguardMoney }</td>
+                                    <td style="text-align: left">
+                                    <p>${safeGuard.safeguardScope }</p>
+                                    </td>
+                                </tr>
+                              </c:forEach>  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--客户评价-->
+                <div class="detail detail_info main_width">
+                    <div class="custom" id="custom">
+                        <h2 class="title_line">
+                            <i></i>
+                            客户评价
+                        </h2>
+                        <ul class="custom_list" id="customList">
+                            <li class="fix">
+                                <div class="tit">
+                                    <img src="<%=basePath %>styles/insurance/images/detail_imgs/costom-tx.jpg" class="fl" alt="">
+                                    <span class="fr">2016-04-29 11:27:26</span>
+                                    <p>贾***，58岁，保额10万</p>
+                                </div>
+                                <p>【评价】：便捷购保方式</p>
+                                <p class="custom_service"> 【回复】： 0000-00-00 00:00:00</p>
+                            </li>
+                            <li class="fix">
+                                <div class="tit">
+                                    <img src="images/detail_imgs/costom-tx.jpg" class="fl" alt="">
+                                    <span class="fr">2016-04-29 11:27:26</span>
+                                    <p>贾***，58岁，保额10万</p>
+                                </div>
+                                <p>【评价】：便捷购保方式</p>
+                                <p class="custom_service"> 【回复】： 0000-00-00 00:00:00</p>
+                            </li>
+                            <li class="fix">
+                                <div class="tit">
+                                    <img src="images/detail_imgs/costom-tx.jpg" class="fl" alt="">
+                                    <span class="fr">2016-04-29 11:27:26</span>
+                                    <p>贾***，58岁，保额10万</p>
+                                </div>
+                                <p>【评价】：便捷购保方式</p>
+                                <p class="custom_service"> 【回复】： 0000-00-00 00:00:00</p>
+                            </li>
+                            <li class="fix">
+                                <div class="tit">
+                                    <img src="images/detail_imgs/costom-tx.jpg" class="fl" alt="">
+                                    <span class="fr">2016-04-29 11:27:26</span>
+                                    <p>贾***，58岁，保额10万</p>
+                                </div>
+                                <p>【评价】：便捷购保方式</p>
+                                <p class="custom_service"> 【回复】： 0000-00-00 00:00:00</p>
+                            </li>
+                            <li class="fix">
+                                <div class="tit">
+                                    <img src="images/detail_imgs/costom-tx.jpg" class="fl" alt="">
+                                    <span class="fr">2016-04-29 11:27:26</span>
+                                    <p>贾***，58岁，保额10万</p>
+                                </div>
+                                <p>【评价】：便捷购保方式</p>
+                                <p class="custom_service"> 【回复】： 0000-00-00 00:00:00</p>
+                            </li>
+                            <li class="fix">
+                                <div class="tit">
+                                    <img src="images/detail_imgs/costom-tx.jpg" class="fl" alt="">
+                                    <span class="fr">2016-04-29 11:27:26</span>
+                                    <p>贾***，58岁，保额10万</p>
+                                </div>
+                                <p>【评价】：便捷购保方式</p>
+                                <p class="custom_service"> 【回复】： 0000-00-00 00:00:00</p>
+                            </li>
+                            <li class="fix">
+                                <div class="tit">
+                                    <img src="images/detail_imgs/costom-tx.jpg" class="fl" alt="">
+                                    <span class="fr">2016-04-29 11:27:26</span>
+                                    <p>贾***，58岁，保额10万</p>
+                                </div>
+                                <p>【评价】：便捷购保方式</p>
+                                <p class="custom_service"> 【回复】： 0000-00-00 00:00:00</p>
+                            </li>
+                            <li class="fix">
+                                <div class="tit">
+                                    <img src="images/detail_imgs/costom-tx.jpg" class="fl" alt="">
+                                    <span class="fr">2016-04-29 11:27:26</span>
+                                    <p>贾***，58岁，保额10万</p>
+                                </div>
+                                <p>【评价】：便捷购保方式</p>
+                                <p class="custom_service"> 【回复】： 0000-00-00 00:00:00</p>
+                            </li>
+                        </ul>
+                       <div class="custom_page" id="custom_page">
+                           <span class="current prev">上一页</span>
+                           <span class="current">1</span>
+                           <a href="javascript:">2</a>
+                           <a href="javascript:">3</a>
+                           <a href="javascript:">4</a>
+                           <a href="javascript:">5</a>
+                           <a href="javascript:">6</a>
+                           <a href="javascript:">7</a>
+                           <a href="javascript:">8</a>
+                           <span>...</span>
+                           <a href="javascript:">20</a>
+                           <a href="javascript:">21</a>
+                           <a href="javascript:">22</a>
+                           <a href="javascript:" class="next">下一页</a>
+                       </div>
+                    </div>
+                </div>
+        <!--         理赔
+                <div class="detail detail_info detail_claim">
+                   
+                </div> -->
+                <!--案例-->
+                <div class="detail detail_info detail_case">
+                    <div class="pro_content">
+                        <h2>【腾讯新闻】六旬老人按摩美容后四根肋骨骨折 被判担责5成</h2>
+                        <a href="#" target="_blank">http://news.qq.com/a/20140714/024688.html</a>
+                        <p>老人按个摩居然肋骨骨折</p>
+                        <p>
+                            小编评语：上了年纪的人多少会有骨质疏松，不小心摔跤，撞一下就有可能导致骨折，不光遭罪，医药费也不少，买一份
+                            <span class="bold">【大特保-史带】个人意外伤害险</span>，最高1万元的医疗保险费用，一般足够解决大多数医药费。
+                        </p>
+                        <span class="ri_bg"></span>
+                    </div>
+                    <div class="pro_content">
+                        <h2>【腾讯新闻】六旬老人按摩美容后四根肋骨骨折 被判担责5成</h2>
+                        <a href="#" target="_blank">http://news.qq.com/a/20140714/024688.html</a>
+                        <p>老人按个摩居然肋骨骨折</p>
+                        <p>
+                            小编评语：上了年纪的人多少会有骨质疏松，不小心摔跤，撞一下就有可能导致骨折，不光遭罪，医药费也不少，买一份
+                            <span class="bold">【大特保-史带】个人意外伤害险</span>，最高1万元的医疗保险费用，一般足够解决大多数医药费。
+                        </p>
+                        <span class="ri_bg"></span>
+                    </div>
+                    <div class="pro_content">
+                        <h2>【腾讯新闻】六旬老人按摩美容后四根肋骨骨折 被判担责5成</h2>
+                        <a href="#" target="_blank">http://news.qq.com/a/20140714/024688.html</a>
+                        <p>老人按个摩居然肋骨骨折</p>
+                        <p>
+                            小编评语：上了年纪的人多少会有骨质疏松，不小心摔跤，撞一下就有可能导致骨折，不光遭罪，医药费也不少，买一份
+                            <span class="bold">【大特保-史带】个人意外伤害险</span>，最高1万元的医疗保险费用，一般足够解决大多数医药费。
+                        </p>
+                        <span class="ri_bg"></span>
+                    </div>
+                    <div class="pro_content">
+                        <h2>【腾讯新闻】六旬老人按摩美容后四根肋骨骨折 被判担责5成</h2>
+                        <a href="#" target="_blank">http://news.qq.com/a/20140714/024688.html</a>
+                        <p>老人按个摩居然肋骨骨折</p>
+                        <p>
+                            小编评语：上了年纪的人多少会有骨质疏松，不小心摔跤，撞一下就有可能导致骨折，不光遭罪，医药费也不少，买一份
+                            <span class="bold">【大特保-史带】个人意外伤害险</span>，最高1万元的医疗保险费用，一般足够解决大多数医药费。
+                        </p>
+                        <span class="ri_bg"></span>
+                    </div>
+                </div>
+                <!--购买咨询-->
+                <div class="detail detail_info detail_consult">
+                    <div class="consult_btn">
+                        <span class="cbtn conline active">在线咨询</span>
+                        <span class="cbtn coften">常见问题</span>
+                    </div>
+                    <div class="consult_box conline_box">
+                        <div class="feedback">
+                            <div class="feed feed1">
+                                <span>您的问题：</span>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="feed feed2">
+                                <span>您的邮箱或手机：</span>
+                                <input type="text" class="text01">
+                                <input type="button" class="text02" id="submitOnline" value="提&nbsp;&nbsp;交">
+                            </div>
+                        </div>
+                        <ul class="questBox">
+                            <li>
+                                <div class="ans fix">
+                                    <span>2016-05-10 13:50:03 </span>
+                                    <h2>打疫苗导致的并发症也是意外伤害吗?</h2>
+                                </div>
+                                <p class="qus">
+                                    您好，这种情况是不包含在该产品的保障责任内的，该款产品在责任免除中提出被保险人因医疗事故或药物过敏导致的伤害不在保障范围内，感谢您对大特保的支持！
+                                </p>
+                            </li>
+                            <li>
+                                <div class="ans fix">
+                                    <span>2016-05-10 13:50:03 </span>
+                                    <h2>打疫苗导致的并发症也是意外伤害吗?</h2>
+                                </div>
+                                <p class="qus">
+                                    您好，这种情况是不包含在该产品的保障责任内的，该款产品在责任免除中提出被保险人因医疗事故或药物过敏导致的伤害不在保障范围内，感谢您对大特保的支持！
+                                </p>
+                            </li>
+                            <li>
+                                <div class="ans fix">
+                                    <span>2016-05-10 13:50:03 </span>
+                                    <h2>打疫苗导致的并发症也是意外伤害吗?</h2>
+                                </div>
+                                <p class="qus">
+                                    您好，这种情况是不包含在该产品的保障责任内的，该款产品在责任免除中提出被保险人因医疗事故或药物过敏导致的伤害不在保障范围内，感谢您对大特保的支持！
+                                </p>
+                            </li>
+                            <li>
+                                <div class="ans fix">
+                                    <span>2016-05-10 13:50:03 </span>
+                                    <h2>打疫苗导致的并发症也是意外伤害吗?</h2>
+                                </div>
+                                <p class="qus">
+                                    您好，这种情况是不包含在该产品的保障责任内的，该款产品在责任免除中提出被保险人因医疗事故或药物过敏导致的伤害不在保障范围内，感谢您对大特保的支持！
+                                </p>
+                            </li>
+                            <li>
+                                <div class="ans fix">
+                                    <span>2016-05-10 13:50:03 </span>
+                                    <h2>打疫苗导致的并发症也是意外伤害吗?</h2>
+                                </div>
+                                <p class="qus">
+                                    您好，这种情况是不包含在该产品的保障责任内的，该款产品在责任免除中提出被保险人因医疗事故或药物过敏导致的伤害不在保障范围内，感谢您对大特保的支持！
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer begin-->
+    <div class="copyright">
+        <div class="main_width footer">
+            <div class="footer_nav">
+                <p>
+                    <a href="#">关于京东金融</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东小金库</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东钱包</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东白条</a>
+                    <span class="divider">|</span>
+                    <a href="#">联系我们</a>
+                    <span class="divider">|</span>
+                    <a href="#">免责声明</a>
+                </p>
+                <p>Copyright © 2004-2016 京东JD.com 版权所有<span class="divider">|</span>投资有风险，购买需谨慎</p>
+            </div>
+            <div class="footer_contact">
+                <div class="f_contact_time">
+                    联系我们<span>（09:00-22:00）</span>
+                </div>
+                <div class="f_contact_content">
+                    <div class="f_cc_left">
+                        <span class="f_cc_item">个人业务：400-098-8511</span>
+                        <span class="f_cc_item">企业业务：400-088-8816</span>
+                    </div>
+                    <div class="f_cc_mid">
+                        <a href="#" class="f_cc_link item_JIMI">咨询JIMI</a>
+                        <a href="#" class="f_cc_link item_kefu">在线客服</a>
+                    </div>
+                    <div class="f_cc_right">
+                        <a href="#" class="f_cc_link item_mail">客服邮箱</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer end-->
+    <div class="sideBar">
+        <a href="#" class="slider_block app"><i></i></a>
+        <a href="#" class="slider_block jimi"><i></i></a>
+        <a href="#" class="slider_block feedback"><i></i></a>
+        <a href="javascript:" class="slider_block backtop" id="backtop"><i></i></a>
+    </div>
+</div>
+<script src="<%=basePath %>styles/insurance/js/jquery-1.12.3.min.js"></script>
+<script src="<%=basePath %>styles/insurance/laydate/laydate.js"></script>
+<script src="<%=basePath %>styles/insurance/js/detail.js"></script>
+</body>
+</html>

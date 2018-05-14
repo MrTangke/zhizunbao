@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${userInfo.insureName }</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-siteapp" />
+	<link rel="stylesheet" href="${basePath}styles/behind/css/style.css" />
+	<link href="${basePath}styles/behind/assets/css/codemirror.css"
+		rel="stylesheet">
+	<link rel="stylesheet"
+		href="${basePath}styles/behind/assets/css/ace.min.css" />
+	<link rel="stylesheet"
+		href="${basePath}styles/behind/font/css/font-awesome.min.css" />
+	<!--[if lte IE 8]>
+			  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+			<![endif]-->
+    <link rel="stylesheet" href="${basePath}styles/insurance/css/common.css">
+    <link rel="stylesheet" href="${basePath}styles/insurance/css/detail.css">
+    <script src="${basePath}styles/insurance/js/jquery-1.12.3.min.js"></script>
+<script src="${basePath}styles/insurance/laydate/laydate.js"></script>
+<script src="${basePath}styles/insurance/js/detail.js"></script>
+<script src="${basePath}/styles/behind/js/jquery-1.9.1.min.js"></script>
+<script src="${basePath}/styles/behind/assets/js/bootstrap.min.js"></script>
+<script
+	src="${basePath}/styles/behind/assets/js/typeahead-bs2.min.js"></script>
+<script src="${basePath}/styles/behind/assets/layer/layer.js"
+	type="text/javascript"></script>
+<script src="${basePath}/styles/behind/assets/laydate/laydate.js"
+	type="text/javascript"></script>
+<script src="${basePath}/styles/behind/js/H-ui.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="${basePath}/styles/behind/Widget/ueditor/1.4.3/ueditor.config.js"></script>
+<script type="text/javascript"
+	src="${basePath}/styles/behind/Widget/ueditor/1.4.3/ueditor.all.min.js"> </script>
+<script type="text/javascript"
+	src="${basePath}/styles/behind/Widget/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <!--------------------------------------header_user begin------------------------------------->
+    <div class="header_user">
+        <div class="main_width">
+            <span class="tel">客服电话：400-663-6600（周一至周六 9:00-18:00）</span>
+            <span class="fr">
+                <#if userInfo1?? >
+                <span class="my_insurance"><a href="${basePath}userInfo/toUserinfoInsure">我的保险</a></span>
+                <span class="message"><a href="#">消息<em>${userInfo1.userMsg!''}</em></a></span>
+						<span><font>欢迎，${userInfo1.userName }</font></span>
+						<a href="${basePath}userInfo/userInvalidate?user_id=${userInfo1.userId }">注销登录</a>
+				
+				<#else>
+						 <span class="register"><a href="${basePath}userInfo/toUserRegister">注册</a></span>
+               			 <span class="fg"><a href="#"> &nbsp;|&nbsp; </a></span>
+               			 <span><a href="${basePath}userInfo/toUserLogin">登录</a></span>
+				</#if>
+            </span>
+        </div>
+    </div>
+    <!---------------------------------------header_user end-------------------------------------->
+    <!---------------------------------------header_nav begin------------------------------------->
+    <div class="header_nav">
+        <div class="main_width"  style="position: relative;right: 67px">
+            <h1><a href="#" class="logo fl" style="position: relative;right:20px;">大特保保险官网-互联网保险服务平台</a></h1>
+            <a style="float: right;margin-right: -155px" href="${basePath}userInfo/toUserinfoInsure" class="my_policy fr">我的保单</a>
+            <div class="menuBox">
+               <ul class="menu">
+               		<li>
+               			<a href="${basePath}home/page">首页</a>
+                    </li>
+		           <li class="special">
+		               	<a href="${basePath}frontInsure/findAllInsure">保险产品</a>
+		           </li>
+                    <li>
+               			<a href="${basePath}userInfo/userInfoClaims">理赔</a>
+                    </li>
+                     <li>
+               			<a href="${basePath}45">活动</a>
+                    </li>
+                	 <li>
+               			<a href="${basePath}home/toContactUs">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+         <!--------------------------------- form section ---------------------->
+    	<div style="float:left;margin:-38px 0 0 461px">
+    		<div style="position: relative;">
+	           <form id="myForm" action="${basePath}frontInsure/findInsureListByName" method="post">
+	           		<input value="请输入关键字" onkeydown="if(event &amp;&amp; event.keyCode==13){search();}" onfocus=" if(this.value=='请输入关键字'){this.value=''; this.style.color='#ABA9A9';} " onblur="if(this.value==''|| this.value=='请输入关键字'){this.value='请输入关键字';}"
+	           		style="color:#ABA9A9;position:absolute;width: 192px;height:23px;border: 2px solid #ff8712;" type="text" name="chaxun">
+	           		<input style="position: absolute;margin-left: 213px"  type="image"  src="${basePath}styles/insurance/logo/sousuo.png"/>
+	           	</form>		
+           	</div>
+        </div>        	
+    </div>
+	
+    <div class="container">
+      <div class="main_width fix mycenter_box">
+           <div class="list_left" id="list_left">
+            <ul>
+                <li class="head">
+                    <img src="<%=basePath %>styles/insurance/images/center/side-head.png" alt="">
+                    <a href="#" class="tit">我的积分</a>
+                    <a href="#" class="integralAllNum count"><em>100</em></a>
+                </li>
+                <li>
+                    <h3 class="order list_til">我的订单</h3>
+                    <div>
+                        <ul>
+                            <li ><a href="<%=basePath %>userInfo/toUserinfoInsure">我的保险</a></li>
+                            <li ><a href="<%=basePath %>userInfo/userInfoClaims">我的理赔</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h3 class="per list_til">个人信息</h3>
+                    <div>
+                        <ul>
+                            <li><a href="<%=basePath %>userInfo/toUserinfoUpdate">个人信息修改</a></li>
+                            <li><a href="<%=basePath %>userInfo/toUpdateUserPassword">账户及密码</a></li>
+                            <li class="active"><a href="<%=basePath %>userInfo/toUserinfoMessage">消息中心</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+            <div class="mycenter_right">
+                <!--tab title-->
+                <div class="mypolicy_tab" id="mypolicyTab">
+                    <ul class="tab_box">
+                        <li class="active"><a href="javascript:">未完成订单</a></li>
+                    </ul>
+                </div>
+                <!--未完成订单-->
+                <div class="mypolicy_con mc">
+                <ul class="mypolicy_title fix">
+                            <li class="myProduct">保险产品</li>
+                            <li class="myName">被保险人</li>
+                            <li class="myPrice">实付款（元）</li>
+                            <li class="myStutas">保单状态</li>
+                            <li class="myOpreat">操作</li>
+                            </ul>
+                
+                                   <div class="mypolicy_lists">
+                            <div class="list">
+                                <div class="tit">
+                                      <a target="_blank">去完成订单 ></a>
+                                    <span>投保时间：${userInfo.buyTime }</span>
+                                    <span>保单金额：<em><i>￥</i>${userInfo.buyMoney }</em></span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                      
+                </div>
+            </div>
+        </div>
+        <!--footer begin-->
+        <div class="copyright">
+        <div class="main_width footer">
+            <div class="footer_nav">
+                <p>
+                    <a href="#">关于京东金融</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东小金库</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东钱包</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东白条</a>
+                    <span class="divider">|</span>
+                    <a href="#">联系我们</a>
+                    <span class="divider">|</span>
+                    <a href="#">免责声明</a>
+                </p>
+                <p>Copyright © 2004-2016 京东JD.com 版权所有<span class="divider">|</span>投资有风险，购买需谨慎</p>
+            </div>
+            <div class="footer_contact">
+                <div class="f_contact_time">
+                    联系我们<span>（09:00-22:00）</span>
+                </div>
+                <div class="f_contact_content">
+                    <div class="f_cc_left">
+                        <span class="f_cc_item">个人业务：400-098-8511</span>
+                        <span class="f_cc_item">企业业务：400-088-8816</span>
+                    </div>
+                    <div class="f_cc_mid">
+                        <a href="#" class="f_cc_link item_JIMI">咨询JIMI</a>
+                        <a href="#" class="f_cc_link item_kefu">在线客服</a>
+                    </div>
+                    <div class="f_cc_right">
+                        <a href="#" class="f_cc_link item_mail">客服邮箱</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--footer end-->
+        <div class="sideBar">
+        <a href="#" class="slider_block app"><i></i></a>
+        <a href="#" class="slider_block jimi"><i></i></a>
+        <a href="#" class="slider_block feedback"><i></i></a>
+        <a href="javascript:" class="slider_block backtop" id="backtop"><i></i></a>
+    </div>
+    </div>
+</div>
+</body>
+<script src="<%=basePath %>/styles/insurance/js/jquery-1.12.3.min.js"></script>
+<script>
+    $(function(){
+    	$(".mc").show();
+        $("#mypolicyTab").find("ul").find("li").click(function () {
+            index=$(this).index();
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".mycenter_right").find("div.mypolicy_con").eq(index).show().siblings("div.mypolicy_con").hide();
+        });
+    });
+    function findOne(id) {
+		location.href="<%=basePath %>userInfo/insureDetails?id="+id;
+	}
+</script>
+</html>

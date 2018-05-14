@@ -1,0 +1,95 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.InsureComment;
+import www.zhizunbao.service.CommentService;
+import www.zhizunbao.service.InsureService;
+
+@Controller
+@RequestMapping("/comment/")
+public class CommentController {
+
+	@Autowired
+	CommentService commentService;
+	
+	@Autowired
+	InsureService insureService;
+	/*
+	 * 
+	 * 去评论展示页面
+	 * */
+	@RequestMapping("findComment")
+	public String findComment(ModelMap map,Insure insure,HttpServletRequest request) {
+		if (null!=insure && null==insure.getInsureName()) {
+			insure.setInsureName("");
+		}
+		//int count = insureService.findInsureCount();
+		List<Insure> insureList = insureService.findInsureList(insure,request);
+		//request.setAttribute("count", count);
+		map.put("insureList", insureList);
+		map.put("commentList", commentService.findComment(request));
+		return "admin/insure/comment_list";
+		
+	}
+	/**
+	 * 删除评论
+	 */
+	@RequestMapping("deleteComment")
+	@ResponseBody
+	public Integer deleteRole(HttpServletRequest request,Integer id){
+		Integer i = commentService.deleteByPrimaryKey(request,id);
+		return i;
+	}
+	/**
+	 * 批量删除评论
+	 */
+	@ResponseBody
+	@RequestMapping("deleteAll")
+	public String del(HttpServletRequest request,String id) {
+		int j =0;
+         String[] ids = id.split(",");
+         int[] a = new int[ids.length];
+         for (int i=0;i<ids.length;i++){
+             a[i]=Integer.parseInt(ids[i]);
+         }
+         for (int i=0;i<a.length;i++) {
+             j = commentService.deleteByPrimaryKey(request,a[i]);
+         }
+		if(j==1){
+			return "true";
+		}else
+		return "false";
+	}
+	/**
+	 * 按类型查询
+	 */
+	@RequestMapping("findOne")
+	public String findOne(Integer insureId,ModelMap map,Insure insure,HttpServletRequest request) {
+		if(insureId==0){
+			return "redirect:/comment/findComment";
+		}else{
+			if (null!=insure && null==insure.getInsureName()) {
+				insure.setInsureName("");
+			}
+			//int count = insureService.findInsureCount();
+			List<Insure> insureList = insureService.findInsureList(insure,request);
+			//request.setAttribute("count", count);
+			map.put("insureList", insureList);
+		map.put("commentList", commentService.findOne(insureId));
+		
+		return "admin/insure/comment_list";
+		}
+	}
+
+	
+}

@@ -1,0 +1,80 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.manage.Resources;
+import www.zhizunbao.dto.manage.ResourcesTree;
+import www.zhizunbao.dto.manage.Role;
+import www.zhizunbao.mapper.manage.ResourcesMapper;
+import www.zhizunbao.mapper.manage.RoleMapper;
+import www.zhizunbao.mapper.manage.RoleResourcesMapper;
+import www.zhizunbao.service.RoleService;
+@Service
+public class RoleServiceImpl implements RoleService {
+
+	
+	
+	@Autowired
+	RoleMapper roleMapper;
+	@Autowired
+	ResourcesMapper resourcesMapper;
+	
+	
+	@Override
+	public List<Role> findUsersList() {
+		return roleMapper.findUsersList();
+	}
+
+	@Override
+	public Role findRoleById(int id) {
+		return roleMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Integer  deleteByPrimaryKey(Integer roleId) {
+		
+		return roleMapper.deleteByPrimaryKey(roleId);
+	}
+
+	@Override
+	public int findByCount() {
+		return roleMapper.findByCount();
+	}
+
+	@Override
+	public int addRole(Role role) {
+		return roleMapper.insertSelective(role);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Role role) {
+		return roleMapper.updateByPrimaryKeySelective(role);
+	}
+
+	@Override
+	public List<ResourcesTree> getResourcesTree(Integer roleId) {
+		return resourcesMapper.getResourcesTree(roleId);
+	}
+
+	@Override
+	public Role findMoreList(int id) {
+		return roleMapper.findMoreList(id);
+	}
+
+
+
+
+	
+
+
+
+
+	
+	
+	
+}

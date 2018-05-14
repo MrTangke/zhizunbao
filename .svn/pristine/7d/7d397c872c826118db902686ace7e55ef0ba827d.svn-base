@@ -1,0 +1,124 @@
+package www.zhizunbao.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.Type;
+import www.zhizunbao.service.InsureService;
+import www.zhizunbao.utils.PageUtil;
+
+@Controller
+@RequestMapping("/frontInsure/")
+public class FrontInsureController {
+
+	@Autowired
+	private InsureService insureService;
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月20日 下午2:21:12
+	 * 功能 ：默认查询pid为1的所有保险
+	 * @param request
+	 * @param pid
+	 * @return
+	 */
+	@RequestMapping("findAllInsure")
+	public String findAllInsure(HttpServletRequest request,Integer typeId){
+		 if (null==typeId) {
+			typeId=1;
+		}
+		 Type type = insureService.findTypeBytypeId(typeId);
+		 List<Type> topTypeList = insureService.findTopTypeList();
+		 List<Type> typeList = insureService.findTypeListByTypeId(typeId);
+		 List<Insure> insureList = insureService.findInsureListByPid(typeId);
+		 request.getSession().setAttribute("topTypeList", topTypeList);
+		 request.getSession().setAttribute("type", type);
+		 request.getSession().setAttribute("typeList", typeList);
+		 request.setAttribute("insureList", insureList);
+		return "front/insure/insure_list";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月20日 下午3:05:49
+	 * 功能 ：查询类型一样的所有保险
+	 * @param request
+	 * @param typeId
+	 * @return
+	 */
+	@RequestMapping("findTheSameTypeInsureByTypeId")
+	public String findTheSameTypeInsureByTypeId(HttpServletRequest request,Integer typeId){
+		List<Insure> insureList = insureService.findInsureListByTypeId(typeId);
+		request.setAttribute("insureList", insureList);
+		return "front/insure/insure_list";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月26日 上午11:28:50
+	 * 功能 ：根据id查询保险
+	 * @param request
+	 * @param insureId
+	 * @return
+	 */
+	@RequestMapping("findInsureByInsureId")
+	public String findInsureByInsureId(HttpServletRequest request,Integer insureId){
+		/*Insure insure = insureService.findInsureByInsureId(insureId);*/
+		Insure insure = insureService.findInsureInformationByInsureId(insureId);
+		request.setAttribute("insure", insure);
+		return "front/insure/insure";
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月26日 上午11:29:09
+	 * 功能 ：根据保险名称查询保险
+	 * @param request
+	 * @param chaxun
+	 * @return
+	 */
+	@RequestMapping("findInsureListByName")
+	public String findInsureListByName(HttpServletRequest request,String chaxun,String currentPage){
+		if ("请输入关键字".equals(chaxun) || "".equals(chaxun)) {
+			Insure insure = new Insure();
+			insure.setInsureName("");
+			int count = insureService.findInsureCountByName(insure);
+			int pageSize = 3;
+			PageUtil page = new PageUtil(currentPage, pageSize, count);
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("insureName","");
+			map.put("startIndex", page.getPageRecord());
+			map.put("pageSize", pageSize);
+			List<Insure> findInsureList = insureService.findInsureListLimit(map);
+			request.setAttribute("insure", insure);
+			request.setAttribute("findInsureList", findInsureList);
+			request.setAttribute("page", page);
+		}else {
+			Insure insure = new Insure();
+			insure.setInsureName(chaxun);
+			int count = insureService.findInsureCountByName(insure);
+			int pageSize = 3;
+			PageUtil page = new PageUtil(currentPage, pageSize, count);
+			Map<String,Object> map = new HashMap<String, Object>();
+			map.put("insureName",chaxun);
+			map.put("startIndex", page.getPageRecord());
+			map.put("pageSize", pageSize);
+			List<Insure> findInsureList = insureService.findInsureListLimit(map);
+			request.setAttribute("insure", insure);
+			request.setAttribute("findInsureList", findInsureList);
+			request.setAttribute("page", page);
+		}
+		
+		return "front/insure/find_insure_list";
+	}
+	
+	
+}

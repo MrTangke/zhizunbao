@@ -1,0 +1,58 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.InsurePeople;
+import www.zhizunbao.mapper.insure.InsureMapper;
+import www.zhizunbao.mapper.insure.InsurePeopleMapper;
+import www.zhizunbao.service.InsureService;
+@Service
+public class InsureServiceImpl implements InsureService {
+	
+	@Autowired
+	private InsureMapper insureMapper;
+	@Autowired
+	private InsurePeopleMapper insurePeopleMapper;
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 上午11:18:03
+	 * 功能 ：查询保险
+	 * @param insure
+	 * @return
+	 */
+	@Override
+	public List<Insure> findInsureList(Insure insure) {
+		 
+		return insureMapper.findInsureList(insure);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午1:46:22
+	 * 功能 ：查询总条数
+	 * @return
+	 */
+	@Override
+	public int findInsureCount() {
+		// TODO Auto-generated method stub
+		return insureMapper.findInsureCount();
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午5:59:44
+	 * 功能 ：查询所有适用人群
+	 * @param people
+	 * @return
+	 */
+	@Override
+	public List<InsurePeople> findPeoplelist() {
+		// TODO Auto-generated method stub
+		return insurePeopleMapper.findPeoplelist();
+	}
+	
+}

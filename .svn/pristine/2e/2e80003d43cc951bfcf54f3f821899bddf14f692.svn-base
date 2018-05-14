@@ -1,0 +1,478 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%> 
+    
+    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en-US">
+	<head>
+        <!--=============== Meta and Title  ===============-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>至尊保保险个人中心(白天)</title>
+		<!-- favicon icon -->			
+		<link rel="icon" type="image/png" href="<%=basePath %>styles/personalStyles/favicon.png""> 
+        <!--=============== Include all css file  ===============-->	
+		<link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/animate.css" media="all" />            <!-- Animate css -->
+		<link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/font-awesome.min.css" media="all" />   <!-- Font awesome css -->
+        <link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/font-sourch_sun_pro.css"/>             <!-- Font css -->		
+        <link rel="stylesheet" href="<%=basePath %>styles/personalStyles/fonts/comicSans.css"/>             <!-- Font css -->		
+        <link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/slicknav.css"/>	 					<!-- Slicknav css -->
+		<link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/bootstrap.min.css"/>  					<!-- Bootstrap -->
+        <link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/owl.carousel.css">	   					<!-- carousel css -->
+        <link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/owl.theme.css">   						<!-- Owl theme css -->			
+		<link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/reset.css"/>						 	<!-- Recet css -->
+		<link rel="stylesheet" href="<%=basePath %>styles/personalStyles/switcher/switcher.css"/>					<!-- Switcher css -->				
+		<link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/style1.css"/>							<!-- Style css -->
+		<link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/responsive.css" media="all" />			<!-- Responsive css -->
+		<link rel="stylesheet" href="<%=basePath %>styles/personalStyles/css/preloder.css" media="all" />			<!-- Preloder css -->
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	</head>
+	<body>
+		<!-- loader-wrapper -->		
+		<div id="loader-wrapper">
+			<div id="loader"></div>
+			<div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+		</div>
+		<!-- end loader-wrapper -->	
+		<!-- canvas -->			
+		<div id="canvas-holder">
+			<canvas id="demo-canvas"></canvas>
+		</div>
+		<!--end canvas -->
+		<div id="main">  <!--start main div -->
+		
+<!--
+##  Color Switcher
+=============================================================================== -->			
+
+		<div id="custumize-style">
+		  <a href="#" class="switcher open"> <span class="icon-switcher"><i class="fa fa-cogs"></i></span></a>
+		  <div>
+			<h3 class="color-option-title">Colors</h3>
+			<ul class="colors-style" id="custom-color">
+			  <li><a href="#" class="blue"></a></li>
+			  <li><a href="#" class="yellow"></a></li>
+			  <li><a href="#" class="red"></a></li>
+			  <li><a href="#" class="green"></a></li>
+			  <li><a href="#" class="purple"></a></li>
+			  <li><a href="#" class="pink"></a></li>
+			</ul>
+
+		  </div>
+		</div> <!-- Color Switcher Ends-->
+				
+<!--
+## HOME area  Welcome to our website
+=============================================================================== -->	
+	
+			<div class="home_area"> <!-- Home area-->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="logo">
+								<img src="<%=basePath %>styles/personalStyles/personalStyles/img/logo.png" alt="" /> <!-- Here is your logo -->
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="home_area_text">
+								<h2> 欢迎(xxx)进入本网站</h2> <!-- Page title -->
+								<h4>我们快到了</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+						
+							<span style= "color:silver; font-size: 60px; display:block; margin-top: 106px" class="time"><em id="time"></em></span>
+							    
+							                 <!-- countdown -->
+							<!-- <ul class="countdown wow fadeInUp" data-wow-duration="7s">
+								<li>
+									<span class="days">00</span>
+									<p class="days_ref">天</p>
+								</li>
+
+								<li>
+									<span class="hours">00</span>
+									<p class="hours_ref">小时</p>
+								</li>
+
+								<li>
+									<span class="minutes">00</span>
+									<p class="minutes_ref">分钟</p>
+								</li>
+
+								<li>
+									<span class="seconds">00</span>
+									<p class="seconds_ref">秒数</p>
+								</li>
+							</ul> -->
+										<!--End countdown -->
+						</div>
+					</div>
+				</div>	
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="subscribe_area"> <!-- Subscribe -->
+								<!-- form section -->	
+								<form id="mc-form" style=" margin-top: 60px"">
+									<input class="email_input subscribe" id="mc-email" type="email" placeholder="请输入关键字">
+									<button class="email_submit" type="submit">提交</button>
+									<label style="display:block;padding:10px 0px; color:green;" for="mc-email"></label>
+								</form>
+								<!-- end form section -->		
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>	<!-- //Home area-->
+			
+			<div style="clear:both;"></div>
+			
+<!--
+## section1  Our services area
+=============================================================================== -->	
+	
+			<div class="section" id="section1"> <!-- section1 -->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="logo logo_margin">
+								<img src="<%=basePath %>styles/personalStyles/personalStyles/img/logo.png" alt="" /> <!-- Here is your logo -->
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="content">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="servicer_area_text">
+								<h2>我们的服务</h2>			<!-- Page title -->
+								<h4>我们提供下面多条路径</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div id="carousel_wrapper_worker">  <!-- Carouse slider -->
+									<div class="carousel_item">
+									   <div class="single_carousel">
+									      <dl>
+									  <a href="#">
+									     <dt><i class="big_icon fa fa-home"></i></dt>
+									  </a>
+									     <dd><h4 style="color:yellow;">咱们去首页</h4></dd>
+									   </dl>
+									   </div>
+									</div>
+									<div class="carousel_item">
+									   <div class="single_carousel">
+									      <dl>
+									   <a href="#">
+									     <dt><i class="big_icon fa fa-diamond"></i></dt>
+									   </a>
+									     <dd><h4 style="color:yellow;">咱们到保险</h4></dd>
+									   </dl>
+									   </div>
+									</div>
+									<div class="carousel_item">
+									   <div class="single_carousel">
+									       <dl>
+									    <a href="#">
+									     <dt><i class="big_icon fa fa-file-text"></i></dt>
+									    </a>
+									     <dd><h4 style="color:yellow;">咱们去看看活动</h4></dd>
+									   </dl>
+									   </div>
+									</div>
+									<div class="carousel_item">
+									   <div class="single_carousel">
+									     <dl>
+									  <a href="">
+									     <dt><i class="big_icon fa fa-heart"></i></dt>
+									  </a>					  
+									     <dd><h4 style="color:yellow;">咱们去理赔闹闹</h4></dd>
+									   </dl>								</div>
+									</div>
+									
+								</div> <!-- //End Carouse slider -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>  <!-- // End section1 -->
+			
+			<div style="clear:both;"></div>	
+			
+<!--
+## section2  Our team member
+=============================================================================== -->	
+	
+			<div class="section" id="section2">	 <!-- Section2 -->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="logo logo_margin">
+								<img src="<%=basePath %>styles/personalStyles/personalStyles/img/logo.png" alt="" /> <!-- Here is your logo -->
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="team_area_text">
+									<h2>这是我们的最好的服务</h2>		<!-- Page title -->
+									<h4>世界那么大我们去看看</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<div class="row">				
+							<div class="col-sm-12">
+								<div id="carousel_wrapper">   <!-- Carouse slider 2-->
+									<div class="carousel_item">
+									   <div class="single_carousel member_picture1">
+											<div class="overlay"></div>
+											<img class="pic_one" src="<%=basePath %>styles/personalStyles/img/teamone.jpg" alt="" />
+											 <ul class="member_icon">
+												<li><a href="#"><h3 style="color:red;">请等待我们后续活动</h3></a></li>	
+												<!--<li><a href="#"><i class="link small_icon  fa fa-link"></i></a></li>
+												<li><a href="#"><i class="twitter small_icon  fa fa-twitter"></i></a></li>
+												<li class="name_member" >高胖胖</li> -->	
+											</ul>										
+									   </div>
+									</div>
+									<div class="carousel_item">
+									   <div class="single_carousel member_picture2">
+											<div class="overlay1"></div>
+											<img class="pic_two"  src="<%=basePath %>styles/personalStyles/img/teamtwo.jpg" alt="" />
+											
+											<ul class="member_icon1">
+												<li><a class="" href="#"><h3 style="color:red;">请等待我们后续活动</h3></a></li>
+												<!-- <li><a class=""  href="#"><i class="link small_icon  fa fa-link"></i></a></li>
+												<li><a class=""  href="#"><i class="twitter small_icon  fa fa-twitter"></i></a></li>
+												<li class="name_member" >高胖胖</li> -->
+											</ul>
+									   </div>
+									</div>
+									<div class="carousel_item">
+									   <div class="single_carousel member_picture3">
+											<div class="overlay2"></div>
+											<img class="pic_three"  src="<%=basePath %>styles/personalStyles/img/teamthree.jpg" alt="" />
+											
+											 <ul class="member_icon2">
+												<li><a class="" href="#"><h3 style="color:red;">请等待我们后续活动</h3></a></li>	
+												<!--<li><a class=""  href="#"><i class="link small_icon  fa fa-link"></i></a></li>
+												<li><a class=""  href="#"><i class="twitter small_icon  fa fa-twitter"></i></a></li>
+												<li class="name_member" >高胖胖</li> -->
+											</ul>	
+									   </div>
+									</div>
+									<div class="carousel_item">
+									   <div class="single_carousel member_picture4">
+											<div class="overlay3"></div>
+											<img class="pic_four"  src="<%=basePath %>styles/personalStyles/img/teamfour.jpg" alt=""/>
+											
+											 <ul class="member_icon3">
+												<li><a class="" href="#"><h3 style="color:red;">请等待我们后续活动</h3></a></li>	
+												<!--<li><a class=""  href="#"><i class="link small_icon  fa fa-link"></i></a></li>
+												<li><a class=""  href="#"><i class="twitter small_icon  fa fa-twitter"></i></a></li>
+												<li class="name_member" >高胖胖</li>-->
+											</ul> 
+									   </div>
+									</div>
+								</div>   <!-- // End Carouse slider 2 -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>  <!-- //End Section2 -->
+			
+			<div style="clear:both;"></div>			
+
+<!--
+## section3   About us area 
+=============================================================================== -->	
+		
+			<div class="section" id="section3">	<!-- Section3 -->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="logo logo_margin">
+								<img src="<%=basePath %>styles/personalStyles/personalStyles/img/logo.png" alt="" />  <!-- Here is your logo -->
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="about_us_text">
+									<h2>公司简介</h2>				<!-- Page title -->
+									<h4>我们等你</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<p class="about_us_p" >可以写公司的简介长的短的都行</p>
+								<p class="under_p" >可以写公司的简介长的短的都行</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> <!-- //End Section3 -->
+			
+			<div style="clear:both;"></div>	
+			
+<!--
+## section4  Coutact us area
+=============================================================================== -->				
+			
+			<div class="section" id="section4"> <!-- Section4 -->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="logo">
+								<img src="<%=basePath %>styles/personalStyles/personalStyles/img/logo.png" alt="" /> <!-- Here is your logo -->
+							</div>		
+						</div>
+					</div>
+				</div>
+				<div class="content">
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="contact_us_text">
+									<h2>请完善下您的信息</h2>			<!-- Page title -->
+									<h4>我们保持联系</h4>	
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="container">
+						<div class="row">
+							<div class="col-sm-4 map_area">   <!-- Google Map area -->
+								<i class="map_show fa fa-angle-down"></i>
+								<i class="map_corse1 fa fa-times"></i>
+								<div class="map_hide">
+									<h4 class="map_social">谷歌地图</h4>   <!-- Google Map -->
+									<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14642.752898522307!2d91.1366343!3d23.43562705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37547c2818ff7ec9%3A0x139081ddea9c57ea!2sKotbari!5e0!3m2!1sen!2sbd!4v1427518053955"></iframe>
+								</div>
+							</div>    <!-- // End Google Map area -->
+							<div class="col-sm-4">
+								<!-- form section -->	
+								<div id="form-wrapper">
+									<form id="form" method="post" action="send.php" name="send">
+										<input class="email_input requiredField name" id="name" name="name" type="text" placeholder="请输入您的姓名" >
+										<input class="email_input requiredField email" id="email" name="email" type="text" placeholder="请输入您的身份证号"><br />
+										<input class="email_input requiredField subject" name="subject" type="text" placeholder="请输入您的手机号" >
+										<input class="email_input requiredField subject" name="home" type="text" placeholder="请输入您的住址" >
+										<button class="email_submit email_margin_top submit" type="submit" value="Submit">提交</button>
+									</form>
+								</div>	
+								<!-- end form section -->	
+							</div>		
+							<div class="col-sm-4 social_hide">     <!-- Phone and Social icon area -->
+								<i class="show_social fa fa-angle-down"></i>
+								<i class="map_corse2 fa fa-times"></i>
+								<div class="hide_social">
+									<h4 class="map_social">联系方式</h4>
+									<p class="phone_p" >电话: 765-302-2878 </p>
+									<p class="phone_p" >手机: 903-765-9492</p>
+									<p class="phone_p" >mail: your@mail.com</p>
+									<h4 class="map_social">社交app</h4>
+									<div class="social_icon">
+										<ul>
+											<li><a class="" href="#"><i class="facebook small_icon fa fa-facebook"></i></a></li>				
+											<li><a class=""  href="#"><i class="twitter small_icon  fa fa-twitter"></i></a></li>
+											<li><a class=""  href="#"><i class="google small_icon  fa fa-google-plus"></i></a></li>
+											<li><a class="" href="#"><i class="in small_icon  fa fa-linkedin"></i></a></li>
+											<li><a class=""  href="#"><i class="link small_icon  fa fa-link"></i></a></li>
+											<li><a class=""  href="#"><i class="youtube small_icon  fa fa-youtube"></i></a></li>				
+										</ul>
+									</div>
+								</div>
+							</div>   <!-- //End Phone and Social icon area -->
+						</div>
+					</div>
+				</div>
+			</div>  <!-- //End Section4 -->
+			
+			<div style="clear:both;"></div>	
+
+<!--
+##  Under button_area // Mainmenu area 
+=============================================================================== -->				
+			
+			<div class="container navbar">   <!-- Under button -->
+				<div class="row">
+					<div class="col-sm-12 ">
+						<div class="button_area" id="sticker"> <!-- sticker menu for mobile layout -->
+							<ul id="nav">
+								<li id="scrollbar" >
+									<h3 class="btn_menu home btn  btn-lg">咱家</h3>
+									<h3 class="btn_menu services btn  btn-lg " >出发导航</h3>	
+									<h3 class="btn_menu team_member btn  btn-lg" >最新活动</h3>
+									<h3 class="btn_menu about_us btn  btn-lg " >公司简介</h3>			
+									<h3 class="btn_menu contact_us btn  btn-lg" >完善个人资料</h3>
+								</li>	
+							</ul>	
+						</div>
+					</div>
+				</div>
+			</div> <!-- //Under button -->
+		</div>  <!-- //End main div  -->
+		
+<!--
+##  javascript All file include
+=============================================================================== -->			
+		<script type="text/javascript">
+		//时间设置
+		  function currentTime(){ 
+		    var d=new Date(),str=''; 
+		    str+=d.getFullYear()+' 年 '; 
+		    str+=d.getMonth() + 1+' 月  '; 
+		    str+=d.getDate()+' 日 '; 
+		    str+=d.getHours()+' 时 '; 
+		    str+=d.getMinutes()+' 分 '; 
+		    str+= d.getSeconds()+' 秒 '; 
+		    return str; 
+		} 
+
+		setInterval(function(){$('#time').html(currentTime)},1000);
+		
+		</script>
+		<script src="<%=basePath %>styles/personalStyles/js/jquery-1.9.1.min.js"></script>	              	<!-- Main js file -->
+		<script src="<%=basePath %>styles/personalStyles/js/custom.js"></script>						   	<!-- Custom js file -->	
+		<script src="<%=basePath %>styles/personalStyles/js/form-contact.js"></script>						<!-- form-contact js file -->
+		<script src="<%=basePath %>styles/personalStyles/js/jquery.slicknav.min.js"></script>				<!-- Slicknav js file -->
+		<script src="<%=basePath %>styles/personalStyles/js/bootstrap.min.js"></script>						<!-- Bootstrap js file -->
+		<script src="<%=basePath %>styles/personalStyles/js/owl.carousel.min.js"></script>					<!-- Carousel js file -->
+		<script src="<%=basePath %>styles/personalStyles/js/canvas.js"></script>     						<!-- canvas js file -->  	
+		<script src="<%=basePath %>styles/personalStyles/js/jquery.ajaxchimp.min.js"></script>				<!-- Ajaxchimp js file -->
+		<script src="<%=basePath %>styles/personalStyles/switcher/switcher.js"></script>					<!-- Switcher js file -->
+	</body>
+</html>

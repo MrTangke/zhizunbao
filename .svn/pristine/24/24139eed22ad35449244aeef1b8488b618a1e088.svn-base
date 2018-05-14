@@ -1,0 +1,33 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.manage.Nav;
+import www.zhizunbao.service.NavService;
+
+@Controller
+@RequestMapping("/home/")
+public class HomePageController {
+
+	@Autowired
+	NavService navService;
+	/** 
+	 * Administrator  2018年4月21日 下午2:24:43
+	 * 功能 ：查导航放对象传Jsp
+	 * @param request
+	 * @param nav
+	 * @return
+	 */
+	@RequestMapping("page")
+	public String page(HttpServletRequest request,Nav nav){
+		List<Nav> list = navService.fingNavObj();
+		request.setAttribute("list", list);
+		return "front/index";
+	}
+}

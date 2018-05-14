@@ -1,0 +1,23 @@
+package www.zhizunbao.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.claim.UserApply;
+import www.zhizunbao.dto.insure.Img;
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.mapper.claim.UserApplyMapper;
+import www.zhizunbao.service.UserApplyService;
+@Service
+public class UserApplyServiceImpl implements UserApplyService{
+
+	@Autowired
+	private UserApplyMapper userApplyMapper;
+
+	@Override
+	public int uploadImg(String imgUrl, UserApply userApply) {
+		   
+			userApply.setClaimImg(imgUrl);
+			return userApplyMapper.insertSelective(userApply);
+		}
+}

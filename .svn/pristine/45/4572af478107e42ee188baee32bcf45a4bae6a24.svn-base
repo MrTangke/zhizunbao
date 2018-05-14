@@ -1,0 +1,512 @@
+/*container*/
+.list_new {
+    padding-bottom: 30px;
+}
+
+.list_banner_box {
+    position: relative;
+    z-index: 10;
+    height: 230px;
+    margin-top: 10px;
+}
+
+.list_banner_box .list_banner {
+    height: 230px;
+    overflow: hidden;
+}
+
+.list_banner_box .list_banner ul {
+    width: 1200px;
+    height: 230px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.list_banner_box .list_banner ul li {
+    float: left;
+}
+
+.list_banner_box .list_banner ul li .pBox {
+    position: relative;
+    width: 215px;
+    height: 110px;
+    overflow: hidden;
+    margin: 0 10px 10px 0;
+    text-align: center;
+}
+
+.list_banner_box .list_banner ul li .pBox a {
+    position: absolute;
+    display: block;
+}
+
+.list_banner_box .list_banner ul li .pBox .t {
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    margin-top: -25px;
+    margin-left: -75px;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+    color: #fff;
+}
+
+.list_banner_box .list_banner ul li .pBox .l {
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+}
+
+.list_banner_box .list_banner ul li .p_parents {
+    width: 170px;
+    height: 230px;
+    background: url("../images/list_imgs/parent-bg.jpg") no-repeat center;
+}
+
+.list_banner_box .list_banner ul li .p_parents .l {
+    background: #e0b714;
+}
+
+.list_banner_box .list_banner ul li .p_children {
+    background: url("../images/list_imgs/children-bg.jpg") no-repeat center;
+}
+
+.list_banner_box .list_banner ul li .p_children .l {
+    background: #f0a5f5;
+}
+
+.list_banner_box .list_banner ul li .p_self {
+    background: url("../images/list_imgs/self-bg.jpg") no-repeat center;
+}
+
+.list_banner_box .list_banner ul li .p_self .l {
+    background: #99e396;
+}
+
+.list_banner_box .list_banner ul li .p_plane {
+    width: 390px;
+    height: 230px;
+    background: url("../images/list_imgs/plane-bg.jpg") no-repeat center;
+}
+
+.list_banner_box .list_banner ul li .p_plane .l {
+    background: #48c6e5;
+}
+
+.list_banner_box .list_banner ul li .p_healthy {
+    background: url("../images/list_imgs/healthy-bg.jpg") no-repeat center;
+}
+
+.list_banner_box .list_banner ul li .p_healthy .l {
+    background: #eed865;
+}
+
+.list_banner_box .list_banner ul li .p_accident {
+    background: url("../images/list_imgs/accident-bg.jpg") no-repeat center;
+}
+
+.list_banner_box .list_banner ul li .p_accident .l {
+    background: #f48489;
+}
+
+.list_banner_box .list_banner ul li .p_team {
+    width: 170px;
+    height: 230px;
+    background: url("../images/list_imgs/team-bg.jpg") no-repeat center;
+    margin: 0;
+}
+
+.list_banner_box .list_banner ul li .p_team .l {
+    background: #91a3f3;
+}
+
+.list_banner_box .list_banner ul li p:hover .t {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.list_banner_box .list_banner ul li p:hover .l {
+    display: none;
+}
+
+/*固定分类*/
+#listBannerBox .list_banner_hover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 90px;
+    padding-top: 10px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#listBannerBox .list_banner_hover li .pBox {
+    height: 35px;
+    background-image: none;
+}
+
+#listBannerBox .list_banner_hover li .pBox .t {
+    font-size: 20px;
+}
+
+#listBannerBox .list_banner_hover li .p_parents,
+#listBannerBox .list_banner_hover li .p_parents:hover {
+    height: 80px;
+}
+
+#listBannerBox .list_banner_hover ul li p:hover .l {
+    display: block;
+}
+
+#listBannerBox .list_banner_hover li .p_parents .l,
+#listBannerBox .list_banner_hover li .p_parents:hover .l {
+    background-color: #e0b714;
+}
+
+#listBannerBox .list_banner_hover li .p_children .l,
+#listBannerBox .list_banner_hover li .p_children:hover .l {
+    background-color: #f0a5f5;
+}
+
+#listBannerBox .list_banner_hover li .p_self:hover .l {
+    background-color: #99e396;
+}
+
+#listBannerBox .list_banner_hover li .p_plane,
+#listBannerBox .list_banner_hover li .p_plane:hover {
+    height: 80px;
+}
+
+#listBannerBox .list_banner_hover li .p_plane .l,
+#listBannerBox .list_banner_hover li .p_plane:hover .l {
+    background-color: #48c6e5;
+}
+
+#listBannerBox .list_banner_hover li .p_healthy:hover .l {
+    background-color: #eed865;
+}
+
+#listBannerBox .list_banner_hover li .p_accident:hover .l {
+    background-color: #f48489;
+}
+
+#listBannerBox .list_banner_hover li .p_team,
+#listBannerBox .list_banner_hover li .p_team:hover {
+    height: 80px;
+    margin: 0;
+}
+
+#listBannerBox .list_banner_hover li .p_team .l,
+#listBannerBox .list_banner_hover li .p_team:hover .l {
+    background-color: #91a3f3;
+}
+
+#listBannerBox .list_banner_hover li p:hover .t {
+    background: none;
+}
+
+#listBannerBox .list_banner_hover li .pBox:hover .l {
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+/*健康险*/
+.list_title {
+    height: 60px;
+    line-height: 60px;
+    font-size: 22px;
+    color: #666;
+}
+
+.list_title i {
+    position: relative;
+    top: 2px;
+    width: 10px;
+    height: 20px;
+    overflow: hidden;
+    background: #ffc97b;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.list_con {
+    /*padding-left: 1px;*/
+}
+
+.list_con .list {
+    position: relative;
+    z-index: 1;
+    height: 278px;
+    padding: 20px 0 0 38px;
+    border: 1px solid #e0e0e0;
+    margin: -1px 0 0 -1px;
+    background-color: #fff;
+    background-position: bottom right;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+.list_con .list_w {
+    width: 660px;
+}
+
+.list_con .list_s {
+    width: 460px;
+}
+
+.list_con .list .custom, .list_con .list h2 {
+    position: relative;
+    z-index: 3;
+}
+
+.list_con .list h2 {
+    height: 72px;
+    line-height: 24px;
+    font-size: 18px;
+    font-weight: bold;
+    text-indent: -8px;
+    overflow: hidden;
+    padding-right: 10px;
+}
+
+.list_con .list .n {
+    height: 36px;
+    line-height: 16px;
+    font-size: 12px;
+    color: #999;
+    overflow: hidden;
+    padding-top: 6px;
+    text-indent: 0;
+}
+
+.list_con .list .s_box, .list_con .list .s_box_hover {
+    height: 90px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.list_con .list .s_box p {
+    font-size: 12px;
+    line-height: 30px;
+    padding-left: 30px;
+    background: url("../images/list_imgs/icon.png") no-repeat 20px 20px;
+}
+
+.list_con .list .s_box .p1 {
+    background-position: 0 -144px;
+}
+
+.list_con .list .s_box .p2 {
+    background-position: 0 -194px;
+}
+
+.list_con .list .s_box .p3 {
+    background-position: 0 -244px;
+}
+
+.list_con .list .s_box .p4 {
+    background-position: 0 -294px;
+}
+
+.list_con .list .s_box_hover {
+    display: none;
+}
+
+.list_con .list .s_box_hover p {
+    font-size: 16px;
+    line-height: 30px;
+}
+
+.list_con .list .price {
+    height: 60px;
+    line-height: 60px;
+    color: #ff575b;
+    font-weight: bold;
+    font-size: 30px;
+    overflow: hidden;
+}
+
+.list_con .list .price em {
+    position: relative;
+    top: -2px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-right: 8px;
+    font-style: normal;
+}
+
+.list_con .list .price span {
+    font-size: 20px;
+    color: #c9c9c9;
+    text-decoration: line-through;
+    margin-left: 20px;
+    font-weight: normal;
+}
+
+.list_con .list .custom,
+.list_con .list .saled {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #a8a8a8;
+    padding-left: 24px;
+    margin-right: 22px;
+    background: url("../images/list_imgs/icon.png") no-repeat 0 3px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.list_con .list .saled {
+    background: url("../images/list_imgs/icon.png") no-repeat 0 -46px;
+}
+
+.list_con .list .btn {
+    position: absolute;
+    right: 38px;
+    bottom: 38px;
+    width: 120px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    background-color: #ff9600;
+    border-radius: 4px;
+    display: none;
+    z-index: 1;
+}
+
+.list_con .list .a_link {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 1px;
+}
+
+.list_con .list:hover {
+    z-index: 2;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+}
+
+.list_con .list:hover .s_box {
+    display: none;
+}
+
+.list_con .list:hover .s_box_hover,
+.list_con .list:hover .btn {
+    display: block;
+}
+
+.list_con .list:hover .a_link {
+    padding: 0;
+    border: 1px solid #ff9600;
+    box-shadow: 0 0 4px #ff9600;
+}
+
+.list_con .list01 {
+    background-image: url("../images/list_imgs/list01.jpg");
+}
+
+.list_con .list02 {
+    background-image: url("../images/list_imgs/list02.jpg");
+}
+
+.list_con .list03 {
+    background-image: url("../images/list_imgs/list03.jpg");
+}
+
+.list_con .list04 {
+    background-image: url("../images/list_imgs/list04.png");
+}
+
+.list_con .list05 {
+    background-image: url("../images/list_imgs/list05.jpg");
+}
+
+.list_con .list06 {
+    background-image: url("../images/list_imgs/list06.jpg");
+}
+
+.list_con .list07 {
+    background-image: url("../images/list_imgs/list07.jpg");
+}
+
+.list_con .list08 {
+    background-image: url("../images/list_imgs/list08.jpg");
+}
+
+.list_con .list09 {
+    background-image: url("../images/list_imgs/list09.jpg");
+}
+
+.list_con .list10 {
+    background-image: url("../images/list_imgs/list10.jpg");
+}
+
+.list_con .list11 {
+    background-image: url("../images/list_imgs/list11.jpg");
+}
+
+.list_con .list12 {
+    background-image: url("../images/list_imgs/list12.jpg");
+}
+
+.list_con .list13 {
+    background-image: url("../images/list_imgs/list13.jpg");
+}
+
+.list_con .list14 {
+    background-image: url("../images/list_imgs/list14.jpg");
+}
+
+.list_con .list15 {
+    background-image: url("../images/list_imgs/list15.jpg");
+}
+
+.list_con .list16 {
+    background-image: url("../images/list_imgs/list16.jpg");
+}
+
+.list_con .list17 {
+    background-image: url("../images/list_imgs/list17.jpg");
+}
+
+.list_con .list18 {
+    background-image: url("../images/list_imgs/list18.jpg");
+}
+
+.list_con .list19 {
+    background-image: url("../images/list_imgs/list19.jpg");
+}
+
+.list_con .list20 {
+    background-image: url("../images/list_imgs/list20.jpg");
+}
+
+.list_con .list21 {
+    background-image: url("../images/list_imgs/list21.jpg");
+}
+
+.list_con .list22 {
+    background-image: url("../images/list_imgs/list22.jpg");
+}
+
+.list_con .list23 {
+    background-image: url("../images/list_imgs/list23.jpg");
+}
+
+.list_con .list24 {
+    background-image: url("../images/list_imgs/list24.jpg");
+}

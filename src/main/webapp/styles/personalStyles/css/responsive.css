@@ -1,0 +1,221 @@
+/* --------------------------------------
+=========================================
+RESPONSIVE FIXES
+=========================================
+-----------------------------------------*/
+
+
+/* ==================================================================
+	 Large Desktop
+================================================================== */
+ @media (min-width: 900px) and (max-width: 1920px) {
+
+.slicknav_menu {
+	display:none;
+} 
+
+ }
+ 
+ /* ==================================================================
+	  Desktop
+================================================================== */
+@media (min-width: 768px) and (max-width: 991px) { 
+
+.slicknav_menu {
+	display:none;
+} 
+.btn_menu {
+    width: 110px;
+  }  
+}
+
+/* ==================================================================
+	Mobile Layout 
+================================================================== */
+
+@media(max-width:767px) {
+
+.slicknav_menu {
+	display:block;
+	position:relative;
+	background:none;
+	z-index:4;
+}
+.button_area{
+	display:none;
+}
+
+.slicknav_btn {
+    z-index: 3;
+}
+.logo{
+	z-index:10;
+}
+
+h2{
+	padding-top:0px !important;
+}
+h4{
+	padding-bottom:0px !important;
+}
+
+.home_area_text h2 , .content h2{
+    font-size: 1.7em;
+	margin-top:80px;
+}
+.home_area_text h4, .content h4 {
+    font-size: 1em;
+}
+.about_us_p, .social_hide, .map_area{
+	display:none;
+}
+
+
+.subscribe {
+    width: 250px !important;
+    margin: 15px auto !important;
+	display:inline-table;
+}
+.email_input {
+	width:90%;
+}
+.email_margin_top {
+	margin-top:60px;
+}
+
+.fa-angle-down{
+}
+.btn_menu {
+	width: 40px;
+    margin: 2px;
+}
+ 
+.btn-lg {
+    padding: 8px 0px;
+    font-size: 10px;
+    line-height: 1.33;
+    border-radius: 0px;
+	border-radius:10px;
+}
+.owl-wrapper-outer{
+	margin-top:40px;
+}
+}
+
+/* ==================================================================
+	Large Mobile Layout
+================================================================== */
+ 
+@media(min-width: 480px) and (max-width: 767px) {
+
+h2 {
+    padding-top:40px !important;
+}
+h4 {
+    padding-bottom:20px !important;
+}
+.countdown{
+	margin-bottom:20px;
+}
+.slicknav_menu {
+	display:block;
+	background:none;
+} 
+.slicknav_btn {
+    margin: 49px 5px 6px;
+	}
+.home_area_text h2, .content h2 {
+    font-size: 2.8em;
+    margin-top: 10px;
+}
+.home_area_text h4, .content h4 {
+    font-size: 1.5em;
+	margin-bottom:10px;
+}
+.subscribe {
+    width: 70% !important;
+    margin: 15px auto !important;
+	display:inline-table;
+}
+.btn_menu {
+    width: 85px;
+}
+.btn-lg {
+    font-size: 13px;
+}
+}
+
+/* ==================================================================
+	RESPONSIVE countdown
+================================================================== */
+
+/* Smaller Resolution Desktops and Laptops */
+@media (max-width: 800px) {
+
+    ul.countdown li {
+        padding: 15px;
+    }
+    ul.countdown li span {
+        font-size: 33px;
+        line-height: 0;
+        font-weight: 300;
+    }
+    ul.countdown p {
+        font-size: 24px;
+        float: none;
+        font-weight: 200;
+        padding-top: 7px;
+    }
+
+    .features .row {
+        margin-top: 15px;
+    }
+    #features .row [class*="col-"] {
+        margin-top: 50px;
+    }
+
+    #contact .row [class*="col-"]{
+        margin-top: 50px;
+    }
+
+}
+
+/* Smaller devices */
+@media (max-width: 650px) {
+
+    h1 { font-size: 40px; }
+
+    ul.countdown li {
+        padding: 10px;
+    }
+    ul.countdown li span {
+        font-size: 30px;
+        line-height: 0;
+        font-weight: 500;
+    }
+    ul.countdown p {
+        font-size: 20px;
+        font-weight: 300;
+        padding-top: 5px;
+    }
+
+
+}
+
+/* Even Smaller devices */
+@media (max-width: 450px) {
+
+    h1 { font-size: 35px; }
+    h3 { font-size: 20px; }
+
+    ul.countdown li {
+        padding: 7px;
+    }
+    ul.countdown li span {
+        font-size: 25px;
+    }
+    ul.countdown p {
+        font-size: 15px;
+    }
+
+}

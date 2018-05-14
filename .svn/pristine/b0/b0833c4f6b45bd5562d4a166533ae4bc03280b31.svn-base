@@ -1,0 +1,201 @@
+package www.zhizunbao.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.manage.UserInfo;
+import www.zhizunbao.service.UserInfoService;
+import www.zhizunbao.utils.Base64Util;
+import www.zhizunbao.utils.MD5Util;
+
+@Controller
+@RequestMapping("/userInfo/")
+public class UserInfoController {
+
+	@Autowired
+	private UserInfoService userInfoService;
+	
+	/**
+	 * 
+	 * JiJi  2018年4月20日 上午11:41:35
+	 * 功能 ： 前台用户登录
+	 * @return
+	 * @throws IOException 
+	 * @throws ServletException 
+	 */
+	@RequestMapping("userLogin")
+	public String userLogin(HttpServletRequest request,UserInfo userInfo,HttpServletResponse response) throws IOException, ServletException{
+		UserInfo userInfo1 = userInfoService.findUserByUserName(userInfo);
+		HttpSession session = request.getSession();
+		request.setAttribute("msg", "");
+		if(null==userInfo1){
+			request.setAttribute("msg", "此用户不存在");
+			return "front/login";
+		}else {
+			if(Base64Util.encode(MD5Util.MD5(userInfo.getUserPassword())).equals(userInfo1.getUserPassword())){
+				session.setAttribute("userInfo1", userInfo1);
+				String oldURL = (String) session.getAttribute("oldURL");
+				if (null!=oldURL && !"".equals(oldURL)) {
+					return "redirect:/"+oldURL;
+				}
+				return "front/index";
+			}else {
+				request.setAttribute("msg", "密码不正确");
+				return "front/login";
+			}
+		}
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月20日 下午7:42:07
+	 * 功能 ：注销用户登录
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	@RequestMapping("userInvalidate")
+	public String userInvalidate(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		request.getSession().invalidate();
+		return "front/index";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月20日 下午8:02:26
+	 * 功能 ：用户注册
+	 * @param userInfo
+	 * @throws IOException 
+	 */
+	@RequestMapping("userRegister")
+	public String userRegister(UserInfo userInfo,HttpServletResponse response,HttpServletRequest request) throws IOException{
+		System.out.println("注册的密码为"+userInfo.getUserPassword());
+		userInfo.setUserPassword(Base64Util.encode(MD5Util.MD5(userInfo.getUserPassword())));
+		UserInfo userInfo2 = userInfoService.findUserByUserName(userInfo);
+		if(userInfo2!=null){
+			request.getSession().setAttribute("msg1", "此用户名已被注册！");
+			return "front/register";
+		}else {
+			userInfoService.userRegister(userInfo);
+			return "front/login";
+		}
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月22日 下午9:27:47
+	 * 功能 ：跳转到登录界面
+	 * @return
+	 */
+	@RequestMapping("toUserLogin")
+	public String toUserLogin(){
+		return "front/login";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月22日 下午9:27:47
+	 * 功能 ：跳转到登录界面
+	 * @return
+	 */
+	@RequestMapping("toUserRegister")
+	public String toUserRegister(){
+		return "front/register";
+	}
+	/**
+	 * 
+	 * 高孟圆
+	 * 功能 ：去用户理赔页面
+	 * @param userInfo
+	 * @throws IOException 
+	 */
+	@RequestMapping("userInfoClaims")
+	public String userInfoClaims(HttpServletRequest request,ModelMap map) {
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo1");
+		if(null!=userInfo){
+			map.put("userInsure", userInfoService.userInfoClaims(userInfo.getUserId()));
+		}
+		return "front/userinfo/userinfo_claims";
+	}
+	/**
+	 * 
+	 * 高孟圆
+	 * 功能 ：添加理赔
+	 * @param userInfo
+	 * @throws IOException 
+	 */
+	@RequestMapping("addUserInfoClaims")
+	public String addUserInfoClaims(HttpServletRequest request,ModelMap map) {
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo1");
+		if(null!=userInfo){
+			map.put("userInsure", userInfoService.userInfoClaims(userInfo.getUserId()));
+		}
+		return "front/userinfo/userinfo_claims";
+	}
+	/**
+	 * 
+	 * 高孟圆
+	 * 功能 ：用户保险详情
+	 * @param userInfo
+	 * @throws IOException 
+	 */
+	@RequestMapping("toUserinfoInsure")
+	public String toUserinfoInsure(HttpServletRequest request,ModelMap map) {
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo1");
+		if(null!=userInfo){
+			map.put("userInsure", userInfoService.findUserInsure(userInfo.getUserId()));
+		}
+		return "front/userinfo/userinfoInsure_list";
+	}
+	/**
+	 * 
+	 * 高孟圆
+	 * 功能 ：查看保险详情
+	 * @param userInfo
+	 * @throws IOException 
+	 */
+	/*@RequestMapping("insureDetails")
+	public void insureDetails(int id,UserInfo userInfo,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		
+		userInfo = userInfoService.insureDetails(id);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userInfo", userInfo);
+		FMUtils.createHtml(request, "insureDetails.ftl", "insureDetails.html", map);
+		
+		response.sendRedirect("/zhizunbao/html/insureDetails.html");
+	}*/
+	/**
+	 * 
+	 * 高孟圆
+	 * 功能 ：去修改信息页面
+	 * @param userInfo
+	 * @throws IOException 
+	 */
+	@RequestMapping("toUserinfoUpdate")
+	public String toUserinfoUpd(HttpServletRequest request,ModelMap map) {
+		UserInfo userInfo = (UserInfo) request.getSession().getAttribute("userInfo1");
+		if(null!=userInfo){
+			Object object = userInfoService.selectByPrimaryKey(userInfo.getUserId());
+			map.put("userInfo", object);
+		}
+		return "front/userinfo/userinfo_upd";
+	}
+	/**
+	 * 
+	 * 高孟圆
+	 * 功能 ：修改信息
+	 * @param userInfo
+	 * @throws IOException 
+	 */
+
+	@RequestMapping("updateUserInfo")
+	public String updUserInfo(UserInfo userInfo) {
+			 userInfoService.updateUserInfo(userInfo);
+		    return "redirect:toUserinfoInsure";
+	}
+}

@@ -1,0 +1,25 @@
+package www.zhizunbao.service;
+
+import java.util.List;
+
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.InsurePeople;
+
+public interface InsureService {
+
+	List<Insure> findInsureList(Insure insure);
+
+	int findInsureCount();
+
+	List<InsurePeople> findPeoplelist();
+
+	int addInsure(Insure insure);
+
+	Insure findInsureByInsureId(Integer insureId);
+
+	int deleteInsure(Integer insureId);
+
+	int updateInsure(Insure insure);
+
+
+}

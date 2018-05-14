@@ -1,0 +1,37 @@
+.custom_page{
+    text-align: right;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+.custom_page .prev.current,
+.custom_page .next.current{
+    color: #ccc;
+    background: 0;
+    border:1px solid #ccc;
+    cursor: default;
+}
+.custom_page .current{
+    border-color: #ff9600;
+    background-color: #ff9600;
+    color: #ffffff;
+}
+.custom_page a,
+.custom_page .current{
+    height:20px;
+    line-height:20px;
+    display: inline-block;
+    margin:0 2px;
+    border:1px solid #cccccc;
+    text-align: center;
+    color: #333;
+    padding: 0 6px;
+}
+.custom_page a:hover{
+    border:1px solid #ff9600;
+}
+.custom_page .current{
+    border-color: #ff9600;
+    background-color: #ff9600;
+    color: #ffffff;
+}

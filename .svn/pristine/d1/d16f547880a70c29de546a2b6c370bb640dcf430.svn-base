@@ -1,0 +1,89 @@
+package www.zhizunbao.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import www.zhizunbao.dto.manage.Nav;
+import www.zhizunbao.service.NavService;
+
+@Controller
+@RequestMapping("navigation")
+public class NavController {
+
+	@Autowired
+	private NavService navService;
+	
+	/**
+	 * 
+	 * JiJi  2018年4月17日 下午1:53:59
+	 * 功能 ： 查询导航栏列表
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("toNavigationList")
+	public String toNavigationList(HttpServletRequest request){
+		List<Nav> nav= navService.findNavigationList();
+		//System.out.println(nav);
+		request.setAttribute("nav", nav);
+		return "admin/navigation/navigation_list";
+	}
+
+	/**
+	 * 
+	 * JiJi  2018年4月17日 下午2:19:55
+	 * 功能 ： 跳转添加导航栏页面
+	 * @return
+	 */
+	@RequestMapping("toAddNav")
+	public String toAddNav(){
+		return "admin/navigation/nav_insert";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月17日 下午2:46:28
+	 * 功能 ： 添加导航栏条目
+	 * @return
+	 */
+	@RequestMapping("insertNav")
+	public String insertNav(Nav nav){
+		navService.insertNav(nav);
+		return "redirect:toNavigationList";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月17日 下午6:48:09
+	 * 功能 ：跳转导航栏修改页面
+	 * @return
+	 */
+	@RequestMapping("toUpdateNavigationById")
+	public String toUpdateNavigationById(Integer nav_id,HttpServletRequest request){
+		Nav nav= navService.toFindNavById(nav_id);
+		request.setAttribute("nav", nav);
+		return "admin/navigation/navigation_update";
+	}
+	/**
+	 * 
+	 * JiJi  2018年4月17日 下午7:24:41
+	 * 功能 ：修改导航栏条目
+	 * @param nav
+	 * @return
+	 */
+	@RequestMapping("updateNavById")
+	public String updateNavById(Nav nav){
+		navService.updateNavById(nav);
+		return "redirect:toNavigationList";
+	}
+	
+	@RequestMapping("deleteNavigationById")
+	public String  deleteNavigationById(Integer nav_id){
+		System.out.println("删除");
+		navService.deleteNavigationById(nav_id);
+		return "redirect:toNavigationList";
+	}
+	
+}

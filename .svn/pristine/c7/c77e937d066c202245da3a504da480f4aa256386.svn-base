@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 打印查询语句-->
+		<setting name="logImpl" value="STDOUT_LOGGING" />
+		 
+	</settings>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC"/>
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver"/>
+				<property name="url" value="jdbc:mysql://59.110.142.75:3306/05_zhizunbao"/>
+				<property name="username" value="five"/>
+				<property name="password" value="44ED0E3592BAEF3A"/>
+			</dataSource>
+		</environment>
+	</environments>
+
+	<mappers>
+		<!-- <mapper resource="www/lock/mapper/UserInfoMapper.xml"/> -->
+		<!--
+		<package name="com.test.hr"/>
+		<package name="com.test.o2m"/>
+		<mapper resource="user.xml"/>
+		<mapper resource="com/test/hr/UserDao.xml"/>
+		<mapper class="com.test.hr.UserDao"/>
+		-->
+	</mappers>
+</configuration>
+

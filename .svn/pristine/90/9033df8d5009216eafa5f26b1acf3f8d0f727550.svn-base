@@ -1,0 +1,638 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%> 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <title>保险官网</title>
+    <link rel="stylesheet" href="<%=basePath %>/styles/insurance/css/common.css">
+    <link rel="stylesheet" href="<%=basePath %>/styles/insurance/css/index.css">
+    <link rel="stylesheet" href="<%=basePath %>/styles/insurance/css/jquery.slideBox.css">
+</head>
+<body>
+<div class="wrapper">
+    <!--------------------------------------header_user begin------------------------------------->
+    <div class="header_user">
+        <div class="main_width">
+            <span class="tel">客服电话：400-663-6600（周一至周六 9:00-18:00）</span>
+            <span class="fr">
+                <span class="my_insurance"><a href="<%=basePath%>userInfo/toUserinfoInsure">我的保险</a></span>
+                <span class="message"><a href="<%=basePath %>userInfo/toUserinfoMessage">消息<em>${userInfo1.userMsg }</em></a></span>
+                <c:if test="${userInfo1!=null }">
+						<span><font>欢迎，${userInfo1.userName }</font></span>
+						<a href="<%=basePath%>userInfo/userInvalidate?user_id=${userInfo1.userId }">注销登录</a>
+				</c:if>
+				<c:if test="${userInfo1==null }">
+						 <span class="register"><a href="<%=basePath%>userInfo/toUserRegister">注册</a></span>
+               			 <span class="fg"><a href="#"> &nbsp;|&nbsp; </a></span>
+               			 <span><a href="<%=basePath%>userInfo/toUserLogin">登录</a></span>
+				</c:if>
+            </span>
+        </div>
+    </div>
+    <!---------------------------------------header_user end-------------------------------------->
+    <!---------------------------------------header_nav begin------------------------------------->
+    <div class="header_nav">
+        <div class="main_width"  style="position: relative;right: 67px">
+            <h1><a href="#" class="logo fl" style="position: relative;right:20px;">大特保保险官网-互联网保险服务平台</a></h1>
+            <a style="float: right;margin-right: -155px" href="<%=basePath%>userInfo/toUserinfoInsure" class="my_policy fr">我的保单</a>
+            <div class="menuBox">
+               <ul class="menu">
+               		<li>
+               			<a href="<%=basePath %>home/page">首页</a>
+                    </li>
+		           <li class="special">
+		               	<a href="<%=basePath %>frontInsure/findAllInsure">保险产品</a>
+		           </li>
+                    <li>
+               			<a href="<%=basePath %>userInfo/userInfoClaims">理赔</a>
+                    </li>
+                     <li>
+               			<a href="<%=basePath %>45">活动</a>
+                    </li>
+                	 <li>
+               			<a href="<%=basePath %>home/toContactUs">联系我们</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+         <!--------------------------------- form section ---------------------->
+    	<div style="float:left;margin:-38px 0 0 461px">
+    		<div style="position: relative;">
+	           <form action="<%=basePath %>frontInsure/findInsureListByName" method="post">
+	           		<input value="请输入关键字" onkeydown="if(event &amp;&amp; event.keyCode==13){search();}" onfocus=" if(this.value=='请输入关键字'){this.value=''; this.style.color='#ABA9A9';} " onblur="if(this.value==''|| this.value=='请输入关键字'){this.value='请输入关键字';}"
+	           		style="color:#ABA9A9;position:absolute;width: 209px;height:31px;border: 2px solid #ff8712;" type="text" name="chaxun">
+	           		<input style="position: absolute;margin-left: 213px"  type="image"  src="<%=basePath%>styles/insurance/logo/sousuo.png"/>
+	           	</form>		
+           	</div>
+        </div>        	
+    </div>
+	<!------------------------------------- end form section ---------------------->	
+    <!----------------------------------------header_nav end-------------------------------------->
+    <!----分类，轮播图---->
+    <div class="floor_main">
+        <!--轮播图---1--------------------------------------------------------------------------->
+        <div class="scroll_box" id="focus_map">
+            <ul class="lists" id="lists">
+
+            <c:forEach items="${imglists }" var="imgs">
+            	     <li><a href="<%-- <%=basePath %>${imgs.jumpUrl} --%>"><img src="<%=basePath %>${imgs.imgUrl}" alt=""></a></li>
+          	</c:forEach>
+            </ul>
+           <ul class="items" id="items">
+                <li class="active"></li>
+                 <li></li>
+                  <li></li>
+            </ul>
+        </div>
+    </div>
+    <!--container begin-->
+    <div class="container">
+        <div class="hot">
+            <div class="main_width">
+                <div class="hot_title">
+                    <span class="le_t"></span>
+                <span class="hot_text">
+                   	 热卖活动
+                    <span class="dian">·</span>
+                    <span class="eng">NEW &nbsp;The hottest activities</span>
+                </span>
+                    <span class="ri_t"></span>
+                </div>
+                <!--热卖推荐-->
+                <div class="use_pin main_width fix">
+                    <ul class="need_l">
+                    <c:forEach items="${baoxainImg }" var="bimg">
+                        <li>
+                            <a href="<%-- ${bimg.jumpUrl} --%>"><img src="<%=basePath %>${bimg.imgUrl}" alt=""></a>
+                            <div class="need">
+                                <p class="need_text">任务活动</p>
+                            </div>
+                            <div class="baise">
+                                <div class="zhe_zhao"></div>
+                                <a href="#" class="up_bao"></a>
+                                <div class="zhe_text">
+                                    <span class="jiao_tong">用您的碎片时间来丰富您的生活</span>
+                                <span class="num">
+                                    <span class="small">Y0:00Y</span>
+                                    <span>1分钟</span>
+                                    <span class="qi">起</span>
+                                </span>
+                                    <a href="#" class="check">查看详情</a>
+                                </div>
+                            </div>
+                        </li>
+                        </c:forEach>
+                    </ul>
+                    <ul class="need_r">
+                      <c:forEach items="${browserlist }" var="brow"> 
+                        <li class="li_one">
+	                            <a href="#">
+	                                <img src="<%=basePath %>${brow.imgUrl}" alt="">
+	                                <p class="jieshuo">不一样的活动</p>
+	                                <p class="price">
+	                                    <span class="RMB">一起</span>来看看
+	                                    <span class="RMB">吧</span>
+	                                </p>
+	                                <span class="now_qiang">详情</span>
+	                            </a>
+                        </li>
+                       </c:forEach> 
+                </div>
+                 <!--保障险-->
+                <div class="hotel fix">
+                    <div class="hotel_l">
+                        <div class="s_lun">
+                            <div id="s_lun" class="lun_wrap slideBox">
+                                <ul class="items"> 
+                                <c:forEach items="${zbbxlist }" var="zbimg">
+                                    <li><a href="<%-- ${zbimg.jumpUrl} --%>" title="" class="sma_lun"><img src="<%=basePath %>${zbimg.imgUrl}"></a></li>
+                                </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="kuang"></div>
+                        <div class="yel_bei">
+                            <p class="ins-name">旅游险</p>
+                            <p class="english">PROTECTION&nbsp;INSURANCE</p>
+                            <p class="say">全方位的生活保障有温度的保险平台</p>
+                            <ul class="pin-lei">
+                            <c:forEach items="${typeList }" var="tyep">
+                                <li><a href="<%=basePath %>frontInsure/findTheSameTypeInsureByTypeId?typeId=${tyep.typeId }">${tyep.typeName}</a></li>
+                            </c:forEach>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="hotel_r fix">
+                         <li>
+                            <img src="<%=basePath %>/styles/insurance/images/hotel_r01.png" alt="">
+                            <div class="hot_zhe">
+                                <p class="zhang_use">贝健康少儿重大疾病保险</p>
+                                <div class="per">
+                                    <p class="person">保费极低保障全</p>
+                                    <p class="person">确诊即赔救命金</p>
+                                </div>
+                                <p class="per_price">
+                                    ￥<span class="num">70.00</span>/起
+                                </p>
+                            </div>
+                            <a href="#" class="hot_zhao">
+                                <div class="shigu">
+                                    <div class="diao">
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">让您买的起的足额保障</span>
+                                        </p>
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">自动续保，爸妈安心</span>
+                                        </p>
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">65种重疾+15种轻症</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="shi_price">
+                                    <div class="pricess">
+                                        <span class="dollar">￥</span>
+                                        <span class="nums">70.00</span>
+                                        <span class="dollar">/起</span>
+                                    </div>
+                                    <span class="chakan">查看详情</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <img src="<%=basePath %>/styles/insurance/images/hotel_r02.png" alt="">
+                            <div class="hot_zhe">
+                                <p class="zhang_use">综合意外津贴保障</p>
+                                <div class="per">
+                                    <p class="person">意外身故保障</p>
+                                    <p class="person">意外医疗保障</p>
+                                </div>
+                                <p class="per_price">
+                                    ￥<span class="num">71.80</span>/起
+                                </p>
+                            </div>
+                            <a href="#" class="hot_zhao">
+                                <div class="shigu">
+                                    <div class="diao">
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">全面呵护日常生活</span>
+                                        </p>
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">每日享住院津贴</span>
+                                        </p>
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">一次购买全年无忧</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="shi_price">
+                                    <div class="pricess">
+                                        <span class="dollar">￥</span>
+                                        <span class="nums">71.80</span>
+                                        <span class="dollar">/起</span>
+                                    </div>
+                                    <span class="chakan">查看详情</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <img src="<%=basePath %>/styles/insurance/images/hotel_r03.png" alt="">
+                            <div class="hot_zhe">
+                                <p class="zhang_use">蒲公英定期寿保障</p>
+                                <div class="per">
+                                    <p class="person">让孩子健康成长</p>
+                                    <p class="person">让爸妈安享晚年</p>
+                                </div>
+                                <p class="per_price">
+                                    ￥<span class="num">72.00</span>/起
+                                </p>
+                            </div>
+                            <a href="#" class="hot_zhao">
+                                <div class="shigu">
+                                    <div class="diao">
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">每日0.2元保10万生命保障</span>
+                                        </p>
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">小投入 大保障 1秒涨身价</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="shi_price">
+                                    <div class="pricess">
+                                        <span class="dollar">￥</span>
+                                        <span class="nums">72.00</span>
+                                        <span class="dollar">/起</span>
+                                    </div>
+                                    <span class="chakan">查看详情</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <img src="<%=basePath %>/styles/insurance/images/hotel_r04.png" alt="">
+                            <div class="hot_zhe">
+                                <p class="zhang_use">假日户外运动保障</p>
+                                <div class="per">
+                                    <p class="person">保障高风险运动</p>
+                                    <p class="person">驴友出行必备</p>
+                                </div>
+                                <p class="per_price">
+                                    ￥<span class="num">5.00</span>/起
+                                </p>
+                            </div>
+                            <a href="#" class="hot_zhao">
+                                <div class="shigu">
+                                    <div class="diao">
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">旅行出发当日0时生效</span>
+                                        </p>
+                                        <p class="fix">
+                                            <span class="baodian"></span>
+                                            <span class="shi_text">承保高风险运动</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="shi_price">
+                                    <div class="pricess">
+                                        <span class="dollar">￥</span>
+                                        <span class="nums">5.00</span>
+                                        <span class="dollar">/起</span>
+                                    </div>
+                                    <span class="chakan">查看详情</span>
+                                </div>
+                            </a>
+                        </li> 
+                    </ul>
+                </div>
+                <!--车险-->
+                <div class="hotel fix">
+                    <div class="hotel_l">
+                        <div class="s_lun_car">
+                            <div id="s_lun_car" class="lun_wrap slideBox">
+                                <ul class="items">
+                                <c:forEach items="${latestlist }" var="latest">
+                                    <li><a href="<%-- ${latest.jumpUrl} --%>" title="" class="sma_lun"><img src="<%=basePath %>${latest.imgUrl}"></a></li>
+                                   
+                                </c:forEach>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="kuang"></div>
+                        <div class="yel_bei">
+                            <p class="ins-name">请查看最新的保险</p>
+                            <p class="english">NEW&nbsp;INSURANCE</p>
+                            <p class="say">买车险&nbsp;上京东买“有内涵“的车险</p>
+                            <ul class="pin-lei">
+                                <li><a href="#">更多</a></li>
+                            </ul>
+                        </div>
+                        <div class="an-btn">
+                            <div class="an-l"></div>
+                            <div class="an-r add-yang"></div>
+                        </div>
+                    </div>
+                   <div class="hotel_r_car fix">
+                       <!--  <div class="baojia">
+                            <p class="car-bao">车险报价</p>
+                        </div> -->
+                        <ul class="car_zhan">
+                            <li>
+                                <a href="#">
+                                    <img src="<%=basePath %>/styles/insurance/images/car-zhan01.png" alt="">
+                                    <div class="car_j_s">
+                                        <p class="car_jie">投保中华车险后</p>
+                                        <p class="car_jie">3个工作日</p>
+                                        <p class="zhe">领取车险礼包</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="<%=basePath %>/styles/insurance/images/car-zhan02.png" alt="">
+                                    <div class="car_j_s">
+                                        <p class="car_jie">固特异飞足丝圈脚垫</p>
+                                        <p class="car_jie">车险优惠</p>
+                                        <p class="zhe">新春超值低价</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="<%=basePath %>/styles/insurance/images/car-zhan03.png" alt="">
+                                    <div class="car_j_s">
+                                        <p class="car_jie">金装美孚机油</p>
+                                        <p class="car_jie">卓越保护</p>
+                                        <p class="zhe">车险用户首选</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="car_zhan">
+                            <li>
+                                <a href="#">
+                                    <img src="<%=basePath %>/styles/insurance/images/car-zhan01.png" alt="">
+                                    <div class="car_j_s">
+                                        <p class="car_jie">投保中华车险后</p>
+                                        <p class="car_jie">3个工作日</p>
+                                        <p class="zhe">领取车险礼包</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="<%=basePath %>/styles/insurance/images/car-zhan02.png" alt="">
+                                    <div class="car_j_s">
+                                        <p class="car_jie">固特异飞足丝圈脚垫</p>
+                                        <p class="car_jie">车险优惠</p>
+                                        <p class="zhe">新春超值低价</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="<%=basePath %>/styles/insurance/images/car-zhan03.png" alt="">
+                                    <div class="car_j_s">
+                                        <p class="car_jie">金装美孚机油</p>
+                                        <p class="car_jie">卓越保护</p>
+                                        <p class="zhe">车险用户首选</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+            <!--理财险-->
+          <!--   <div class="incrance_bill"> -->
+             <!--    <div class="in_bil fix">
+                    <ul class="insurance_list fix">
+                        <li class="li_start">
+                            <p class="day_ying">
+                                <span class="col_ying">[天天盈]</span>小白天天盈
+                            </p>
+                            <div class="anm_dong">
+                                <div class="an_wrap">
+                                    <p class="anm_text">随时存取</p>
+                                    <div class="round">
+                                        <p class="num_bai">
+                                            <span>3.95</span><span class="ba">%</span>
+                                        </p>
+                                        <p class="hist">历史年化收益率</p>
+                                    </div>
+                                    <p class="chan_pin">投连险 最长可终身持有</p>
+                                    <p class="zeren">弘康在线理财计划两全保险</p>
+                                </div>
+                            </div>
+                            <a href="#" class="liji_btn">立即抢投</a>
+                        </li>
+                        <li>
+                            <p class="day_ying">
+                                <span class="col_ying">[半年盈]</span>京弘半年盈
+                            </p>
+                            <div class="anm_dong">
+                                <div class="an_wrap">
+                                    <p class="anm_text">6个月后任意时间可免费领取</p>
+                                    <div class="round">
+                                        <p class="num_bai">
+                                            <span>5.40</span><span class="ba">%</span>
+                                        </p>
+                                        <p class="hist">历史年化收益率</p>
+                                    </div>
+                                    <p class="chan_pin">投连险 最长可终身持有</p>
+                                    <p class="zeren">弘康易理财年金保险</p>
+                                </div>
+                            </div>
+                            <a href="#" class="liji_btn">立即抢投</a>
+                        </li>
+                        <li>
+                            <p class="day_ying">
+                                <span class="col_ying">[养老金]</span>贴心养老金
+                            </p>
+                            <div class="anm_dong">
+                                <div class="an_wrap">
+                                    <p class="anm_text">每年领取一次，按期交费</p>
+                                    <div class="round">
+                                        <p class="num_bai">
+                                            <span>0.00</span><span class="ba">%</span>
+                                        </p>
+                                        <p class="hist">历史年化收益率</p>
+                                    </div>
+                                    <p class="chan_pin">年金险</p>
+                                    <p class="zeren">国华盛世年年年金保险C款</p>
+                                </div>
+                            </div>
+                            <a href="#" class="liji_btn">立即抢投</a>
+                        </li>
+                        <li>
+                            <p class="day_ying">
+                                <span class="col_ying">[e生盈]</span>华泰进取型
+                            </p>
+                            <div class="anm_dong">
+                                <div class="an_wrap">
+                                    <p class="anm_text">类股票型投资连结保险</p>
+                                    <div class="round">
+                                        <p class="num_bai">
+                                            <span>37.00</span><span class="ba">%</span>
+                                        </p>
+                                        <p class="hist">历史年化收益率</p>
+                                    </div>
+                                    <p class="chan_pin">投连险 最长可终身持有</p>
+                                    <p class="zeren">e生盈终身寿险 进取型投资账户</p>
+                                </div>
+                            </div>
+                            <a href="#" class="liji_btn">立即抢投</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ye_content">
+                    <div class="hot_ye">
+                        <span class="ye_l"></span>
+                        <span class="ye_text">
+                            理财险
+                            <span class="dian">·</span>
+                            <span class="eng">FINANCE&nbsp;&nbsp;INVESTMENT&nbsp;INSURANCE</span>
+                        </span>
+                        <span class="ye_r"></span>
+                    </div>
+                </div> -->
+          <!--   </div> -->
+            <!--品牌墙-->
+            <div class="qiang_wrap main_width">
+                <div class="pin_qiang">
+                    <p class="qiang">
+                        品牌墙
+                        <span class="dian">·</span>
+                        <span class="qiang_ying">BRAND&nbsp;WALL</span>
+                    </p>
+                    <div class="banks">
+                        <ul class="bank_list fix">
+                            <li>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank01.png" alt="中国人寿"></a>
+                                </div>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank02.png" alt="渤海人寿"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank03.png" alt="安顺人寿"></a>
+                                </div>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank04.png" alt="国华人寿"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank05.png" alt="恒大人寿"></a>
+                                </div>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank06.png" alt="弘康人寿"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank07.png" alt="华泰保险"></a>
+                                </div>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank08.png" alt="昆仑健康保险"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank09.png" alt="平安健康"></a>
+                                </div>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank10.png" alt="前海人寿"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank11.png" alt="中国人民保险"></a>
+                                </div>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank12.png" alt="泰康在线"></a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank13.png" alt="阳光保险"></a>
+                                </div>
+                                <div class="logo_bank">
+                                    <a href="#"><img src="<%=basePath %>/styles/insurance/images/bank14.png" alt="珠江人寿"></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container end-->
+    <!--footer begin-->
+    <div class="copyright">
+        <div class="main_width footer">
+            <div class="footer_nav">
+                <p>
+                    <a href="#">关于京东金融</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东小金库</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东钱包</a>
+                    <span class="divider">|</span>
+                    <a href="#">关于京东白条</a>
+                    <span class="divider">|</span>
+                    <a href="<%=basePath %>home/toContactUs">联系我们</a>
+                    <span class="divider">|</span>
+                    <a href="#">免责声明</a>
+                </p>
+                <p>Copyright © 2004-2016 京东JD.com 版权所有<span class="divider">|</span>投资有风险，购买需谨慎</p>
+            </div>
+            <div class="footer_contact">
+                <div class="f_contact_time">
+                    联系我们<span>（09:00-22:00）</span>
+                </div>
+                <div class="f_contact_content">
+                    <div class="f_cc_left">
+                        <span class="f_cc_item">个人业务：400-098-8511</span>
+                        <span class="f_cc_item">企业业务：400-088-8816</span>
+                    </div>
+                    <div class="f_cc_mid">
+                        <a href="#" class="f_cc_link item_JIMI">咨询JIMI</a>
+                        <a href="#" class="f_cc_link item_kefu">在线客服</a>
+                    </div>
+                    <div class="f_cc_right">
+                        <a href="#" class="f_cc_link item_mail">客服邮箱</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer end-->
+    <div class="sideBar">
+        <a href="#" class="slider_block app"><i></i></a>
+        <a href="#" class="slider_block jimi"><i></i></a>
+        <a href="#" class="slider_block feedback"><i></i></a>
+        <a href="javascript:" class="slider_block backtop" id="backtop"><i></i></a>
+    </div>
+</div>
+<script src="<%=basePath %>/styles/insurance/js/jquery-1.12.3.min.js"></script>
+<script src="<%=basePath %>/styles/insurance/js/jquery.slideBox.min.js"></script>
+<script src="<%=basePath %>/styles/insurance/js/jquery.lazyload.js"></script>
+<script src="<%=basePath %>/styles/insurance/js/index.js"></script>
+</body>
+</html>

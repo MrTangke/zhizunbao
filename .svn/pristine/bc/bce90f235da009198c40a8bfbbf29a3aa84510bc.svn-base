@@ -1,0 +1,310 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.insure.Feature;
+import www.zhizunbao.dto.insure.Img;
+import www.zhizunbao.dto.insure.Insure;
+import www.zhizunbao.dto.insure.InsurePeople;
+import www.zhizunbao.dto.insure.SafeGuard;
+import www.zhizunbao.dto.insure.Type;
+import www.zhizunbao.mapper.insure.FeatureMapper;
+import www.zhizunbao.mapper.insure.ImgMapper;
+import www.zhizunbao.mapper.insure.InsureMapper;
+import www.zhizunbao.mapper.insure.InsurePeopleMapper;
+import www.zhizunbao.mapper.insure.SafeGuardMapper;
+import www.zhizunbao.mapper.insure.TypeMapper;
+import www.zhizunbao.service.InsureService;
+@Service
+public class InsureServiceImpl implements InsureService {
+	
+	@Autowired
+	private InsureMapper insureMapper;
+	@Autowired
+	private InsurePeopleMapper insurePeopleMapper;
+	@Autowired
+	private TypeMapper typeMapper;
+	@Autowired
+	private FeatureMapper featureMapper;
+	@Autowired
+	private SafeGuardMapper safeGuardMapper;
+	@Autowired
+	private ImgMapper imgMapper;
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 上午11:18:03
+	 * 功能 ：查询保险
+	 * @param insure
+	 * @return
+	 */
+	@Override
+	public List<Insure> findInsureList(Insure insure) {
+		 
+		return insureMapper.findInsureList(insure);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午1:46:22
+	 * 功能 ：查询总条数
+	 * @return
+	 */
+	@Override
+	public int findInsureCount() {
+		// TODO Auto-generated method stub
+		return insureMapper.findInsureCount();
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午5:59:44
+	 * 功能 ：查询所有适用人群
+	 * @param people
+	 * @return
+	 */
+	@Override
+	public List<InsurePeople> findPeoplelist() {
+		// TODO Auto-generated method stub
+		return insurePeopleMapper.findPeoplelist();
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午7:04:54
+	 * 功能 ： 添加保险
+	 * @return
+	 */
+	@Override
+	public int addInsure(Insure insure) {
+		// TODO Auto-generated method stub
+		return insureMapper.insertSelective(insure);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午7:48:06
+	 * 功能 ：根据id查询保险
+	 * @param insureId
+	 * @return
+	 */
+	@Override
+	public Insure findInsureByInsureId(Integer insureId) {
+		// TODO Auto-generated method stub
+		return insureMapper.selectByPrimaryKey(insureId);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午8:13:26
+	 * 功能 ：删除保险
+	 * @param insureId
+	 * @return
+	 */
+	@Override
+	public int deleteInsure(Integer insureId) {
+		// TODO Auto-generated method stub
+		return insureMapper.deleteByPrimaryKey(insureId);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月16日 下午8:15:39
+	 * 功能 ： 修改保险
+	 * @param insure
+	 * @return
+	 */
+	@Override
+	public int updateInsure(Insure insure) {
+		// TODO Auto-generated method stub
+		return insureMapper.updateByPrimaryKeySelective(insure);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午8:53:09
+	 * 功能 ： 查询保险分类
+	 * @return
+	 */
+	@Override
+	public List<Type> findTypeList() {
+		// TODO Auto-generated method stub
+		return typeMapper.findTypeList();
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午10:30:18
+	 * 功能 ：查询最高级的类别
+	 * @return
+	 */
+	@Override
+	public List<Type> findTopTypeList() {
+		// TODO Auto-generated method stub
+		return typeMapper.findTopTypeList();
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午11:20:55
+	 * 功能 ：新增子类别
+	 * @param type
+	 * @return
+	 */
+	@Override
+	public int addType(Type type) {
+		// TODO Auto-generated method stub
+		return typeMapper.insert(type);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午11:40:40
+	 * 功能 ：根据id查询类型
+	 * @param typeId
+	 * @return
+	 */
+	@Override
+	public Type findTypeBytypeId(Integer typeId) {
+		// TODO Auto-generated method stub
+		return typeMapper.selectByPrimaryKey(typeId);
+	}
+
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午11:43:32
+	 * 功能 ：修改子类型
+	 * @param type
+	 * @return
+	 */
+	@Override
+	public int updateType(Type type) {
+		// TODO Auto-generated method stub
+		return typeMapper.updateByPrimaryKey(type);
+	}
+
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 上午11:46:05
+	 * 功能 ：删除子类型
+	 * @param typeId
+	 * @return
+	 */
+	@Override
+	public int deleteType(Integer typeId) {
+		// TODO Auto-generated method stub
+		return typeMapper.deleteByPrimaryKey(typeId);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午2:16:29
+	 * 功能 ：查询特色
+	 * @return
+	 */
+	@Override
+	public List<Feature> findFeatureList() {
+		// TODO Auto-generated method stub
+		return featureMapper.findFeatureList();
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午2:42:01
+	 * 功能 ：新增特色
+	 * 	 * @param feature
+	 * @return
+	 */
+	@Override
+	public int addFeature(Feature feature) {
+		// TODO Auto-generated method stub
+		return featureMapper.insert(feature);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:23:57
+	 * 功能 ：查询所有保障范围
+	 * 	 * @return
+	 */
+	@Override
+	public List<SafeGuard> findSafeGuardList() {
+		// TODO Auto-generated method stub
+		return safeGuardMapper.findSafeGuardList();
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:24:39
+	 * 功能 ：新增保障范围
+	 * @param safeGuard
+	 * @return
+	 */
+	@Override
+	public int addSafeGuard(SafeGuard safeGuard) {
+		// TODO Auto-generated method stub
+		return safeGuardMapper.insert(safeGuard);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:29:41
+	 * 功能 ：根据id 查询保障范围
+	 * @param safeguardId
+	 * @return
+	 */
+	@Override
+	public SafeGuard findSafeGuardBySafeGuardId(Integer safeguardId) {
+		// TODO Auto-generated method stub
+		return safeGuardMapper.selectByPrimaryKey(safeguardId);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:34:29
+	 * 功能 ：修改保障范围
+	 * @param safeGuard
+	 * @return
+	 */
+	@Override
+	public int updateSafeGuard(SafeGuard safeGuard) {
+		// TODO Auto-generated method stub
+		return safeGuardMapper.updateByPrimaryKey(safeGuard);
+	}
+	
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午4:40:36
+	 * 功能 ：删除保障范围
+	 * @param safeguardId
+	 * @return
+	 */
+	@Override
+	public int deleteSafeGuard(Integer safeguardId) {
+		// TODO Auto-generated method stub
+		return safeGuardMapper.deleteByPrimaryKey(safeguardId);
+	}
+	/**
+	 * 
+	 * Mr吴  2018年4月17日 下午8:50:24
+	 * 功能 ：上传图片
+	 * @param imgUrl
+	 * @param insure
+	 * @return
+	 */
+	@Override
+	public int uploadImg(String imgUrl, Insure insure) {
+		Img img = new Img();
+		img.setImgAlt("无法显示图片");
+		img.setImgSrc(imgUrl);
+		imgMapper.insert(img);
+		insure.setImgId(img.getImgId());
+		return insureMapper.updateByPrimaryKeySelective(insure);
+	}
+	
+	
+	
+}

@@ -1,0 +1,30 @@
+package www.zhizunbao.service;
+
+import java.util.List;
+
+import www.zhizunbao.dto.manage.Resources;
+import www.zhizunbao.dto.manage.ResourcesTree;
+import www.zhizunbao.dto.manage.Role;
+
+
+public interface RoleService {
+
+	List<Role> findUsersList();
+
+	Role findRoleById(int id);
+
+	Integer deleteByPrimaryKey(Integer roleId);
+
+	int findByCount();
+
+	int addRole(Role role);
+
+	int updateByPrimaryKeySelective(Role role);
+
+	Role findMoreList(int id);
+
+	List<ResourcesTree> getResourcesTree(Integer roleId);
+
+	int assignResources(Integer roleId, Integer[] resIds);
+
+}

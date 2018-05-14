@@ -1,0 +1,291 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%> 
+<html>
+<head>
+
+<title>Home</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Classic Style Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
+<!-- //for-mobile-apps -->
+<link href="<%=basePath %>/styles/insurance/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=basePath %>/styles/insurance/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href='https://fonts.googleapis.com/css?family=Cabin:400,500,600,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300,700,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!-- header -->
+	<div class="header">
+			<div class="header-grid">
+					<div class="container">
+				<div class="header-left animated wow fadeInLeft" data-wow-delay=".5s">
+					<ul>
+						<li><i class="glyphicon glyphicon-envelope" ></i><a href="">756209589@QQ.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" ></i>17620046458</li>
+						
+					</ul>
+				</div>
+				<div class="header-right animated wow fadeInRight" data-wow-delay=".5s">
+				<div class="header-right1 ">
+					<ul>
+		
+						<li><i class="glyphicon glyphicon-log-in" ></i><a href="login.jsp">登录</a></li>
+						<li><i class="glyphicon glyphicon-book" ></i><a href="register.jsp">注册</a></li>
+					</ul>
+				</div>
+				
+				<div class="clearfix"> </div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+			<div class="container">
+			<div class="logo-nav">
+				
+					<nav class="navbar navbar-default">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header nav_2" >
+						 <div class="navbar-brand logo-nav-left " style="margin-left: -209px;margin-top: 10px">
+							<h1 class="animated wow pulse" data-wow-delay=".5s"><img class="img-responsive" src="<%=basePath %>/styles/insurance/images/ZZB.png" alt="" /></h1>
+						</div>
+
+					</div> 
+					<div class="collapse navbar-collapse" id="bs-megadropdown-tabs" >
+						<ul class="nav navbar-nav" style="margin-left;margin-top: 10px">
+							<li class="active"><a href="#" class="act"><h1>主页</h1></a></li>	
+							<li class="active">
+								<a href="#" class="act"><h1>保险</h1> </a>
+							</li>
+							<li class="active">
+								<a href="#" class="act"><h1>活动</h1> </a>
+							</li>
+							<li class="active">
+								<a href="#" class="act"><h1>理赔</h1> </a>
+							</li>
+						</ul>
+					</div>
+					</nav>
+				</div>
+				
+		</div>
+	</div>
+<!-- //header -->
+<!-- Solr -->
+	<div class="solr">
+		<div class="col-md-6"></div>
+		<div class="col-md-6 footer-grid animated wow fadeInLeft">
+			<form style="margin-top: -43px;">
+				<input type="text"  required="">
+				<input type="submit" value="查询">
+			</form>
+			<p>热搜： <a style="color: red;display: inline-block; margin-right: 10px">养老保险</a>     <a style="color: red;display: inline-block; margin-right: 10px">旅游保险</a>    <a style="color: red">意外保险</a></p>
+			</div>
+	</div>
+<!-- /Solr -->
+<!--banner-->
+<div class="banner-top" style="margin-top:50px;">
+	<div class="container">
+		<h2 class="animated wow fadeInLeft" data-wow-delay=".5s">旅游保险</h2>
+		<div class="clearfix"> </div>
+	</div>
+</div>
+	<!--content-->
+		<div class="product">
+			<div class="container">
+						<div class="col-md-3 product-bottom">
+			<!--categories-->
+			<div class="categories animated wow fadeInUp animated" data-wow-delay=".5s" >
+					<h3>分类</h3>
+					<ul class="cate">
+						<li><a href="products.html">旅游保险</a></li>
+						<li><a href="products.html">意外保险</a></li>
+						<li><a href="products.html">车险</a></li>
+						<li><a href="products.html">等等险</a></li>
+					</ul>
+				</div>
+		<!--//menu-->
+			
+ 	</div>
+			<div class="col-md-9 animated wow fadeInRight" data-wow-delay=".5s">
+				<div class="mens-toolbar">
+					<p style="margin-left: 50px;"><a>全部</a></p>
+					<p style="margin-left: 50px;"><a>全部</a></p>
+					<p style="margin-left: 50px;"><a>全部</a></p>
+                	<div class="clearfix"></div>		
+		        </div>
+
+			<div class="mid-popular">
+				<div class="col-sm-4 item-grid item-gr  simpleCart_shelfItem">
+							<div class="grid-pro">
+								<div  class=" grid-product " >
+									<figure>		
+										<a href="single.html">
+											<div class="grid-img">
+												<img  src="images/pr1.jpg" class="img-responsive" alt="">
+											</div>
+											<div class="grid-img">
+												<img  src="images/pr.jpg" class="img-responsive"  alt="">
+											</div>			
+										</a>		
+									</figure>	
+								</div>
+								<div class="women">
+									<a href="#"><img src="images/ll.png" alt=""></a>
+									<h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
+									<p ><del>$100.00</del><em class="item_price">$70.00</em></p>
+									<a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 item-grid item-gr simpleCart_shelfItem">
+							<div class="grid-pro">
+								<div  class=" grid-product " >
+									<figure>		
+										<a href="single.html">
+											<div class="grid-img">
+												<img  src="images/pr3.jpg" class="img-responsive" alt="">
+											</div>
+											<div class="grid-img">
+												<img  src="images/pr2.jpg" class="img-responsive"  alt="">
+											</div>			
+										</a>		
+									</figure>	
+								</div>
+								<div class="women">
+									<a href="#"><img src="images/ll.png" alt=""></a>
+									<h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
+									<p ><del>$100.00</del><em class="item_price">$70.00</em></p>
+									<a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4 item-grid item-gr simpleCart_shelfItem">
+							<div class="grid-pro">
+								<div  class=" grid-product " >
+									<figure>		
+										<a href="single.html">
+											<div class="grid-img">
+												<img  src="images/pr5.jpg" class="img-responsive" alt="">
+											</div>
+											<div class="grid-img">
+												<img  src="images/pr4.jpg" class="img-responsive"  alt="">
+											</div>			
+										</a>		
+									</figure>	
+								</div>
+								<div class="women">
+									<a href="#"><img src="images/ll.png" alt=""></a>
+									<h6><a href="single.html">Sed ut perspiciatis unde</a></h6>
+									<p ><del>$100.00</del><em class="item_price">$70.00</em></p>
+									<a href="#" data-text="Add To Cart" class="but-hover1 item_add">Add To Cart</a>
+								</div>
+							</div>
+						</div>
+			</div>
+		</div>
+</div>
+
+				<!--//products-->
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+		<div class="footer-top">
+		<div class="clearfix"> </div>
+		</div>
+			<div class="footer-grids">
+				<div class="col-md-4 footer-grid animated wow fadeInLeft" data-wow-delay=".5s">
+					<h3>关于我们</h3>
+					<p>
+						<span><a>至尊宝简介</a></span>
+						<span><a>社会责任</a></span>
+					</p>
+				</div>
+				<div class="col-md-4 footer-grid animated wow fadeInLeft" data-wow-delay=".6s">
+					<h3>联系我们</h3>
+					<ul>
+						<li><i class="glyphicon glyphicon-map-marker" ></i>北京市海淀区软件园</span></li>
+						<li class="foot-mid"><i class="glyphicon glyphicon-envelope" ></i><a href="">756209589@QQ.com</a></li>
+						<li><i class="glyphicon glyphicon-earphone" ></i>+17620046548</li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			
+			<div class="copy-right animated wow fadeInUp" data-wow-delay=".5s">
+				<p>版权所有 &copy; 中国至尊保保险（集团）股份有限公司未经许可不得复制、转载或摘编，违者必究!</p>
+				<p>Copyright &copy; China sovereign insurance (group) co., LTD. May not copy, reprint or extract without permission.</p>
+			</div>
+		</div>
+	</div>
+<!-- //footer -->
+</body>
+<!-- js -->
+<script src="<%=basePath %>/styles/insurance/js/jquery.min.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //js -->
+<!-- cart -->
+<script src="<%=basePath %>/styles/insurance/js/simpleCart.min.js"></script>
+<!-- cart -->
+<!-- for bootstrap working -->
+<script type="text/javascript" src="<%=basePath %>/styles/insurance/js/bootstrap-3.1.1.min.js"></script>
+<!-- //for bootstrap working -->
+<!-- animation-effect -->
+<link href="<%=basePath %>/styles/insurance/css/animate.min.css" rel="stylesheet"> 
+<script src="<%=basePath %>/styles/insurance/js/wow.min.js"></script>
+<script>
+ new WOW().init();
+</script>
+<script type="text/javascript" src="<%=basePath %>/styles/insurance/js/jquery.flexisel.js"></script>					
+<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo2").flexisel({
+				visibleItems: 1,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 5000,    		
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+		    	responsiveBreakpoints: { 
+		    		portrait: { 
+		    			changePoint:480,
+		    			visibleItems: 1
+		    		}, 
+		    		landscape: { 
+		    			changePoint:640,
+		    			visibleItems: 1
+		    		},
+		    		tablet: { 
+		    			changePoint:768,
+		    			visibleItems: 1
+		    		}
+		    	}
+		    });
+		    
+		});
+	</script>
+ <!-- requried-jsfiles-for owl -->
+							<link href="<%=basePath %>/styles/insurance/css/owl.carousel.css" rel="stylesheet">
+							    <script src="<%=basePath %>/styles/insurance/js/owl.carousel.js"></script>
+							        <script>
+									    $(document).ready(function() {
+									      $("#owl-demo").owlCarousel({
+									        items : 2,
+									        lazyLoad : false,
+									        autoPlay : true,
+									        navigation : true,
+									        navigationText :  true,
+									        pagination : false,
+									      });
+									    });
+									  </script>
+							 <!-- //requried-jsfiles-for owl -->	
+<!-- //animation-effect -->
+</html>

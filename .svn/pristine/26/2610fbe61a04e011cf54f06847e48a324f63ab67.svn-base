@@ -1,0 +1,32 @@
+package www.zhizunbao.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.mapper.TestMapper;
+import www.zhizunbao.service.TestService;
+import www.zhizunbao.utils.RedisCacheConfig;
+@Service
+public class TestServiceImpl implements TestService{
+
+	@Autowired
+	private TestMapper testMapper;
+	@Autowired
+	private RedisTemplate<String, Object> template;
+	@Override
+	public void getTestList() {
+		System.out.println(testMapper);
+		/*RedisSerializer<String> stringSerializer = new StringRedisSerializer();
+		template.setKeySerializer(stringSerializer);
+		template.setValueSerializer(stringSerializer);
+        template.setHashKeySerializer(stringSerializer);
+        template.setHashValueSerializer(stringSerializer);*/
+        System.out.println(template.opsForValue().get("name"));
+	}
+	
+	
+}

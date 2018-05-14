@@ -1,0 +1,74 @@
+package www.zhizunbao.utils;
+
+import java.io.UnsupportedEncodingException;
+
+import sun.misc.BASE64Decoder;
+
+/**
+ * base64 编码、解码util
+ * 
+ * @author lifq
+ * @date 2015-3-4 上午09:23:33
+ */
+public class Base64Util {
+    /**
+     * 将 s 进行 BASE64 编码
+     *
+     * @return String
+     * @author lifq
+     * @date 2015-3-4 上午09:24:02
+     */
+    public static String encode(String s) {
+        if (s == null)
+            return null;
+        String res = "";
+        try {
+            res = new sun.misc.BASE64Encoder().encode(s.getBytes("GBK"));
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    /**
+     * 将 BASE64 编码的字符串 s 进行解码
+     *
+     * @return String
+     * @author lifq
+     * @date 2015-3-4 上午09:24:26
+     */
+    public static String decode(String s) {
+        if (s == null)
+            return null;
+        BASE64Decoder decoder = new BASE64Decoder();
+        try {
+            byte[] b = decoder.decodeBuffer(s);
+            return new String(b,"GBK");
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    /**
+     * 
+     * @return void
+     * @author lifq
+     * @date 2015-3-4 上午09:23:17
+     */
+    public static void main(String[] args) {
+    	// eGlhb21pbmc=
+    	/*System.out.println(Base64Util.encode("xiaoming"));
+    	System.out.println(Base64Util.decode("eGlhb21pbmc="));
+    	
+    	System.out.println(Base64Util.encode("123456789"));
+    	System.out.println(Base64Util.encode("12121212121212121212121212"));*/
+    	
+    	// 双重加密，先进行MD5加密，在进行Base64加密
+    	// 97304531204ef7431330c20427d95481
+    	System.out.println(Base64Util.encode(MD5Util.MD5("xiaoming")));
+    	// OTczMDQ1MzEyMDRlZjc0MzEzMzBjMjA0MjdkOTU0ODE=
+    	System.out.println(Base64Util.decode("OTczMDQ1MzEyMDRlZjc0MzEzMzBjMjA0MjdkOTU0ODE="));
+    	
+    }
+
+}

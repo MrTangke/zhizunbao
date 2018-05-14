@@ -1,0 +1,41 @@
+package www.zhizunbao.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import www.zhizunbao.dto.claim.UserApply;
+import www.zhizunbao.mapper.claim.UserApplyMapper;
+import www.zhizunbao.service.UserApplyService;
+@Service
+public class UserApplyServiceImpl implements UserApplyService{
+
+	@Autowired
+	private UserApplyMapper userApplyMapper;
+
+	@Override
+	public int uploadImg(String imgUrl, UserApply userApply) {
+		    userApply.setApplyStatus(0);
+			userApply.setClaimImg(imgUrl);
+			return userApplyMapper.insertSelective(userApply);
+		}
+
+	@Override
+	public List<UserApply> findUserApplyList() {
+		// TODO Auto-generated method stub
+		return userApplyMapper.findUserApplyList();
+	}
+
+	@Override
+	public void getApproved(Integer applyId) {
+		// TODO Auto-generated method stub
+		userApplyMapper.getApproved(applyId);
+	}
+	
+	@Override
+	public void unGetApproved(Integer applyId) {
+		// TODO Auto-generated method stub
+		userApplyMapper.unGetApproved(applyId);
+	}
+}
